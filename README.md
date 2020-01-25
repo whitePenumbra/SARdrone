@@ -38,11 +38,16 @@ pip install PyQt5
 
     UI stuff. 
     
+TomTom Full Suite API Key under my name: b6faKQy5hyAwQqYmcLGPlweanEfEdhPM
+    `You will use both Mapping and Routing APIs.
+    You can only get 2500 queries every day for free so please stay under that I'm trying to save money.
+    (HERE: https://developer.tomtom.com/routing-api/routing-api-documentation)
+    `
+TomTom Map and Map Services Libraries are attached in this repo.
+
 Congrats! You are ready to code the fucking drone.
 
     ###################################################################################################
-
-    NOTE:
     
     Connect with the drone's WiFi signal. Just reset the password because I think I forgot it already. Just send the new password to me or something.
 
