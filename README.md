@@ -25,7 +25,7 @@ pip install untangle
 
     This parses the XML files of the parrot SDK.
 
-pip install openv-python
+pip install opencv-python
 pip install ffmpeg
 
     These are vision solutions for the drone. They have very different purposes so to prevent any issues just install both of them.
