@@ -1,9 +1,0 @@
-Developer Notes
-
-[12/20/19]
-
-> login.py: white bg, orange logo, blue title
-
-> login_alt.py: dark bg, orange logo, blue title 
-
-> login_alt_1.py: dark bg, orange logo, white title
