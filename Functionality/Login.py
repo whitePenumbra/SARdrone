@@ -1,10 +1,12 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-sys.path.append('../Gui/Login')
-import LoginAlt
+sys.path.append('..')
+from Gui.Login import LoginAlt
+from Gui.ForgotPassword import ForgotPasswordAlt
+from Gui.Administator.Homepage import HomepageAlt
 
 print("asd")
-class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
+class mainClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
     def __init__(self):
         super(self.__class__, self).__init__()
         self.setupUi(self)
@@ -16,15 +18,33 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         password = self.txt_password.text()
         print(user + " " + password)
 
-        # if user == 'admin' and password == 'admin':
-        #     homepage
+        if user == 'admin' and password == 'admin':
+            print('Cheheck')
+            self.window = QtWidgets.QMainWindow()
+            self.ui = HomepageAlt.Ui_MainWindow()
+            self.ui.setupUi(self.window)
+            self.window.show()
 
     def forgot(self):
         print('testttttt')
+        self.window = QtWidgets.QMainWindow()
+        self.ui = ForgotPasswordAlt.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.hide()
+
+class forgotClass(QtWidgets.QMainWindow, ForgotPasswordAlt.Ui_MainWindow):
+    def __init__(self):
+        super(self.__class__, self).__init__()
+        self.setupUi(self)
+        self.btn_reset.clicked.connect(self.reset)
+
+    def reset(self):
+        print('eyoooo')
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    form = loginClass()
+    form = mainClass()
     form.show()
     app.exec_()
 
