@@ -5,6 +5,7 @@ from Gui.Login import LoginAlt
 from Gui.ForgotPassword import ForgotPasswordAlt
 from Gui.Administator.Homepage import HomepageAlt
 from Forgot import forgotClass
+from Homepage import homepageClass
 
 
 
@@ -23,10 +24,9 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
         if user == 'admin' and password == 'admin':
             print('Cheheck')
-            self.window = QtWidgets.QMainWindow()
-            self.ui = HomepageAlt.Ui_MainWindow()
-            self.ui.setupUi(self.window)
-            self.window.show()
+            self.homepage = homepageClass()
+            self.hide()
+            self.homepage.show()
 
     def forgot(self):
         print('testttttt')

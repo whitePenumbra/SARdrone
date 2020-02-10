@@ -10,8 +10,12 @@ class forgotClass(QtWidgets.QMainWindow, ForgotPasswordAlt.Ui_MainWindow):
         # self.window = QtWidgets.QMainWindow()
         # self.ui = ForgotPasswordAlt.Ui_MainWindow()
         self.setupUi(self)
-        # self.btn_reset.clicked.connect(self.reset)
+        self.btn_reset.clicked.connect(self.reset)
+        self.btn_forgot.clicked.connect(self.logging)
         self.show()
 
     def reset(self):
         print('eyoooo')
+
+    def logging(self):
+        print('yoyoyoyoyo')
