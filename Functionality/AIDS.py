@@ -4,9 +4,12 @@ sys.path.append('..')
 from Gui.Login import LoginAlt
 from Gui.ForgotPassword import ForgotPasswordAlt
 from Gui.Administator.Homepage import HomepageAlt
+from Forgot import forgotClass
+
+
 
 print("asd")
-class mainClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
+class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
     def __init__(self):
         super(self.__class__, self).__init__()
         self.setupUi(self)
@@ -27,24 +30,13 @@ class mainClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
     def forgot(self):
         print('testttttt')
-        self.window = QtWidgets.QMainWindow()
-        self.ui = ForgotPasswordAlt.Ui_MainWindow()
-        self.ui.setupUi(self.window)
-        self.window.show()
+        self.forgotForm = forgotClass()
         self.hide()
-
-class forgotClass(QtWidgets.QMainWindow, ForgotPasswordAlt.Ui_MainWindow):
-    def __init__(self):
-        super(self.__class__, self).__init__()
-        self.setupUi(self)
-        self.btn_reset.clicked.connect(self.reset)
-
-    def reset(self):
-        print('eyoooo')
-
+        self.forgotForm.show()
+   
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    form = mainClass()
+    form = loginClass()
     form.show()
     app.exec_()
 
