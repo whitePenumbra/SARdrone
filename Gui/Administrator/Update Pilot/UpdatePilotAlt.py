@@ -533,24 +533,6 @@ class Ui_MainWindow(object):
         self.btn_profImg.setObjectName("btn_profImg")
         self.horizontalLayout_2.addWidget(self.btn_profImg)
 
-        ####### Save Dialog
-
-        """msgBox = QtWidgets.QMessageBox()
-        msgBox.setWindowTitle("Update Pilot")
-        msgBox.setWindowIcon(QtGui.QIcon('../../Resources/logo_svg.svg'))
-        msgBox.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText("Do you want to save changes to this pilot?")
-        msgBox.setInformativeText("This process cannot be undone")
-        msgBox.addButton(QtWidgets.QMessageBox.Cancel)
-        nosave = msgBox.addButton(QtWidgets.QMessageBox.Discard)
-        msgBox.addButton(QtWidgets.QMessageBox.Save)
-        nosave.setText("Don't Save")
-
-        msgBox.setDefaultButton(QtWidgets.QMessageBox.Cancel)
-        ret = msgBox.exec_()"""
-
-        ########
 
         MainWindow.setCentralWidget(self.centralwidget)
 

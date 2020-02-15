@@ -61,7 +61,7 @@ border: none;
 </string>
     </property>
     <property name="text">
-     <string>Reset Password</string>
+     <string>Change Password</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -86,7 +86,7 @@ border: none;
         <string notr="true"/>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#2c365d;&quot;&gt;Reset Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#2c365d;&quot;&gt;Change Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -198,7 +198,7 @@ border: none;
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">padding-left:4px;</string>
+            <string notr="true"/>
            </property>
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
@@ -240,7 +240,7 @@ border: none;
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">padding-left:4px;</string>
+            <string notr="true"/>
            </property>
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>

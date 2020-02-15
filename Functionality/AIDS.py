@@ -3,11 +3,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Login import LoginAlt
 from Gui.ForgotPassword import ForgotPasswordAlt
-from Gui.Administator.Homepage import HomepageAlt
+from Gui.Administrator.Homepage import HomepageAlt
 from Forgot import forgotClass
 from Homepage import homepageClass
-
-
 
 print("asd")
 class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
@@ -24,21 +22,15 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
         if user == 'admin' and password == 'admin':
             print('Cheheck')
-            self.homepage = homepageClass()
-            self.hide()
+            self.homepage = homepageClass(parent=self)
+            self.close()
             self.homepage.show()
 
     def forgot(self):
         print('testttttt')
-        self.forgotForm = forgotClass()
+        self.forgotForm = forgotClass(parent=self)
         self.hide()
         self.forgotForm.show()
-   
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    form = loginClass()
-    form.show()
-    app.exec_()
 
-if __name__ == '__main__':
-    main()
+    def showself(self):
+        self.show()

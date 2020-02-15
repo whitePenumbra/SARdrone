@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'resetpassword.ui'
+# Form implementation generated from reading ui file 'newUser.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
         self.txtNewPass = QtWidgets.QLineEdit(self.layoutWidget1)
         self.txtNewPass.setMinimumSize(QtCore.QSize(347, 31))
         self.txtNewPass.setMaximumSize(QtCore.QSize(347, 31))
-        self.txtNewPass.setStyleSheet("padding-left:4px;")
+        self.txtNewPass.setStyleSheet("")
         self.txtNewPass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtNewPass.setObjectName("txtNewPass")
         self.verticalLayout_3.addWidget(self.txtNewPass)
@@ -127,7 +127,7 @@ class Ui_MainWindow(object):
         self.txtConfirmPass = QtWidgets.QLineEdit(self.layoutWidget1)
         self.txtConfirmPass.setMinimumSize(QtCore.QSize(247, 31))
         self.txtConfirmPass.setMaximumSize(QtCore.QSize(347, 31))
-        self.txtConfirmPass.setStyleSheet("padding-left:4px;")
+        self.txtConfirmPass.setStyleSheet("")
         self.txtConfirmPass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtConfirmPass.setObjectName("txtConfirmPass")
         self.verticalLayout_4.addWidget(self.txtConfirmPass)
@@ -142,8 +142,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Reset Password"))
-        self.btnReset.setText(_translate("MainWindow", "Reset Password"))
-        self.lbl_verification_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\">Reset Password</span></p></body></html>"))
+        self.btnReset.setText(_translate("MainWindow", "Change Password"))
+        self.lbl_verification_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\">Change Password</span></p></body></html>"))
         self.label.setText(_translate("MainWindow", "Password must have at least 8 characters, an upper case (A-Z),"))
         self.label_2.setText(_translate("MainWindow", "and a number (0-9). Special Characters are optional"))
         self.lbl_newpass.setText(_translate("MainWindow", "New Password"))
