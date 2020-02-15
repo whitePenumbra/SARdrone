@@ -1,8 +1,9 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
+from PyQt5.QtWidgets import QDialog
 from Gui.Login import LoginAlt
-from Gui.ForgotPassword import ForgotPasswordAlt
+from Gui.ForgotPassword.ForgotPasswordQDialog import Ui_Dialog
 from Gui.Administrator.Homepage import HomepageAlt
 from Forgot import forgotClass
 from Homepage import homepageClass
@@ -28,9 +29,10 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
     def forgot(self):
         print('testttttt')
-        self.forgotForm = forgotClass(parent=self)
+        self.forgotform = forgotClass(parent=self)
+        self.forgotform.show()
         self.hide()
-        self.forgotForm.show()
+
 
     def showself(self):
         self.show()
