@@ -98,6 +98,7 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             self.cellWidget.setLayout(layout)
 
             self.table_pilots.setCellWidget(row,3,self.cellWidget) #buttons placement
+            # self.table_pilots.setCellWidget(row,4,self.btn_delete)
             self.table_pilots.horizontalHeader().setStyleSheet( "QHeaderView::section{"
                 "border-top:0px solid #D8D8D8;"
                 "border-left:0px solid #D8D8D8;"
@@ -138,6 +139,20 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     
     def softDelete(self):
         print('del')
+        button = self.sender()
+        row = self.table_pilots.indexAt(button.pos()).row()
+        
+        lastName = self.table_pilots.item(row,1).text()
+        firstName = self.table_pilots.item(row,2).text()
+
+        conn = mdb.connect('localhost', 'root', '', 'aids')
+        cur = conn.cursor()
+
+        print(firstName + " " + lastName)
+        cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
+        conn.commit()
+
+
 
     def view(self):
         print('view')
