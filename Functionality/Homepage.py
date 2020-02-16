@@ -2,7 +2,9 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.Homepage import HomepageAlt
+from Gui.Administrator.ViewPilot import ViewPilotAlt
 from AddPilot import addClass
+from ViewPilot import viewClass
 import MySQLdb as mdb
 
 
@@ -152,10 +154,31 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
         conn.commit()
 
-
-
     def view(self):
         print('view')
         button = self.sender()
         row = self.table_pilots.indexAt(button.pos()).row()
         print(row)
+        self.viewForm = viewClass(parent=self)
+        self.viewForm.show()
+        self.hide()
+    
+    def getInfo(self):
+        button = self.sender()
+        row = self.table_pilots.indexAt(button.pos()).row()
+
+        lastName = self.table_pilots.item(row,1).text()
+        firstName = self.table_pilots.item(row,2).text()  
+
+        conn = mdb.connect('localhost', 'root', '', 'aids')
+        cur = conn.cursor()      
+
+        cur.execute('SELECT * FROM users WHERE first_name = "%s" AND last_name = "%s"' % (firstName,lastName))
+        result = cur.fetchall()
+        # print(result)
+
+        infoTuple = ((),)
+        for i in result:
+            infoTuple = i
+        
+        return (infoTuple)
