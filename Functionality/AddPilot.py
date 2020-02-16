@@ -30,36 +30,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.close()
         self.parent.showself()
     
-    def savePilot(self):
-        fname = self.txt_fname.text()
-        lname = self.txt_lname.text()
-
-        if (self.rbtn_female.isChecked()):
-            gender = self.rbtn_female.text()
-        elif (self.rbtn_male.isChecked()):
-            gender = self.rbtn_male.text()
-        else:
-            gender = ''
-
-        month = self.cmb_month.currentText()
-        day = self.cmb_day.currentText()
-        year = self.cmb_year.currentText()
-
-        address = self.txt_address.text()
-        city = self.txt_city.text()
-        province = self.txt_province.text()
-        zipCode = self.txt_zip.text()
-
-        email = self.txt_email.text()
-        mobile = self.txt_mobile.text()
-        emContact = self.txt_emContact.text()
-        emNumber = self.txt_emNumber.text()
-
-        certNo = self.txt_certificate.text()
-        operator = self.txt_operator.text()
-        issueDate = self.txt_issueDate.text()
-        expire = self.txt_licenseEx.text()    
-
+    def savePilot(self):  
         self.connectToDB()
         self.insertToDB()
 
