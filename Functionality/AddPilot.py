@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.AddPilot import addpilotAlt
 import MySQLdb as mdb
+from Encryption import AESCipher
 
 class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -86,11 +87,11 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         con = mdb.connect('localhost', 'root', '', 'aids')
         cur = con.cursor()
 
-        cur.execute('INSERT INTO address(home_address, city, province, zipcode) VALUES'
+        cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
         '("%s","%s","%s",%s)' % (address, city, province, zipCode))
         con.commit()
 
-        cur.execute('SELECT address_id FROM address WHERE home_address = "%s" AND zipcode = %s' % (address,zipCode))
+        cur.execute('SELECT address_id FROM address WHERE permanent_address = "%s" AND zipcode = %s' % (address,zipCode))
         result = cur.fetchall()
 
         address_id = 0
@@ -100,7 +101,13 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         username = fname[0:1] + lname[0:]
         password = lname[0:1] + fname[0:]
+
+        encpass = AESCipher('aids').encrypt(password)
+
         cur.execute('INSERT INTO users(address_id, last_name, first_name, username, password, user_type, '
-        'license_date, license_expiry) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")' 
-        % (address_id, lname, fname, username, password, 1, 0000-00-00, 0000-00-00))
+        'license_date, license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, '
+        'date_of_birth, email, phone_number) VALUES'
+        '("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' 
+        % (address_id, lname, fname, username, encpass, 0, 0000-00-00, 0000-00-00, certNo, emContact, emNumber, operator,
+        gender, (year + '-' + month + '-' + day), email, mobile))
         con.commit()

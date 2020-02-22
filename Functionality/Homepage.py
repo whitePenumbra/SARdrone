@@ -18,6 +18,77 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
 
+        self.generateData()
+
+    def add(self):
+        print('adddddd')
+        self.addPilot = addClass(parent=self)
+        self.addPilot.show()
+        self.close()
+
+    def operations(self):
+        print('operations')
+
+    def search(self):
+        print('search')
+        # searchbar.text
+    
+    def logout(self):
+        self.close()
+        self.parent.showself()
+
+    def showself(self):
+        self.show()
+    
+    def softDelete(self):
+        print('del')
+        button = self.sender()
+        row = self.table_pilots.indexAt(button.pos()).row()
+
+        self.table_pilots._removerow
+        
+        # lastName = self.table_pilots.item(row,1).text()
+        # firstName = self.table_pilots.item(row,2).text()
+
+        # conn = mdb.connect('localhost', 'root', '', 'aids')
+        # cur = conn.cursor()
+
+        # print(firstName + " " + lastName)
+        # cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
+        # conn.commit()
+
+        self.generateData()
+
+    def view(self):
+        print('view')
+        button = self.sender()
+        row = self.table_pilots.indexAt(button.pos()).row()
+        print(row)
+        self.viewForm = viewClass(parent=self)
+        self.viewForm.show()
+        self.hide()
+    
+    def getInfo(self):
+        button = self.sender()
+        row = self.table_pilots.indexAt(button.pos()).row()
+
+        lastName = self.table_pilots.item(row,1).text()
+        firstName = self.table_pilots.item(row,2).text()  
+
+        conn = mdb.connect('localhost', 'root', '', 'aids')
+        cur = conn.cursor()      
+
+        cur.execute('SELECT * FROM users WHERE first_name = "%s" AND last_name = "%s"' % (firstName,lastName))
+        result = cur.fetchall()
+        # print(result)
+
+        infoTuple = ((),)
+        for i in result:
+            infoTuple = i
+        
+        return (infoTuple)
+
+    def generateData(self):
         con = mdb.connect('localhost', 'root', '', 'aids')
         cur = con.cursor()
 
@@ -26,6 +97,7 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.table_pilots.setRowCount(len(result))
         print(result)
         row = 0
+        buttonDict = {}
         for i in result:
             self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
             self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem(i[1]))
@@ -37,6 +109,8 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             self.btn_view.clicked.connect(self.view)
             self.btn_delete = QtWidgets.QPushButton()
             self.btn_delete.clicked.connect(self.softDelete)
+            # buttonDict["btn_view{0}".format(i)] = QtWidgets.QPushButton()
+            # buttonDict["btn_delete{0}".format(i)] = QtWidgets.QPushButton()
             #btn_view.setText('View')
             self.btn_view.setFixedHeight(34)
             self.btn_delete.setFixedHeight(34)
@@ -118,67 +192,4 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             "}" );
 
             row += 1
-
-    def add(self):
-        print('adddddd')
-        self.addPilot = addClass(parent=self)
-        self.addPilot.show()
-        self.close()
-
-    def operations(self):
-        print('operations')
-
-    def search(self):
-        print('search')
-        # searchbar.text
-    
-    def logout(self):
-        self.close()
-        self.parent.showself()
-
-    def showself(self):
-        self.show()
-    
-    def softDelete(self):
-        print('del')
-        button = self.sender()
-        row = self.table_pilots.indexAt(button.pos()).row()
-        
-        lastName = self.table_pilots.item(row,1).text()
-        firstName = self.table_pilots.item(row,2).text()
-
-        conn = mdb.connect('localhost', 'root', '', 'aids')
-        cur = conn.cursor()
-
-        print(firstName + " " + lastName)
-        cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
-        conn.commit()
-
-    def view(self):
-        print('view')
-        button = self.sender()
-        row = self.table_pilots.indexAt(button.pos()).row()
-        print(row)
-        self.viewForm = viewClass(parent=self)
-        self.viewForm.show()
-        self.hide()
-    
-    def getInfo(self):
-        button = self.sender()
-        row = self.table_pilots.indexAt(button.pos()).row()
-
-        lastName = self.table_pilots.item(row,1).text()
-        firstName = self.table_pilots.item(row,2).text()  
-
-        conn = mdb.connect('localhost', 'root', '', 'aids')
-        cur = conn.cursor()      
-
-        cur.execute('SELECT * FROM users WHERE first_name = "%s" AND last_name = "%s"' % (firstName,lastName))
-        result = cur.fetchall()
-        # print(result)
-
-        infoTuple = ((),)
-        for i in result:
-            infoTuple = i
-        
-        return (infoTuple)
+            # vars().update(buttonDict)
