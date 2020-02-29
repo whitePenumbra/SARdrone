@@ -1,32 +1,29 @@
-from Crypto import Random #use to generate a random byte string of a length we decide
-from Crypto.Cipher import AES
-import base64
-import hashlib
+from hashlib import md5
+from base64 import b64decode
+from base64 import b64encode
 
-BS = 16
-pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS)
-unpad = lambda s : s[0:-s[-1]]
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad, unpad
 
 class AESCipher:
+    def __init__(self, key):
+        self.key = md5(key.encode('utf8')).digest()
 
-    def __init__( self, key ):
-        self.key = hashlib.sha256(key.encode('utf-8')).digest()
+    def encrypt(self, data):
+        iv = get_random_bytes(AES.block_size)
+        self.cipher = AES.new(self.key, AES.MODE_CBC, iv)
+        return b64encode(iv + self.cipher.encrypt(pad(data.encode('utf-8'), 
+            AES.block_size)))
 
-    def encrypt(self,raw):
-        raw = pad(raw)
-        iv = Random.new().read( AES.block_size )
-        cipher = AES.new( self.key, AES.MODE_CBC, iv )
-        return base64.b64encode( iv + cipher.encrypt( raw.encode('utf8') ) )
-
-    def decrypt(self,enc):
-        enc = base64.b64decode(enc)
-        iv = enc[:16]
-        cipher = AES.new(self.key, AES.MODE_CBC, iv )
-        return unpad(cipher.decrypt( enc[16:] ))
+    def decrypt(self, data):
+        raw = b64decode(data)
+        self.cipher = AES.new(self.key, AES.MODE_CBC, raw[:AES.block_size])
+        return unpad(self.cipher.decrypt(raw[AES.block_size:]), AES.block_size)
 
 
-# cipher = AESCipher()
-# encrypted = cipher.encrypt('Secret Message A')
-# decrypted = cipher.decrypt(encrypted)
-# print(encrypted)
-# print(decrypted)
+cipher = AESCipher('aids')
+encrypted = cipher.encrypt('Secret Message A')
+decrypted = cipher.decrypt(encrypted)
+print(encrypted)
+print(decrypted)

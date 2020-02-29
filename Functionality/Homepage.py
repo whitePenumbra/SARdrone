@@ -18,7 +18,7 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
 
-        self.generateData()
+        self.initializeData()
 
     def add(self):
         print('adddddd')
@@ -31,7 +31,18 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
     def search(self):
         print('search')
-        # searchbar.text
+        toSearch = self.searchbar.text()
+
+        con = mdb.connect('localhost', 'root', '', 'aids')
+        cur = con.cursor()
+
+        if (toSearch != ""):
+            cur.execute('SELECT user_id,last_name,first_name from users WHERE '
+            'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))
+            result = cur.fetchall()
+            self.getData(result)
+        else:
+            self.initializeData()
     
     def logout(self):
         self.close()
@@ -57,7 +68,7 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         # cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
         # conn.commit()
 
-        self.generateData()
+        self.initializeData()
 
     def view(self):
         print('view')
@@ -88,12 +99,16 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         
         return (infoTuple)
 
-    def generateData(self):
+    def initializeData(self):
         con = mdb.connect('localhost', 'root', '', 'aids')
         cur = con.cursor()
 
         cur.execute('SELECT user_id,last_name,first_name from users WHERE isActive = 1 AND user_type = 1')
         result = cur.fetchall()
+
+        self.getData(result)
+
+    def getData(self,result):
         self.table_pilots.setRowCount(len(result))
         print(result)
         row = 0
@@ -193,3 +208,4 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
             row += 1
             # vars().update(buttonDict)
+        

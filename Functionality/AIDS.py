@@ -26,20 +26,21 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         password = self.txt_password.text()
         print(user + " " + password)
 
-        cur.execute('SELECT username,password FROM users WHERE username = "%s" AND user_type = "%s"' % (user,0))
-        result = cur.fetchall()
+        # cur.execute('SELECT username,password FROM users WHERE username = "%s" AND user_type = "%s"' % (user,0))
+        # result = cur.fetchall()
 
-        print(result[0][0])
-        print(AESCipher('aids').decrypt(result[0][1]))
+        # print(len(result[0][1]))
+        # print(result[0][1])
+        # print(AESCipher('aids').decrypt(result[0][1]))
 
-        dbuser = result[0][0]
+        # dbuser = result[0][0]
         # dbpass = AESCipher('aids').decrypt(result[0][1])
 
-        # if user == 'admin' and password == 'admin':
-        #     print('Cheheck')
-        #     self.homepage = homepageClass(parent=self)
-        #     self.close()
-        #     self.homepage.show()
+        if user == 'admin' and password == 'admin':
+            print('Cheheck')
+            self.homepage = homepageClass(parent=self)
+            self.close()
+            self.homepage.show()
 
     def forgot(self):
         print('testttttt')

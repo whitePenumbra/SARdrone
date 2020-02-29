@@ -30,6 +30,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def returnToHome(self):
         self.close()
         self.parent.showself()
+        self.parent.initializeData()
     
     def savePilot(self):  
         self.connectToDB()
@@ -108,6 +109,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         'license_date, license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, '
         'date_of_birth, email, phone_number) VALUES'
         '("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' 
-        % (address_id, lname, fname, username, encpass, 0, 0000-00-00, 0000-00-00, certNo, emContact, emNumber, operator,
+        % (address_id, lname, fname, username, encpass, 1, 0000-00-00, 0000-00-00, certNo, emContact, emNumber, operator,
         gender, (year + '-' + month + '-' + day), email, mobile))
         con.commit()
