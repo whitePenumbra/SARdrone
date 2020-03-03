@@ -49,6 +49,7 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.parent.showself()
 
     def showself(self):
+        self.initializeData()
         self.show()
     
     def softDelete(self):

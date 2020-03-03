@@ -33,7 +33,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.parent.initializeData()
     
     def savePilot(self):  
-        self.connectToDB()
         self.insertToDB()
 
         print('Saved')
