@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.ViewPilot import ViewPilotAlt
 import MySQLdb as mdb
+from UpdatePilot import updateClass
 
 class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -56,7 +57,9 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         self.close()
 
     def updateInfo(self):
-        print('update')
+        self.updateForm = updateClass(parent=self)
+        self.updateForm.show()
+        self.hide()
 
     def pastOps(self):
         print('past')

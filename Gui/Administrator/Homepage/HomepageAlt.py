@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.table_pilots.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_pilots.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         # self.table_pilots.setRowCount(10)
-        self.table_pilots.setColumnCount(4)
+        self.table_pilots.setColumnCount(5)
         self.table_pilots.setObjectName("table_pilots")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -351,6 +351,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Home [Administrator]"))
         self.table_pilots.setSortingEnabled(True)
+        # self.table_pilots.setSpan(0,4,0,2)
         item = self.table_pilots.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
         item = self.table_pilots.horizontalHeaderItem(1)

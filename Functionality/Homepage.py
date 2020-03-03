@@ -185,11 +185,11 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             layout.addWidget(self.btn_view,20)
             layout.addWidget(self.btn_delete,20)
 
-            self.cellWidget = QtWidgets.QWidget()
-            self.cellWidget.setLayout(layout)
+            # self.cellWidget = QtWidgets.QWidget()
+            # self.cellWidget.setLayout(layout)
 
-            self.table_pilots.setCellWidget(row,3,self.cellWidget) #buttons placement
-            # self.table_pilots.setCellWidget(row,4,self.btn_delete)
+            self.table_pilots.setCellWidget(row,3,self.btn_view) #buttons placement
+            self.table_pilots.setCellWidget(row,4,self.btn_delete)
             self.table_pilots.horizontalHeader().setStyleSheet( "QHeaderView::section{"
                 "border-top:0px solid #D8D8D8;"
                 "border-left:0px solid #D8D8D8;"
