@@ -101,6 +101,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         username = fname[0:1] + lname[0:]
         password = lname[0:1] + fname[0:]
+        # password = lname
 
         encpass = AESCipher('aids').encrypt(password)
 

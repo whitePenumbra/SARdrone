@@ -24,23 +24,31 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
         user = self.txt_username.text()
         password = self.txt_password.text()
-        print(user + " " + password)
+        # print(user + " " + password)
 
-        # cur.execute('SELECT username,password FROM users WHERE username = "%s" AND user_type = "%s"' % (user,0))
-        # result = cur.fetchall()
+        cur.execute('SELECT username,password,user_type FROM users WHERE username = "%s"' % (user))
+        result = cur.fetchall()
 
-        # print(len(result[0][1]))
-        # print(result[0][1])
-        # print(AESCipher('aids').decrypt(result[0][1]))
+        # print(result)
 
-        # dbuser = result[0][0]
-        # dbpass = AESCipher('aids').decrypt(result[0][1])
+        dbuser = result[0][0]
+        dbuserType = result[0][2]
+        dbpass = result[0][1]
+        strpass = (AESCipher('aids').decrypt(dbpass[2:(len(dbpass)-1)])).decode()
 
-        if user == 'admin' and password == 'admin':
-            print('Cheheck')
+        if (dbuserType == 0 and password == strpass):
+            print('YEHEEEEEY')
             self.homepage = homepageClass(parent=self)
             self.close()
             self.homepage.show()
+        else:
+            print('NOT TODAY BOIII')
+
+        # if user == 'admin' and password == 'admin':
+        #     print('Cheheck')
+        #     self.homepage = homepageClass(parent=self)
+        #     self.close()
+        #     self.homepage.show()
 
     def forgot(self):
         print('testttttt')
