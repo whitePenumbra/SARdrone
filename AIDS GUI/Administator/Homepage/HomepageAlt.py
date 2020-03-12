@@ -171,7 +171,7 @@ class Ui_MainWindow(object):
         self.table_pilots.setFocusPolicy(QtCore.Qt.NoFocus) 
 
         self.btn_operations = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_operations.setGeometry(QtCore.QRect(820, 690, 221, 41))
+        self.btn_operations.setGeometry(QtCore.QRect(820, 690, 221, 38))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
@@ -317,25 +317,35 @@ class Ui_MainWindow(object):
 "")
         self.btn_logout.setObjectName("btn_logout")
         self.horizontalLayout.addWidget(self.btn_logout)
-
-        ####### Delete Dialog (Delete Pilot)
-
-        """msgBox = QtWidgets.QMessageBox()
-        msgBox.setWindowTitle("Delete Pilot")
-        msgBox.setWindowIcon(QtGui.QIcon('../../Resources/logo_svg.svg'))
-        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText("Are you sure you want to delete this pilot?")
-        msgBox.setInformativeText("This process cannot be undone")
-        msgBox.addButton(QtWidgets.QMessageBox.Cancel)
-        delete = msgBox.addButton(QtWidgets.QMessageBox.Yes)
-        delete.setText('Delete')
-        
-
-        msgBox.setDefaultButton(QtWidgets.QMessageBox.Cancel)
-        ret = msgBox.exec_()"""
-
-        ########
-
+        self.btn_audit = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_audit.setGeometry(QtCore.QRect(580, 690, 221, 38))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_audit.setFont(font)
+        self.btn_audit.setStyleSheet("QPushButton {\n"
+"color: rgb(0, 0, 0);\n"
+"    background-color: rgb(202, 202, 202);\n"
+"border: 1.2px solid #ABABAB;\n"
+"outline: none;}\n"
+"\n"
+"QPushButton:hover{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(171, 171, 171);\n"
+"outline: none;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(129, 129, 129);\n"
+"outline: none;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.btn_audit.setObjectName("btn_operations_2")
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -364,6 +374,7 @@ class Ui_MainWindow(object):
         self.lbl_registered.setText(_translate("MainWindow", "REGISTERED PILOTS"))
         self.btn_search.setText(_translate("MainWindow", "Search"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
+        self.btn_audit.setText(_translate("MainWindow", "Audit Logs"))
 
 
 if __name__ == "__main__":
