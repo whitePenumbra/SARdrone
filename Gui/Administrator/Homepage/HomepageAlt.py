@@ -36,8 +36,8 @@ class Ui_MainWindow(object):
         self.table_pilots.setAutoFillBackground(False)
         self.table_pilots.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_pilots.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        # self.table_pilots.setRowCount(10)
-        self.table_pilots.setColumnCount(5)
+        self.table_pilots.setRowCount(2)
+        self.table_pilots.setColumnCount(4)
         self.table_pilots.setObjectName("table_pilots")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -81,13 +81,6 @@ class Ui_MainWindow(object):
         self.table_pilots.horizontalHeader().setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
         self.table_pilots.horizontalHeader().setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
         self.table_pilots.horizontalHeader().setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
-        self.table_pilots.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Helvetica")
-        font.setPointSize(12)
-        item.setFont(font)
-        item.setBackground(QtGui.QColor(203, 203, 203))
         #create buttons inside table cell
         layout = QtWidgets.QHBoxLayout()
         btn_view = QtWidgets.QPushButton()
@@ -95,9 +88,9 @@ class Ui_MainWindow(object):
         #btn_view.setText('View')
         btn_view.setFixedHeight(34)
         btn_delete.setFixedHeight(34)
-        btn_delete.setIcon(QtGui.QIcon("../Gui/Resources/trash_delete_2.png"))
+        btn_delete.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/trash_delete_2.png"))
         btn_delete.setIconSize(QtCore.QSize(22,22))
-        btn_view.setIcon(QtGui.QIcon("../Gui/Resources/file_view.png"))
+        btn_view.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/file_view.png"))
         btn_view.setIconSize(QtCore.QSize(22,22))
         #btn_delete.setText('Delete')
         font = QtGui.QFont()
@@ -178,7 +171,7 @@ class Ui_MainWindow(object):
         self.table_pilots.setFocusPolicy(QtCore.Qt.NoFocus) 
 
         self.btn_operations = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_operations.setGeometry(QtCore.QRect(820, 690, 221, 41))
+        self.btn_operations.setGeometry(QtCore.QRect(820, 690, 221, 38))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
@@ -324,25 +317,35 @@ class Ui_MainWindow(object):
 "")
         self.btn_logout.setObjectName("btn_logout")
         self.horizontalLayout.addWidget(self.btn_logout)
-
-        ####### Delete Dialog (Delete Pilot)
-
-        """msgBox = QtWidgets.QMessageBox()
-        msgBox.setWindowTitle("Delete Pilot")
-        msgBox.setWindowIcon(QtGui.QIcon('../../Resources/logo_svg.svg'))
-        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText("Are you sure you want to delete this pilot?")
-        msgBox.setInformativeText("This process cannot be undone")
-        msgBox.addButton(QtWidgets.QMessageBox.Cancel)
-        delete = msgBox.addButton(QtWidgets.QMessageBox.Yes)
-        delete.setText('Delete')
-        
-
-        msgBox.setDefaultButton(QtWidgets.QMessageBox.Cancel)
-        ret = msgBox.exec_()"""
-
-        ########
-
+        self.btn_audit = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_audit.setGeometry(QtCore.QRect(580, 690, 221, 38))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_audit.setFont(font)
+        self.btn_audit.setStyleSheet("QPushButton {\n"
+"color: rgb(0, 0, 0);\n"
+"    background-color: rgb(202, 202, 202);\n"
+"border: 1.2px solid #ABABAB;\n"
+"outline: none;}\n"
+"\n"
+"QPushButton:hover{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(171, 171, 171);\n"
+"outline: none;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(129, 129, 129);\n"
+"outline: none;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.btn_audit.setObjectName("btn_operations_2")
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -358,7 +361,6 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Home [Administrator]"))
         self.table_pilots.setSortingEnabled(True)
-        # self.table_pilots.setSpan(0,4,0,2)
         item = self.table_pilots.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
         item = self.table_pilots.horizontalHeaderItem(1)
@@ -367,13 +369,12 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "First Name"))
         item = self.table_pilots.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Actions"))
-        item = self.table_pilots.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "\n"))
         self.btn_operations.setText(_translate("MainWindow", "Access Previous Operations"))
         self.btn_add.setText(_translate("MainWindow", " Add Pilot"))
         self.lbl_registered.setText(_translate("MainWindow", "REGISTERED PILOTS"))
         self.btn_search.setText(_translate("MainWindow", "Search"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
+        self.btn_audit.setText(_translate("MainWindow", "Audit Logs"))
 
 
 if __name__ == "__main__":
