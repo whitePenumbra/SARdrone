@@ -85,34 +85,32 @@ class Ui_MainWindow(object):
         #create buttons inside table cell
         layout = QtWidgets.QHBoxLayout()
         btn_view = QtWidgets.QPushButton()
-        btn_delete = QtWidgets.QPushButton()
+        btn_download = QtWidgets.QPushButton()
         #btn_view.setText('View')
         btn_view.setFixedHeight(34)
-        btn_delete.setFixedHeight(34)
-        btn_delete.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/trash_delete_2.png"))
-        btn_delete.setIconSize(QtCore.QSize(22,22))
+        btn_download.setFixedHeight(34)
+        btn_download.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/download.png"))
+        btn_download.setIconSize(QtCore.QSize(22,22))
         btn_view.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/file_view.png"))
         btn_view.setIconSize(QtCore.QSize(22,22))
-        #btn_delete.setText('Delete')
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
         btn_view.setFont(font)
-        btn_delete.setFont(font)
-        btn_delete.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: #E53935;\n"
-"border: 1.2px solid #D32F2F;\n"
+        btn_download.setFont(font)
+        btn_download.setStyleSheet("QPushButton {\n"
+"background-color: rgb(255, 176, 6);\n"
+"border: 1.2px solid #ff9d07;\n"
 "outline: none;}\n"
 "\n"
 "QPushButton:hover{\n"
-"background-color: #D32F2F;\n"
+"background-color: rgb(255, 157, 7);\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    background-color: #C62828;\n"
+"background-color: rgb(254, 140, 8);\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
@@ -140,10 +138,10 @@ class Ui_MainWindow(object):
 "\n"
 "")
         btn_view.setCursor(QtCore.Qt.PointingHandCursor)
-        btn_delete.setCursor(QtCore.Qt.PointingHandCursor)
+        btn_download.setCursor(QtCore.Qt.PointingHandCursor)
         layout.addStretch()
         layout.addWidget(btn_view,20)
-        layout.addWidget(btn_delete,20)
+        layout.addWidget(btn_download,20)
 
         cellWidget = QtWidgets.QWidget()
         cellWidget.setLayout(layout)
@@ -231,21 +229,19 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_logout.setFont(font)
         self.btn_logout.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: #E53935;\n"
+"border: 1.2px solid #D32F2F;\n"
 "outline: none;}\n"
 "\n"
 "QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color: #D32F2F;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"    background-color: #C62828;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
