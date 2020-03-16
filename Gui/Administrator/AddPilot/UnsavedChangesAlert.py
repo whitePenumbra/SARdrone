@@ -16,6 +16,11 @@ class Ui_Dialog(object):
         Dialog.resize(531, 191)
         Dialog.setMinimumSize(QtCore.QSize(531, 191))
         Dialog.setMaximumSize(QtCore.QSize(531, 191))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Dialog.setWindowIcon(icon)
+        #removes ? from title bar
+        Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
         self.btn_cancel = QtWidgets.QPushButton(Dialog)
         self.btn_cancel.setGeometry(QtCore.QRect(70, 140, 151, 31))
         self.btn_cancel.setStyleSheet("QPushButton {\n"
@@ -100,7 +105,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Unsaved Changes"))
         self.btn_cancel.setText(_translate("Dialog", "Cancel"))
         self.btn_delete.setText(_translate("Dialog", "Discard Changes"))
         self.label.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#2c365d;\">Unsaved Changes</span></p></body></html>"))
