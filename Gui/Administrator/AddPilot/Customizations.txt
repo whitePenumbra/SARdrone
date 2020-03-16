@@ -1,6 +1,0 @@
-Every code not customizable through Qt Designer must be put here:
-
-
-#for QDialog
-#removes ? from title bar
-Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
