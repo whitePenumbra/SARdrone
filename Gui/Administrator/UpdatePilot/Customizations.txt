@@ -1,8 +1,0 @@
-
-Customizations not made in Qt Designer must be put here:
-
-
-UpdatePilotConfirm:
-
- #removes ? from title bar
-Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
