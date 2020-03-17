@@ -469,7 +469,7 @@ border: none;
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>310</y>
+      <y>320</y>
       <width>201</width>
       <height>33</height>
      </rect>
@@ -522,7 +522,7 @@ border: none;
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>310</y>
+      <y>320</y>
       <width>241</width>
       <height>33</height>
      </rect>
@@ -575,7 +575,7 @@ border: none;
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>310</y>
+      <y>320</y>
       <width>181</width>
       <height>33</height>
      </rect>
@@ -1100,6 +1100,37 @@ border: none;
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="lbl_addressExt">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>681</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>681</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>681</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>
