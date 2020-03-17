@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.table_pilots.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_pilots.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.table_pilots.setRowCount(2)
-        self.table_pilots.setColumnCount(4)
+        self.table_pilots.setColumnCount(5)
         self.table_pilots.setObjectName("table_pilots")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()

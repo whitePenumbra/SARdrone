@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.AddPilot import addpilotAlt
+from Gui.Administrator.AddPilot import UnsavedChangesAlert
 import MySQLdb as mdb
 from Encryption import AESCipher
 
@@ -10,7 +11,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
-        self.btn_cancel.clicked.connect(self.returnToHome)
+        self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
 
         day=0
@@ -31,6 +32,19 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.close()
         self.parent.showself()
         self.parent.initializeData()
+
+    def cancel(self):
+        self.Dialog = QtWidgets.QDialog()
+        self.ui = UnsavedChangesAlert.Ui_Dialog().setupUi(self.Dialog)
+        self.Dialog.setModal(True)
+
+        self.Dialog.btn_cancel.clicked.connect(self.dialogCancel)
+        self.Dialog.btn_save.clicked.connect(self.savePilot)
+
+        self.Dialog.exec_()
+
+    def dialogCancel(self):
+        self.close()
     
     def savePilot(self):  
         self.insertToDB()
