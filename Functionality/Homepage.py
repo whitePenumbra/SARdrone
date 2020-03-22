@@ -5,6 +5,7 @@ from Gui.Administrator.Homepage import HomepageAlt
 from Gui.Administrator.ViewPilot import ViewPilotAlt
 from AddPilot import addClass
 from ViewPilot import viewClass
+from Audit import auditClass
 import MySQLdb as mdb
 
 
@@ -17,8 +18,14 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_operations.clicked.connect(self.operations)
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
+        self.btn_audit.clicked.connect(self.audit)
 
         self.initializeData()
+
+    def audit(self):
+        self.audit = auditClass(parent=self)
+        self.audit.show()
+        self.hide()
 
     def add(self):
         print('adddddd')
