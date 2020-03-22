@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.AddPilot import addpilotAlt
+from Gui.Administrator.AddPilot import UnsavedChangesAlert
 import MySQLdb as mdb
 from Encryption import AESCipher
 
@@ -10,7 +11,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
-        self.btn_cancel.clicked.connect(self.returnToHome)
+        self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
 
         day=0
@@ -27,6 +28,10 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             self.cmb_year.addItem(str(year))
             year += 1
     
+    def cancel(self):
+        self.addPopup = addPopupClass(parent=self)
+        self.addPopup.exec_()
+
     def returnToHome(self):
         self.close()
         self.parent.showself()
@@ -112,3 +117,35 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         % (address_id, lname, fname, username, encpass, 1, 0000-00-00, 0000-00-00, certNo, emContact, emNumber, operator,
         gender, (year + '-' + month + '-' + day), email, mobile))
         con.commit()
+
+class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+        self.btn_cancel.clicked.connect(self.cancel)
+        self.btn_delete.clicked.connect(self.delete)
+
+    def cancel(self):
+        self.close()
+    
+    def delete(self):
+        self.parent.txt_fname.clear()
+        self.parent.txt_lname.clear()
+
+        self.parent.txt_address.clear()
+        self.parent.txt_province.clear()
+        self.parent.txt_city.clear()
+        self.parent.txt_zip.clear()
+
+        self.parent.txt_mobile.clear()
+        self.parent.txt_emContact.clear()
+        self.parent.txt_emNumber.clear()
+        self.parent.txt_email.clear()
+
+        self.parent.txt_operator.clear()
+        self.parent.txt_certificate.clear()
+        self.parent.txt_issueDate.clear()
+        self.parent.txt_licenseEx.clear()
+
+        self.close()
