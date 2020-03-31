@@ -6,7 +6,7 @@ from Gui.Login import LoginAlt
 from Gui.ForgotPassword.ForgotPasswordQDialog import Ui_Dialog
 from Gui.Administrator.Homepage import HomepageAlt
 from Forgot import forgotClass
-from Homepage import homepageClass
+from AdminHomepage import homepageClass
 from Encryption import AESCipher
 import MySQLdb as mdb
 

@@ -47,8 +47,6 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         if (toSearch != "" or toSearch.startswith('OP-')):
             if (toSearch.startswith('OP-')):
                 toSearch = toSearch[3:]
-                print('asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaa')
-                print(toSearch)
             cur.execute('SELECT user_id,last_name,first_name from users WHERE '
             'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))
             result = cur.fetchall()

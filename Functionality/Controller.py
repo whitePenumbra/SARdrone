@@ -1,9 +1,9 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
-from AIDS import loginClass
+from Login import loginClass
 from Forgot import forgotClass
-from Homepage import homepageClass
+from AdminHomepage import homepageClass
 
 class controllerClass():
     def __init__(self):
