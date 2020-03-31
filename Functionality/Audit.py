@@ -21,7 +21,7 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
         self.hide()
         self.parent.showself()
 
-        def search(self):
+    def search(self):
         print('search')
         toSearch = self.searchbar.text()
 
