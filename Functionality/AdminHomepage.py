@@ -7,10 +7,8 @@ from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
 import MySQLdb as mdb
-import fnmatch
 
-
-class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
+class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     def __init__(self,parent):
         super(self.__class__, self).__init__()
         self.setupUi(self)
@@ -22,6 +20,10 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_audit.clicked.connect(self.audit)
 
         self.initializeData()
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Return:
+            self.search()
 
     def audit(self):
         self.audit = auditClass(parent=self)
@@ -45,7 +47,7 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         cur = con.cursor()
 
         if (toSearch != "" or toSearch.startswith('OP-')):
-            if (toSearch.startswith('OP-')):
+            if (toSearch.startswith('OP-') or toSearch.startswith('op-')):
                 toSearch = toSearch[3:]
             cur.execute('SELECT user_id,last_name,first_name from users WHERE '
             'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))

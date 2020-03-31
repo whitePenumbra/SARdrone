@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Login import loginClass
 from Forgot import forgotClass
-from AdminHomepage import homepageClass
+from AdminHomepage import adminhomepageClass
 
 class controllerClass():
     def __init__(self):
