@@ -7,6 +7,7 @@ from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
 import MySQLdb as mdb
+import fnmatch
 
 
 class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
@@ -43,7 +44,11 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         con = mdb.connect('localhost', 'root', '', 'aids')
         cur = con.cursor()
 
-        if (toSearch != ""):
+        if (toSearch != "" or toSearch.startswith('OP-')):
+            if (toSearch.startswith('OP-')):
+                toSearch = toSearch[3:]
+                print('asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaa')
+                print(toSearch)
             cur.execute('SELECT user_id,last_name,first_name from users WHERE '
             'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))
             result = cur.fetchall()
@@ -122,7 +127,12 @@ class homepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         row = 0
         buttonDict = {}
         for i in result:
-            self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
+            if (i[0] <= 9 and i[0] > 0):
+                self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
+            elif (i[0] > 9):
+                self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-0' + str(i[0])))
+            else:
+                self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-' + str(i[0])))
             self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem(i[1]))
             self.table_pilots.setItem(row,2, QtWidgets.QTableWidgetItem(i[2]))
 
