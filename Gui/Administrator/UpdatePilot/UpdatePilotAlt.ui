@@ -959,114 +959,6 @@ margin-left:1px;</string>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>640</y>
-      <width>241</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="issuedate_layout">
-     <item>
-      <widget class="QLabel" name="lbl_licenseIssue">
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>10</pointsize>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>License Issue Date :</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="txt_issueDate">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding-left:4px;</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>640</y>
-      <width>241</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="expirydate_layout">
-     <item>
-      <widget class="QLabel" name="lbl_licenseEx">
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>10</pointsize>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>License Expiry Date :</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="txt_licenseEx">
-       <property name="minimumSize">
-        <size>
-         <width>91</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>91</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding-left:4px;</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
       <x>31</x>
       <y>84</y>
       <width>221</width>
@@ -1120,6 +1012,82 @@ margin-left:1px;</string>
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>630</y>
+      <width>346</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="expirydate_layout">
+     <item>
+      <widget class="QLabel" name="lbl_licenseEx">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>License Expiry Date :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cmb_expiry_month"/>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cmb_expiry_day"/>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cmb_expiry_year"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>630</y>
+      <width>340</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="issuedate_layout">
+     <item>
+      <widget class="QLabel" name="lbl_licenseIssue">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>License Issue Date :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cmb_issue_month"/>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cmb_issue_day"/>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cmb_issue_year"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <tabstops>
@@ -1141,8 +1109,6 @@ margin-left:1px;</string>
   <tabstop>txt_emNumber</tabstop>
   <tabstop>txt_certificate</tabstop>
   <tabstop>txt_operator</tabstop>
-  <tabstop>txt_issueDate</tabstop>
-  <tabstop>txt_licenseEx</tabstop>
   <tabstop>btn_cancel</tabstop>
   <tabstop>btn_save</tabstop>
  </tabstops>
