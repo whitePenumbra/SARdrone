@@ -89,11 +89,3 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         addressTuple = cur.fetchall()
 
         return addressTuple
-    
-    def getKeysByValue(self, dictOfElements, valueToFind):
-        listOfKeys = list()
-        listOfItems = dictOfElements.items()
-        for item  in listOfItems:
-            if item[1] == valueToFind:
-                listOfKeys.append(item[0])
-        return  listOfKeys
