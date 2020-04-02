@@ -116,7 +116,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         month = self.cmb_month.currentText()
         day = self.cmb_day.currentText()
         year = self.cmb_year.currentText()
-        birthday = datetime.datetime.strptime(monthList[month] + day + year, '%m%d%Y').date()
+        birthday = datetime.datetime.strptime(monthList[month] + day + year, '%B %d, %Y').date()
 
         address = self.txt_address.text()
         city = self.txt_city.text()
