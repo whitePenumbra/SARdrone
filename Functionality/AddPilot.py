@@ -36,19 +36,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.close()
         self.parent.showself()
         self.parent.initializeData()
-
-    def cancel(self):
-        self.Dialog = QtWidgets.QDialog()
-        self.ui = UnsavedChangesAlert.Ui_Dialog().setupUi(self.Dialog)
-        self.Dialog.setModal(True)
-
-        self.Dialog.btn_cancel.clicked.connect(self.dialogCancel)
-        self.Dialog.btn_save.clicked.connect(self.savePilot)
-
-        self.Dialog.exec_()
-
-    def dialogCancel(self):
-        self.close()
     
     def savePilot(self):  
         self.insertToDB()
@@ -162,3 +149,4 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
         self.parent.txt_licenseEx.clear()
 
         self.close()
+        self.parent.returnToHome()

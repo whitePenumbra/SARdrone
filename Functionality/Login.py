@@ -6,7 +6,8 @@ from Gui.Login import LoginAlt
 from Gui.ForgotPassword.ForgotPasswordQDialog import Ui_Dialog
 from Gui.Administrator.Homepage import HomepageAlt
 from Forgot import forgotClass
-from Homepage import homepageClass
+from AdminHomepage import adminhomepageClass
+from PilotHomepage import pilothomepageClass
 from Encryption import AESCipher
 import MySQLdb as mdb
 
@@ -17,6 +18,10 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         self.setupUi(self)
         self.btn_login.clicked.connect(self.login)
         self.btn_forgot.clicked.connect(self.forgot)
+    
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Return:
+            self.login()
 
     def login(self):
         con = mdb.connect('localhost', 'root', '', 'aids')
@@ -38,7 +43,12 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
         if (dbuserType == 0 and password == strpass):
             print('YEHEEEEEY')
-            self.homepage = homepageClass(parent=self)
+            self.homepage = adminhomepageClass(parent=self)
+            self.close()
+            self.homepage.show()
+        elif (dbuserType == 1 and password == strpass):
+            print('Pilot logging in')
+            self.homepage = pilothomepageClass(parent=self)
             self.close()
             self.homepage.show()
         else:
@@ -58,4 +68,6 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
 
     def showself(self):
+        self.txt_username.clear()
+        self.txt_password.clear()
         self.show()

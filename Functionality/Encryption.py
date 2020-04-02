@@ -22,8 +22,8 @@ class AESCipher:
         return unpad(self.cipher.decrypt(raw[AES.block_size:]), AES.block_size)
 
 
-cipher = AESCipher('aids')
-encrypted = cipher.encrypt('Secret Message A')
-decrypted = cipher.decrypt(encrypted)
-print(encrypted)
-print(decrypted)
+# cipher = AESCipher('aids')
+# encrypted = cipher.encrypt('Secret Message A')
+# decrypted = cipher.decrypt(encrypted)
+# print(encrypted)
+# print(decrypted)
