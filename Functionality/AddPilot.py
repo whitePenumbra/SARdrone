@@ -49,7 +49,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         # print(certNo + " " + operator + " " + issueDate + " " + expire)
         self.returnToHome()
 
-
     def connectToDB(self):
         try:
             db = mdb.connect('localhost', 'root', '', 'aids')

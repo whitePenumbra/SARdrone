@@ -261,6 +261,11 @@ class Ui_MainWindow(object):
         self.operations_layout.addWidget(self.btn_PDF)
         MainWindow.setCentralWidget(self.centralwidget)
 
+        self.image_label = QtWidgets.QLabel(MainWindow)
+        self.image_label.setText("")
+        self.image_label.setObjectName("image_label")
+        # self.verticalLayout.addWidget(self.image_label)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

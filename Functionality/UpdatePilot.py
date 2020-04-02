@@ -14,6 +14,20 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         addressTuple = self.parent.getAddress(result)
 
+        day=0
+        while day < 31:
+            self.cmb_day.addItem(str(day + 1))
+            day += 1
+
+        monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+        'August', 'September', 'October', 'November', 'December']
+        self.cmb_month.addItems(monthList)
+
+        year=1970
+        while year < 2021:
+            self.cmb_year.addItem(str(year))
+            year += 1
+
         self.uid = result[0]
         self.aid = addressTuple[0][0]
 
