@@ -17,15 +17,36 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         day=0
         while day < 31:
             self.cmb_day.addItem(str(day + 1))
+            self.cmb_issue_day.addItem(str(day + 1))
+            self.cmb_expiry_day.addItem(str(day + 1))
             day += 1
 
-        monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-        'August', 'September', 'October', 'November', 'December']
+        # monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+        # 'August', 'September', 'October', 'November', 'December']
+        monthList = {
+            '' : '00',
+            'January': '01',
+            'February': '02',
+            'March': '03',
+            'April': '04',
+            'May': '05',
+            'June': '06',
+            'July': '07',
+            'August': '08',
+            'September': '09',
+            'October': '10',
+            'November': '11',
+            'December': '12'
+        }
         self.cmb_month.addItems(monthList)
+        self.cmb_issue_month.addItems(monthList)
+        self.cmb_expiry_month.addItems(monthList)
 
         year=1970
         while year < 2021:
             self.cmb_year.addItem(str(year))
+            self.cmb_issue_year.addItem(str(year))
+            self.cmb_expiry_year.addItem(str(year))
             year += 1
 
         self.uid = result[0]

@@ -5,6 +5,7 @@ from Gui.Administrator.AddPilot import addpilotAlt
 from Gui.Administrator.AddPilot import UnsavedChangesAlert
 import MySQLdb as mdb
 from Encryption import AESCipher
+import datetime
 
 class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -15,17 +16,44 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.btn_save.clicked.connect(self.savePilot)
 
         day=0
+        self.cmb_day.addItem('')
+        self.cmb_issue_day.addItem('')
+        self.cmb_expiry_day.addItem('')
         while day < 31:
             self.cmb_day.addItem(str(day + 1))
+            self.cmb_issue_day.addItem(str(day + 1))
+            self.cmb_expiry_day.addItem(str(day + 1))
             day += 1
 
-        monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-        'August', 'September', 'October', 'November', 'December']
+        # self.monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+        # 'August', 'September', 'October', 'November', 'December']
+        monthList = [
+            '',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
         self.cmb_month.addItems(monthList)
+        self.cmb_issue_month.addItems(monthList)
+        self.cmb_expiry_month.addItems(monthList)
 
         year=1970
+        self.cmb_year.addItem('')
+        self.cmb_issue_year.addItem('')
+        self.cmb_expiry_year.addItem('')
         while year < 2021:
             self.cmb_year.addItem(str(year))
+            self.cmb_issue_year.addItem(str(year))
+            self.cmb_expiry_year.addItem(str(year))
             year += 1
     
     def cancel(self):
@@ -59,6 +87,22 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             sys.exit(1)
     
     def insertToDB(self):
+        monthList = {
+            '' : '00',
+            'January': '01',
+            'February': '02',
+            'March': '03',
+            'April': '04',
+            'May': '05',
+            'June': '06',
+            'July': '07',
+            'August': '08',
+            'September': '09',
+            'October': '10',
+            'November': '11',
+            'December': '12'
+        }
+
         fname = self.txt_fname.text()
         lname = self.txt_lname.text()
 
@@ -72,6 +116,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         month = self.cmb_month.currentText()
         day = self.cmb_day.currentText()
         year = self.cmb_year.currentText()
+        birthday = datetime.datetime.strptime(monthList[month] + day + year, '%m%d%Y').date()
 
         address = self.txt_address.text()
         city = self.txt_city.text()
@@ -85,8 +130,10 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         certNo = self.txt_certificate.text()
         operator = self.txt_operator.text()
-        issueDate = self.txt_issueDate.text()
-        expire = self.txt_licenseEx.text()    
+        issueDate = datetime.datetime.strptime(monthList[self.cmb_issue_month.currentText()] + self.cmb_issue_day.currentText() +
+                    self.cmb_issue_year.currentText(), '%m%d%Y').date()
+        expire = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
+                    self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
         con = mdb.connect('localhost', 'root', '', 'aids')
         cur = con.cursor()
@@ -113,8 +160,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         'license_date, license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, '
         'date_of_birth, email, phone_number) VALUES'
         '("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' 
-        % (address_id, lname, fname, username, encpass, 1, 0000-00-00, 0000-00-00, certNo, emContact, emNumber, operator,
-        gender, (year + '-' + month + '-' + day), email, mobile))
+        % (address_id, lname, fname, username, encpass, 1, issueDate, expire, certNo, emContact, emNumber, operator,
+        gender, birthday, email, mobile))
         con.commit()
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
@@ -129,23 +176,5 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
         self.close()
     
     def delete(self):
-        self.parent.txt_fname.clear()
-        self.parent.txt_lname.clear()
-
-        self.parent.txt_address.clear()
-        self.parent.txt_province.clear()
-        self.parent.txt_city.clear()
-        self.parent.txt_zip.clear()
-
-        self.parent.txt_mobile.clear()
-        self.parent.txt_emContact.clear()
-        self.parent.txt_emNumber.clear()
-        self.parent.txt_email.clear()
-
-        self.parent.txt_operator.clear()
-        self.parent.txt_certificate.clear()
-        self.parent.txt_issueDate.clear()
-        self.parent.txt_licenseEx.clear()
-
         self.close()
         self.parent.returnToHome()
