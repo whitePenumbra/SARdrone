@@ -55,6 +55,9 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             self.cmb_issue_year.addItem(str(year))
             self.cmb_expiry_year.addItem(str(year))
             year += 1
+
+        # self.txt_mobile.setValidator(QIntValidator())
+        # self.txt_emNumber.setValidator(QIntValidator())
     
     def cancel(self):
         self.addPopup = addPopupClass(parent=self)

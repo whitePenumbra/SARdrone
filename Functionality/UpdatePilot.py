@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.UpdatePilot import UpdatePilotAlt
+from Gui.Administrator.UpdatePilot import UpdatePilotConfirm
 import MySQLdb as mdb
 import datetime
 
@@ -10,8 +11,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
-        self.btn_cancel.clicked.connect(self.cancel)
-        self.btn_save.clicked.connect(self.saveUpdate)
+        self.btn_cancel.clicked.connect(self.returnToView)
+        self.btn_save.clicked.connect(self.update)
 
         addressTuple = self.parent.getAddress(result)
 
@@ -114,9 +115,13 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         
         print(result[8].strftime('%d'))
     
-    def cancel(self):
-        self.parent.cancel()
+    def update(self):
+        self.updateClass = confirmPopupClass(parent=self)
+        self.updateClass.exec_()
+    
+    def returnToView(self):
         self.close()
+        self.parent.show()
 
     def saveUpdate(self):
         self.updateData()
@@ -186,10 +191,23 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         
         conn.commit()
     
-    def getKeysByValue(self, dictOfElements, valueToFind):
-        listOfKeys = list()
-        listOfItems = dictOfElements.items()
-        for item  in listOfItems:
-            if item[1] == valueToFind:
-                listOfKeys.append(item[0])
-        return  listOfKeys
+class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.pushButton_2.clicked.connect(self.save)
+        self.pushButton.clicked.connect(self.cancel)
+        self.pushButton_3.clicked.connect(self.delete)
+
+    def cancel(self):
+        self.close()
+    
+    def delete(self):
+        self.close()
+        self.parent.returnToView()
+    
+    def save(self):
+        self.close()
+        self.parent.saveUpdate()
