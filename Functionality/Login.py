@@ -53,6 +53,7 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
             self.homepage.show()
         else:
             print('NOT TODAY BOIII')
+            self.lbl_response.setStyleSheet("QLabel {\ncolor: red}")
             self.lbl_response.setText('Invalid username/password')
             self.txt_username.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
             self.txt_password.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
