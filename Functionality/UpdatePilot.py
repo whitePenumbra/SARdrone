@@ -14,6 +14,9 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.btn_cancel.clicked.connect(self.returnToView)
         self.btn_save.clicked.connect(self.update)
 
+        self.txt_address.setMaxLength(255)
+        self.txt_zip.setMaxLength(4)
+
         addressTuple = self.parent.getAddress(result)
 
         dayList = [

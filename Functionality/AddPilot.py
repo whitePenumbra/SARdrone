@@ -15,6 +15,9 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
 
+        self.txt_zip.setMaxLength(4)
+        self.txt_address.setMaxLength(255)
+
         day=0
         self.cmb_day.addItem('')
         self.cmb_issue_day.addItem('')
