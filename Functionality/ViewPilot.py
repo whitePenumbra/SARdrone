@@ -47,7 +47,10 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         else:
             self.lbl_gender.setText('Female')
         self.lbl_dob.setText(self.result[14].strftime('%B %d, %Y'))
-        self.lbl_address.setText(address[1])
+        address1 = address[1][0:50]
+        address2 = address[1][50:]
+        self.lbl_address.setText(address1)
+        self.lbl_addressExt.setText(address2)
         self.lbl_city.setText(address[2])
         self.lbl_province.setText(address[3])
         self.lbl_zip.setText(address[4])
