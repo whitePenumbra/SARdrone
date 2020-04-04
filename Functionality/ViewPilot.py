@@ -23,14 +23,34 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         print(address)
         print(self.result)
 
+        monthList = {
+            '' : '00',
+            'January': '01',
+            'February': '02',
+            'March': '03',
+            'April': '04',
+            'May': '05',
+            'June': '06',
+            'July': '07',
+            'August': '08',
+            'September': '09',
+            'October': '10',
+            'November': '11',
+            'December': '12'
+        }
+        # yy/mm/dd str(self.result[14])
+
         self.lbl_addPilot.setText(str(self.result[3]) + " " + str(self.result[2]))
         self.lbl_id.setText("OP-00" + str(self.result[0]))
         if (self.result[13] == 1):
             self.lbl_gender.setText('Male')
         else:
             self.lbl_gender.setText('Female')
-        self.lbl_dob.setText(str(self.result[14]))
-        self.lbl_address.setText(address[1])
+        self.lbl_dob.setText(self.result[14].strftime('%B %d, %Y'))
+        address1 = address[1][0:50]
+        address2 = address[1][50:]
+        self.lbl_address.setText(address1)
+        self.lbl_addressExt.setText(address2)
         self.lbl_city.setText(address[2])
         self.lbl_province.setText(address[3])
         self.lbl_zip.setText(address[4])
@@ -42,8 +62,8 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
 
         self.lbl_certification.setText(str(self.result[9]))
         self.lbl_operator.setText(str(self.result[12]))
-        self.lbl_issuedate.setText(str(self.result[7]))
-        self.lbl_expirydate.setText(str(self.result[8]))
+        self.lbl_issuedate.setText(self.result[7].strftime('%B %d, %Y'))
+        self.lbl_expirydate.setText(self.result[8].strftime('%B %d, %Y'))
 
         # print(result)
 
