@@ -216,9 +216,9 @@ border: none;
    <widget class="QWidget" name="layoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>380</x>
       <y>630</y>
-      <width>241</width>
+      <width>303</width>
       <height>33</height>
      </rect>
     </property>
@@ -243,13 +243,13 @@ border: none;
       <widget class="QLabel" name="lbl_expirydate">
        <property name="minimumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
@@ -349,13 +349,13 @@ border: none;
       <widget class="QLabel" name="lbl_address">
        <property name="minimumSize">
         <size>
-         <width>491</width>
+         <width>510</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>491</width>
+         <width>510</width>
          <height>31</height>
         </size>
        </property>
@@ -907,7 +907,7 @@ border: none;
      <rect>
       <x>261</x>
       <y>181</y>
-      <width>191</width>
+      <width>291</width>
       <height>33</height>
      </rect>
     </property>
@@ -932,7 +932,7 @@ border: none;
       <widget class="QLabel" name="lbl_dob">
        <property name="minimumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
@@ -960,7 +960,7 @@ border: none;
      <rect>
       <x>31</x>
       <y>631</y>
-      <width>241</width>
+      <width>295</width>
       <height>33</height>
      </rect>
     </property>
@@ -985,13 +985,13 @@ border: none;
       <widget class="QLabel" name="lbl_issuedate">
        <property name="minimumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
