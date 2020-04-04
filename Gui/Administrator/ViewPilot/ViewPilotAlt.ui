@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../Resources/logo_svg.svg</normaloff>../../Resources/logo_svg.svg</iconset>
+    <normaloff>../../../../Documents/AIDS (GUI)/Resources/logo_svg.svg</normaloff>../../../../Documents/AIDS (GUI)/Resources/logo_svg.svg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="lbl_addPilot">
@@ -146,7 +146,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Resources/profile_placeholder.png</pixmap>
+     <pixmap>../../../../Documents/AIDS (GUI)/Resources/profile_placeholder.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -309,9 +309,9 @@ border: none;
    <widget class="QWidget" name="layoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>380</x>
       <y>630</y>
-      <width>241</width>
+      <width>321</width>
       <height>33</height>
      </rect>
     </property>
@@ -336,13 +336,13 @@ border: none;
       <widget class="QLabel" name="lbl_expirydate">
        <property name="minimumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
@@ -442,13 +442,13 @@ border: none;
       <widget class="QLabel" name="lbl_address">
        <property name="minimumSize">
         <size>
-         <width>491</width>
+         <width>510</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>491</width>
+         <width>510</width>
          <height>31</height>
         </size>
        </property>
@@ -1000,7 +1000,7 @@ border: none;
      <rect>
       <x>261</x>
       <y>181</y>
-      <width>191</width>
+      <width>281</width>
       <height>33</height>
      </rect>
     </property>
@@ -1025,13 +1025,13 @@ border: none;
       <widget class="QLabel" name="lbl_dob">
        <property name="minimumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
@@ -1053,7 +1053,7 @@ border: none;
      <rect>
       <x>31</x>
       <y>631</y>
-      <width>241</width>
+      <width>311</width>
       <height>33</height>
      </rect>
     </property>
@@ -1078,13 +1078,13 @@ border: none;
       <widget class="QLabel" name="lbl_issuedate">
        <property name="minimumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>81</width>
+         <width>160</width>
          <height>31</height>
         </size>
        </property>
