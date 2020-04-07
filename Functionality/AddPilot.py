@@ -12,6 +12,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
+
+        self.btn_save.setEnabled(False)
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
 
@@ -75,12 +77,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.insertToDB()
 
         print('Saved')
-        # print(fname + " " + lname + "\n")
-        # print(gender + "\n")
-        # print(month + " " + day + ", " + year + "\n")
-        # print(address + " " + city + " " + province + " " + zipCode + "\n")
-        # print(email + " " + mobile+ " " + emContact + " " + emNumber + "\n")
-        # print(certNo + " " + operator + " " + issueDate + " " + expire)
         self.returnToHome()
 
     def connectToDB(self):

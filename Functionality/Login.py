@@ -32,31 +32,31 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         # print(user + " " + password)
 
         cur.execute('SELECT username,password,user_type FROM users WHERE username = "%s"' % (user))
-        result = cur.fetchall()
+        self.result = cur.fetchall()
 
         # print(result)
 
-        dbuser = result[0][0]
-        dbuserType = result[0][2]
-        dbpass = result[0][1]
-        strpass = (AESCipher('aids').decrypt(dbpass[2:(len(dbpass)-1)])).decode()
-
-        if (dbuserType == 0 and password == strpass):
-            print('YEHEEEEEY')
-            self.homepage = adminhomepageClass(parent=self)
-            self.close()
-            self.homepage.show()
-        elif (dbuserType == 1 and password == strpass):
-            print('Pilot logging in')
-            self.homepage = pilothomepageClass(parent=self)
-            self.close()
-            self.homepage.show()
-        else:
+        if (not self.result):
             print('NOT TODAY BOIII')
             self.lbl_response.setStyleSheet("QLabel {\ncolor: red}")
             self.lbl_response.setText('Invalid username/password')
             self.txt_username.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
             self.txt_password.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
+        else:
+            dbuser = self.result[0][0]
+            dbuserType = self.result[0][2]
+            dbpass = self.result[0][1]
+            strpass = (AESCipher('aids').decrypt(dbpass[2:(len(dbpass)-1)])).decode()
+            if (dbuserType == 0 and password == strpass):
+                print('YEHEEEEEY')
+                self.homepage = adminhomepageClass(parent=self)
+                self.close()
+                self.homepage.show()
+            elif (dbuserType == 1 and password == strpass):
+                print('Pilot logging in')
+                self.homepage = pilothomepageClass(parent=self)
+                self.close()
+                self.homepage.show()
 
         # if user == 'admin' and password == 'admin':
         #     print('Cheheck')
@@ -70,8 +70,13 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         self.forgotform.show()
         self.hide()
 
-
     def showself(self):
         self.txt_username.clear()
         self.txt_password.clear()
         self.show()
+
+    def getUser(self):
+        self.currentUser = self.result
+        print('GET USER!!!')
+        print(self.currentUser)
+        return (self.currentUser)
