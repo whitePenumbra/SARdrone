@@ -1,11 +1,10 @@
-import sys
+import sys, datetime, smtplib, ssl
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.AddPilot import addpilotAlt
 from Gui.Administrator.AddPilot import UnsavedChangesAlert
 import MySQLdb as mdb
 from Encryption import AESCipher
-import datetime
 
 class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -13,7 +12,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.setupUi(self)
         self.parent = parent
 
-        self.btn_save.setEnabled(False)
+        # self.btn_save.setEnabled(False)
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
 
@@ -75,6 +74,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     
     def savePilot(self):  
         self.insertToDB()
+        self.sendEmail()
 
         print('Saved')
         self.returnToHome()
@@ -165,6 +165,25 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         % (address_id, lname, fname, username, encpass, 1, issueDate, expire, certNo, emContact, emNumber, operator,
         gender, birthday, email, mobile))
         con.commit()
+
+    def sendEmail(self):
+        port = 465
+        password = (AESCipher('my password').decrypt('30hLaA3Uc12BkhQC2i4ZLjrlxqHAGkeJkedXOB2QdIU=')).decode()
+        context = ssl.create_default_context()
+
+        try:
+            with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
+                server.login('loztestcode@gmail.com', password)
+
+                Recipient = 'lozerunite@gmail.com'
+                Subject = "Test"
+                Text = "This is a test message.(2)"
+
+                message = 'Subject: {}\n\n{}'.format(Subject,Text)
+
+                server.sendmail('loztestcode.gmail.com', Recipient, message)
+        except Exception as e:
+            print(e)
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):

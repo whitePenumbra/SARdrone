@@ -1,6 +1,4 @@
-import sys
-import os
-import cv2
+import sys, os, cv2
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget, 
@@ -8,6 +6,8 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget,
 sys.path.append('..')
 from Gui.Pilot.Homepage import Homepage
 import MySQLdb as mdb
+from Encryption import AESCipher
+
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     def __init__(self,parent):
@@ -33,6 +33,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.getPilot()
         print("Current User: ")
         print(self.currentUser)
+        
 
     @QtCore.pyqtSlot()
     def start_webcam(self):
