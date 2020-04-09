@@ -454,6 +454,11 @@ class Ui_MainWindow(object):
         self.table_exLog.horizontalHeader().setStretchLastSection(True)
         self.table_exLog.verticalHeader().setVisible(False)
         self.table_exLog.verticalHeader().setStretchLastSection(False)
+        # remove select trigger
+        self.table_exLog.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.table_exLog.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # remove dotted border
+        self.table_exLog.setFocusPolicy(QtCore.Qt.NoFocus)
         self.img_mapExp = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.img_mapExp.setGeometry(QtCore.QRect(40, 830, 770, 211))
         self.img_mapExp.setMinimumSize(QtCore.QSize(770, 211))
@@ -546,6 +551,11 @@ class Ui_MainWindow(object):
         self.table_comparison.horizontalHeader().setStretchLastSection(True)
         self.table_comparison.verticalHeader().setVisible(False)
         self.table_comparison.verticalHeader().setStretchLastSection(True)
+        # remove select trigger
+        self.table_comparison.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.table_comparison.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # remove dotted border
+        self.table_comparison.setFocusPolicy(QtCore.Qt.NoFocus)
         self.img_mapComparison = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.img_mapComparison.setGeometry(QtCore.QRect(40, 1410, 770, 211))
         self.img_mapComparison.setMinimumSize(QtCore.QSize(770, 211))
