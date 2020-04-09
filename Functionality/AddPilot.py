@@ -1,10 +1,12 @@
-import sys, datetime, smtplib, ssl
+import sys, datetime, smtplib, ssl, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.AddPilot import addpilotAlt
 from Gui.Administrator.AddPilot import UnsavedChangesAlert
 import MySQLdb as mdb
 from Encryption import AESCipher
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -62,6 +64,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         # self.txt_mobile.setValidator(QIntValidator())
         # self.txt_emNumber.setValidator(QIntValidator())
+        self.txt_email.editingFinished.connect(self.checkEmail)
     
     def cancel(self):
         self.addPopup = addPopupClass(parent=self)
@@ -152,38 +155,53 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             for i in row:
                 address_id = i
 
-        username = fname[0:1] + lname[0:]
-        password = lname[0:1] + fname[0:]
+        self.username = fname[0:1] + lname[0:]
+        self.password = lname[0:1] + fname[0:]
         # password = lname
 
-        encpass = AESCipher('aids').encrypt(password)
+        encpass = AESCipher('aids').encrypt(self.password)
 
         cur.execute('INSERT INTO users(address_id, last_name, first_name, username, password, user_type, '
         'license_date, license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, '
         'date_of_birth, email, phone_number) VALUES'
         '("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' 
-        % (address_id, lname, fname, username, encpass, 1, issueDate, expire, certNo, emContact, emNumber, operator,
+        % (address_id, lname, fname, self.username, encpass, 1, issueDate, expire, certNo, emContact, emNumber, operator,
         gender, birthday, email, mobile))
         con.commit()
 
     def sendEmail(self):
         port = 465
-        password = (AESCipher('my password').decrypt('30hLaA3Uc12BkhQC2i4ZLjrlxqHAGkeJkedXOB2QdIU=')).decode()
+        mypass = (AESCipher('my password').decrypt('30hLaA3Uc12BkhQC2i4ZLjrlxqHAGkeJkedXOB2QdIU=')).decode()
         context = ssl.create_default_context()
+        Recipient = self.txt_email.text()
 
         try:
             with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
-                server.login('loztestcode@gmail.com', password)
+                server.login('loztestcode@gmail.com', mypass)
 
-                Recipient = 'lozerunite@gmail.com'
-                Subject = "Test"
-                Text = "This is a test message.(2)"
+                msg = MIMEMultipart('alternative')
+                msg['Subject'] = 'Test Message'
+                msg['To'] = self.txt_email.text()
+                message = """
+Username: %s
+Password: %s
+                """ % (self.username, self.password)
+                msg.attach(MIMEText(message))
 
-                message = 'Subject: {}\n\n{}'.format(Subject,Text)
-
-                server.sendmail('loztestcode.gmail.com', Recipient, message)
+                server.sendmail('loztestcode.gmail.com', Recipient, msg.as_string())
+                server.quit()
+                print('Email Sent!')
         except Exception as e:
             print(e)
+    def checkEmail(self):
+        regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+
+        if(re.search(regex, self.txt_email.text())):  
+            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid black }")
+            print("Valid Email")        
+        else:  
+            print("Invalid Email")
+            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):
