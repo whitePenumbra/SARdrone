@@ -454,6 +454,7 @@ class Ui_MainWindow(object):
         self.table_exLog.horizontalHeader().setStretchLastSection(True)
         self.table_exLog.verticalHeader().setVisible(False)
         self.table_exLog.verticalHeader().setStretchLastSection(False)
+        self.table_exLog.setColumnWidth(0, 390)
         # remove select trigger
         self.table_exLog.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_exLog.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -551,6 +552,7 @@ class Ui_MainWindow(object):
         self.table_comparison.horizontalHeader().setStretchLastSection(True)
         self.table_comparison.verticalHeader().setVisible(False)
         self.table_comparison.verticalHeader().setStretchLastSection(True)
+        self.table_comparison.setColumnWidth(0, 390)
         # remove select trigger
         self.table_comparison.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_comparison.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
