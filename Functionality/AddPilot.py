@@ -7,6 +7,7 @@ import MySQLdb as mdb
 from Encryption import AESCipher
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from PyQt5.QtWidgets import QFileDialog
 
 class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -17,6 +18,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         # self.btn_save.setEnabled(False)
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
+        self.btn_profImg.clicked.connect(self.openFileNameDialog)
 
         self.txt_zip.setMaxLength(4)
         self.txt_address.setMaxLength(255)
@@ -202,6 +204,16 @@ Password: %s
         else:  
             print("Invalid Email")
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
+    
+    def openFileNameDialog(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        if fileName:
+            print(fileName)
+            self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
+            image = QtGui.QPixmap(fileName)
+            self.lbl_profilePic.setPixmap(image)
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):
