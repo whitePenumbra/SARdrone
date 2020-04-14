@@ -16,12 +16,13 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
 
         self.result = self.getData()
         addressTuple = self.getAddress(self.result)
+        self.getImage()
 
         for i in addressTuple:
             address = i
         
-        print(address)
-        print(self.result)
+        # print(address)
+        # print(self.result)
 
         monthList = {
             '' : '00',
@@ -40,13 +41,13 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         }
         # yy/mm/dd str(self.result[14])
 
-        self.lbl_addPilot.setText(str(self.result[3]) + " " + str(self.result[2]))
+        self.lbl_addPilot.setText(str(self.result[4]) + " " + str(self.result[3]))
         self.lbl_id.setText("OP-00" + str(self.result[0]))
-        if (self.result[13] == 1):
+        if (self.result[14] == 1):
             self.lbl_gender.setText('Male')
         else:
             self.lbl_gender.setText('Female')
-        self.lbl_dob.setText(self.result[14].strftime('%B %d, %Y'))
+        self.lbl_dob.setText(self.result[15].strftime('%B %d, %Y'))
         address1 = address[1][0:50]
         address2 = address[1][50:]
         self.lbl_address.setText(address1)
@@ -55,15 +56,15 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         self.lbl_province.setText(address[3])
         self.lbl_zip.setText(address[4])
 
-        self.lbl_email.setText(str(self.result[15]))
-        self.lbl_mobile.setText(str(self.result[16]))
-        self.lbl_emContact.setText(str(self.result[10]))
-        self.lbl_emNumber.setText(str(self.result[11]))
+        self.lbl_email.setText(str(self.result[16]))
+        self.lbl_mobile.setText(str(self.result[17]))
+        self.lbl_emContact.setText(str(self.result[11]))
+        self.lbl_emNumber.setText(str(self.result[12]))
 
-        self.lbl_certification.setText(str(self.result[9]))
-        self.lbl_operator.setText(str(self.result[12]))
-        self.lbl_issuedate.setText(self.result[7].strftime('%B %d, %Y'))
-        self.lbl_expirydate.setText(self.result[8].strftime('%B %d, %Y'))
+        self.lbl_certification.setText(str(self.result[10]))
+        self.lbl_operator.setText(str(self.result[13]))
+        self.lbl_issuedate.setText(self.result[8].strftime('%B %d, %Y'))
+        self.lbl_expirydate.setText(self.result[9].strftime('%B %d, %Y'))
 
         # print(result)
 
@@ -92,3 +93,10 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         addressTuple = cur.fetchall()
 
         return addressTuple
+
+    def getImage(self):
+        image_data = self.result[2]
+        image = QtGui.QImage.fromData(image_data)
+        pixmap = QtGui.QPixmap.fromImage(image)
+
+        self.lbl_profilePic.setPixmap(pixmap)

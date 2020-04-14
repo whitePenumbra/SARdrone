@@ -163,12 +163,15 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         encpass = AESCipher('aids').encrypt(self.password)
 
-        cur.execute('INSERT INTO users(address_id, last_name, first_name, username, password, user_type, '
-        'license_date, license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, '
-        'date_of_birth, email, phone_number) VALUES'
-        '("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' 
-        % (address_id, lname, fname, self.username, encpass, 1, issueDate, expire, certNo, emContact, emNumber, operator,
-        gender, birthday, email, mobile))
+        query = """INSERT INTO users(address_id, user_img, last_name, first_name, username, password, user_type, license_date,
+         license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, date_of_birth, email, phone_number) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        # values = (address_id, lname, fname, self.username, encpass, 1, issueDate, expire, certNo, emContact, emNumber,
+        # operator, gender, birthday, email, mobile)
+        values = (str(address_id), self.dbimage, str(lname), str(fname), str(self.username), encpass, 1, issueDate, expire,
+        str(certNo), str(emContact), str(emNumber), str(operator), gender, birthday, str(email), str(mobile))
+
+        cur.execute(query, values)
         con.commit()
 
     def sendEmail(self):
@@ -200,10 +203,12 @@ Password: %s
 
         if(re.search(regex, self.txt_email.text())):  
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid black }")
-            print("Valid Email")        
+            print("Valid Email")
+            self.btn_save.setEnabled(True)        
         else:  
             print("Invalid Email")
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
+            self.btn_save.setEnabled(False)
     
     def openFileNameDialog(self):
         options = QFileDialog.Options()
@@ -214,6 +219,14 @@ Password: %s
             self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
             image = QtGui.QPixmap(fileName)
             self.lbl_profilePic.setPixmap(image)
+
+            self.dbimage = self.convertToBinaryData(fileName)
+            print(sys.getsizeof(self.dbimage))
+    
+    def convertToBinaryData(self, fileName):
+        with open(fileName, 'rb') as file:
+            binaryData = file.read()
+        return(binaryData)
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):

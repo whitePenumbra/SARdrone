@@ -123,7 +123,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
     def getData(self,result):
         self.table_pilots.setRowCount(len(result))
-        print(result)
+        # print(result)
         row = 0
         buttonDict = {}
         for i in result:

@@ -13,6 +13,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.parent = parent
         self.btn_cancel.clicked.connect(self.returnToView)
         self.btn_save.clicked.connect(self.update)
+        self.btn_profImg.clicked.connect(self.openFileNameDialog)
 
         self.txt_address.setMaxLength(255)
         self.txt_zip.setMaxLength(4)
@@ -78,9 +79,15 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         for i in addressTuple:
             address = i
+        
+        self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
+        dbPic = result[2]
+        pixmap = QtGui.QPixmap(dbPic[2:(len(dbPic)-1)])
+        print(pixmap)
+        # self.lbl_profilePic.setPixmap(pixmap)
 
-        self.txt_fname.setText(result[3])
-        self.txt_lname.setText(result[2])
+        self.txt_fname.setText(result[4])
+        self.txt_lname.setText(result[3])
         if (result[13] == 1):
             self.rbtn_male.toggle()
         else:
@@ -96,27 +103,27 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.txt_province.setText(address[3])
         self.txt_zip.setText(address[4])
 
-        self.txt_email.setText(str(result[15]))
-        self.txt_mobile.setText(str(result[16]))
-        self.txt_emContact.setText(str(result[10]))
-        self.txt_emNumber.setText(str(result[11]))
+        self.txt_email.setText(str(result[16]))
+        self.txt_mobile.setText(str(result[17]))
+        self.txt_emContact.setText(str(result[11]))
+        self.txt_emNumber.setText(str(result[12]))
 
-        self.txt_certificate.setText(str(result[9]))
-        self.txt_operator.setText(str(result[12]))
-        self.cmb_issue_month.setCurrentIndex(self.cmb_issue_month.findText(result[7].strftime("%B"),
+        self.txt_certificate.setText(str(result[10]))
+        self.txt_operator.setText(str(result[13]))
+        self.cmb_issue_month.setCurrentIndex(self.cmb_issue_month.findText(result[8].strftime("%B"),
                                             QtCore.Qt.MatchFixedString))
-        self.cmb_issue_day.setCurrentIndex(self.cmb_issue_day.findText(result[7].strftime('%d'),
+        self.cmb_issue_day.setCurrentIndex(self.cmb_issue_day.findText(result[8].strftime('%d'),
                                             QtCore.Qt.MatchFixedString))
-        self.cmb_issue_year.setCurrentIndex(self.cmb_issue_year.findText(result[7].strftime("%Y"),
+        self.cmb_issue_year.setCurrentIndex(self.cmb_issue_year.findText(result[8].strftime("%Y"),
                                             QtCore.Qt.MatchFixedString))
-        self.cmb_expiry_month.setCurrentIndex(self.cmb_expiry_month.findText(result[8].strftime("%B"),
+        self.cmb_expiry_month.setCurrentIndex(self.cmb_expiry_month.findText(result[9].strftime("%B"),
                                             QtCore.Qt.MatchFixedString))
-        self.cmb_expiry_day.setCurrentIndex(self.cmb_expiry_day.findText(result[8].strftime('%d'),
+        self.cmb_expiry_day.setCurrentIndex(self.cmb_expiry_day.findText(result[9].strftime('%d'),
                                             QtCore.Qt.MatchFixedString))
-        self.cmb_expiry_year.setCurrentIndex(self.cmb_expiry_year.findText(result[8].strftime("%Y"),
+        self.cmb_expiry_year.setCurrentIndex(self.cmb_expiry_year.findText(result[9].strftime("%Y"),
                                             QtCore.Qt.MatchFixedString))
         
-        print(result[8].strftime('%d'))
+        print(result[9].strftime('%d'))
     
     def update(self):
         self.updateClass = confirmPopupClass(parent=self)
@@ -193,6 +200,16 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         operator,gender, birthday, email, mobile, self.uid))
         
         conn.commit()
+
+    def openFileNameDialog(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        if fileName:
+            print(fileName)
+            self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
+            image = QtGui.QPixmap(fileName)
+            self.lbl_profilePic.setPixmap(image)
     
 class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_Dialog):
     def __init__(self,parent):
