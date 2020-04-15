@@ -46,7 +46,7 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
             dbuser = self.result[0][0]
             dbuserType = self.result[0][2]
             dbpass = self.result[0][1]
-            strpass = (AESCipher('aids').decrypt(dbpass[2:(len(dbpass)-1)])).decode()
+            strpass = (AESCipher('aids').decrypt(dbpass)).decode()
             if (dbuserType == 0 and password == strpass):
                 print('YEHEEEEEY')
                 self.homepage = adminhomepageClass(parent=self)
