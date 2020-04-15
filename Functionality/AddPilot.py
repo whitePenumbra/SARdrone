@@ -64,6 +64,10 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             self.cmb_expiry_year.addItem(str(year))
             year += 1
 
+        imageLoc = "../Gui/Resources/profile_placeholder.jpg"
+        image = QtGui.QPixmap(imageLoc)
+        self.lbl_profilePic.setPixmap(image)
+        
         # self.txt_mobile.setValidator(QIntValidator())
         # self.txt_emNumber.setValidator(QIntValidator())
         self.txt_email.editingFinished.connect(self.checkEmail)
@@ -214,14 +218,14 @@ Password: %s
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
-        if fileName:
+        if (fileName):
             print(fileName)
             self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
             image = QtGui.QPixmap(fileName)
             self.lbl_profilePic.setPixmap(image)
 
             self.dbimage = self.convertToBinaryData(fileName)
-            print(sys.getsizeof(self.dbimage))
+            # print(sys.getsizeof(self.dbimage))
     
     def convertToBinaryData(self, fileName):
         with open(fileName, 'rb') as file:

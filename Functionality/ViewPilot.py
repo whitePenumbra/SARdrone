@@ -96,7 +96,12 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
 
     def getImage(self):
         image_data = self.result[2]
-        image = QtGui.QImage.fromData(image_data)
-        pixmap = QtGui.QPixmap.fromImage(image)
+        if (self.result[2] == ''):
+            imageLoc = "../Gui/Resources/profile_placeholder.png"
+            image = QtGui.QPixmap(imageLoc)
+            self.lbl_profilePic.setPixmap(image)
+        else:
+            image = QtGui.QImage.fromData(image_data)
+            pixmap = QtGui.QPixmap.fromImage(image)
 
-        self.lbl_profilePic.setPixmap(pixmap)
+            self.lbl_profilePic.setPixmap(pixmap)
