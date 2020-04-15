@@ -67,10 +67,16 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         imageLoc = "../Gui/Resources/profile_placeholder.jpg"
         image = QtGui.QPixmap(imageLoc)
         self.lbl_profilePic.setPixmap(image)
-        
+
         # self.txt_mobile.setValidator(QIntValidator())
         # self.txt_emNumber.setValidator(QIntValidator())
         self.txt_email.editingFinished.connect(self.checkEmail)
+
+        imageLoc = "../Gui/Resources/profile_placeholder.png"
+        image = QtGui.QPixmap(imageLoc)
+        self.lbl_profilePic.setPixmap(image)
+
+        self.dbimage = self.convertToBinaryData(imageLoc)
     
     def cancel(self):
         self.addPopup = addPopupClass(parent=self)
@@ -226,6 +232,7 @@ Password: %s
 
             self.dbimage = self.convertToBinaryData(fileName)
             # print(sys.getsizeof(self.dbimage))
+
     
     def convertToBinaryData(self, fileName):
         with open(fileName, 'rb') as file:
