@@ -86,7 +86,7 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         return userTuple
     
     def getAddress(self,result):
-        conn = mdb.connect('localhost', 'root', '', 'aids')
+        conn = self.connectToDB()
         cur = conn.cursor() 
 
         cur.execute('SELECT * FROM address WHERE address_id = %s', (result[1],))
@@ -105,3 +105,12 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
             pixmap = QtGui.QPixmap.fromImage(image)
 
             self.lbl_profilePic.setPixmap(pixmap)
+
+    def connectToDB(self):
+        try:
+            db = mdb.connect('localhost', 'root', '', 'aids')
+            return (db)
+
+        except mdb.Error as e:
+            print('Connection failed!')
+            sys.exit(1)

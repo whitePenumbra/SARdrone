@@ -24,8 +24,8 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
             self.login()
 
     def login(self):
-        con = mdb.connect('localhost', 'root', '', 'aids')
-        cur = con.cursor()
+        conn = self.connectToDB()
+        cur = conn.cursor()
 
         user = self.txt_username.text()
         password = self.txt_password.text()
@@ -80,3 +80,12 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         print('GET USER!!!')
         print(self.currentUser)
         return (self.currentUser)
+    
+    def connectToDB(self):
+        try:
+            db = mdb.connect('localhost', 'root', '', 'aids')
+            return (db)
+
+        except mdb.Error as e:
+            print('Connection failed!')
+            sys.exit(1)

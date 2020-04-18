@@ -187,7 +187,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         expiry = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
                     self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
-        conn = mdb.connect('localhost', 'root', '', 'aids')
+        conn = self.connectToDB()
         cur = conn.cursor()
 
         cur.execute('UPDATE address SET permanent_address = "%s", city = "%s", province = "%s", zipcode="%s"'
@@ -210,6 +210,15 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
             image = QtGui.QPixmap(fileName)
             self.lbl_profilePic.setPixmap(image)
+    
+    def connectToDB(self):
+        try:
+            db = mdb.connect('localhost', 'root', '', 'aids')
+            return (db)
+
+        except mdb.Error as e:
+            print('Connection failed!')
+            sys.exit(1)
     
 class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_Dialog):
     def __init__(self,parent):

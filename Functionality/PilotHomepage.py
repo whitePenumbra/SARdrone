@@ -96,13 +96,11 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     def connectToDB(self):
         try:
             db = mdb.connect('localhost', 'root', '', 'aids')
-            print('Connected successfully!')
+            return (db)
 
         except mdb.Error as e:
             print('Connection failed!')
             sys.exit(1)
-        
-        return (db)
 
     def getPilotInfo(self):
         conn = self.connectToDB()

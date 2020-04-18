@@ -43,8 +43,8 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         print('search')
         toSearch = self.searchbar.text()
 
-        con = mdb.connect('localhost', 'root', '', 'aids')
-        cur = con.cursor()
+        conn = self.connectToDB()
+        cur = conn.cursor()
 
         if (toSearch != "" or toSearch.startswith('OP-')):
             if (toSearch.startswith('OP-') or toSearch.startswith('op-')):
@@ -74,7 +74,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         lastName = self.table_pilots.item(row,1).text()
         firstName = self.table_pilots.item(row,2).text()
 
-        conn = mdb.connect('localhost', 'root', '', 'aids')
+        conn = self.connectToDB()
         cur = conn.cursor()
 
         print(firstName + " " + lastName)
@@ -99,7 +99,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         lastName = self.table_pilots.item(row,1).text()
         firstName = self.table_pilots.item(row,2).text()  
 
-        conn = mdb.connect('localhost', 'root', '', 'aids')
+        conn = self.connectToDB()
         cur = conn.cursor()      
 
         cur.execute('SELECT * FROM users WHERE first_name = "%s" AND last_name = "%s"' % (firstName,lastName))
@@ -113,7 +113,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         return (infoTuple)
 
     def initializeData(self):
-        con = mdb.connect('localhost', 'root', '', 'aids')
+        con = self.connectToDB()
         cur = con.cursor()
 
         cur.execute('SELECT user_id,last_name,first_name from users WHERE isActive = 1 AND user_type = 1')
@@ -125,7 +125,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.table_pilots.setRowCount(len(result))
         # print(result)
         row = 0
-        buttonDict = {}
+        # buttonDict = {}
         for i in result:
             if (i[0] <= 9 and i[0] > 0):
                 self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
@@ -226,4 +226,12 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
             row += 1
             # vars().update(buttonDict)
-        
+
+    def connectToDB(self):
+        try:
+            db = mdb.connect('localhost', 'root', '', 'aids')
+            return (db)
+
+        except mdb.Error as e:
+            print('Connection failed!')
+            sys.exit(1)

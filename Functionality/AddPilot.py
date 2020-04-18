@@ -97,7 +97,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
     def connectToDB(self):
         try:
             db = mdb.connect('localhost', 'root', '', 'aids')
-            print('Connected successfully!')
+            return (db)
 
         except mdb.Error as e:
             print('Connection failed!')
@@ -152,8 +152,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         expire = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
                     self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
-        con = mdb.connect('localhost', 'root', '', 'aids')
-        cur = con.cursor()
+        conn = self.connectToDB()
+        cur = conn.cursor()
 
         cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
         '("%s","%s","%s",%s)' % (address, city, province, zipCode))
