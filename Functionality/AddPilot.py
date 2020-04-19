@@ -208,16 +208,23 @@ Password: %s
                 print('Email Sent!')
         except Exception as e:
             print(e)
+
     def checkEmail(self):
+        font = QtGui.QFont()
         regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
+        font.setPointSize(10)
+        font.setFamily("Helvetica")
+
         if(re.search(regex, self.txt_email.text())):  
-            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid black }")
+            self.txt_email.setFont(font)
+            self.txt_email.setStyleSheet("padding-left: 4px;")
             print("Valid Email")
             self.btn_save.setEnabled(True)        
         else:  
             print("Invalid Email")
-            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red }")
+            self.txt_email.setFont(font)
+            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
             self.btn_save.setEnabled(False)
     
     def openFileNameDialog(self):

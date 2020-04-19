@@ -22,6 +22,7 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
 
     def logout(self):
         self.parent.logout()
+        self.close()
     
     def goBack(self):
         self.hide()
@@ -56,7 +57,7 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
 
     def getData(self,result):
         self.table_audit.setRowCount(len(result))
-        print(result)
+        # print(result)
         row = 0
         for i in result:
             if (i[0] <= 9 and i[0] > 0):

@@ -13,6 +13,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
+
         self.btn_add.clicked.connect(self.add)
         self.btn_operations.clicked.connect(self.operations)
         self.btn_search.clicked.connect(self.search)

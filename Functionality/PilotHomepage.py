@@ -7,6 +7,7 @@ sys.path.append('..')
 from Gui.Pilot.Homepage import Homepage
 import MySQLdb as mdb
 from Encryption import AESCipher
+from Gui.NewUser.NewUserQDialog import Ui_Dialog
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
