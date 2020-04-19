@@ -151,7 +151,7 @@ class Ui_MainWindow(object):
         #END DELETE PILOT
 
 
-        self.droneStream = QtWidgets.QWidget(self.centralwidget)
+        self.droneStream = QtWidgets.QLabel(self.centralwidget)
         self.droneStream.setGeometry(QtCore.QRect(30, 80, 1011, 341))
         self.droneStream.setObjectName("droneStream")
         self.droneConsole = QtWidgets.QWidget(self.centralwidget)

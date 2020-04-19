@@ -14,8 +14,15 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
         self.btn_back.clicked.connect(self.goBack)
         self.btn_search.clicked.connect(self.search)
 
+        self.initializeData()
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Return:
+            self.search()
+
     def logout(self):
         self.parent.logout()
+        self.close()
     
     def goBack(self):
         self.hide()
@@ -29,9 +36,46 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
         cur = con.cursor()
 
         if (toSearch != ""):
-            cur.execute('SELECT user_id,last_name,first_name from users WHERE '
-            'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))
+            query = 'SELECT user_id, time, actions_made from audit WHERE user_id = %s OR time = %s  OR actions_made = %s'
+            data = (toSearch, toSearch, toSearch)
+
+            cur.execute(query, data)
+
             result = cur.fetchall()
             self.getData(result)
         else:
             self.initializeData()
+    
+    def initializeData(self):
+        con = self.connectToDB()
+        cur = con.cursor()
+
+        cur.execute('SELECT user_id, time, actions_made from audit')
+        result = cur.fetchall()
+
+        self.getData(result)
+
+    def getData(self,result):
+        self.table_audit.setRowCount(len(result))
+        # print(result)
+        row = 0
+        for i in result:
+            if (i[0] <= 9 and i[0] > 0):
+                self.table_audit.setItem(row,0, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
+            elif (i[0] > 9):
+                self.table_audit.setItem(row,0, QtWidgets.QTableWidgetItem('OP-0' + str(i[0])))
+            else:
+                self.table_audit.setItem(row,0, QtWidgets.QTableWidgetItem('OP-' + str(i[0])))
+            self.table_audit.setItem(row,1, QtWidgets.QTableWidgetItem(str(i[1])))
+            self.table_audit.setItem(row,2, QtWidgets.QTableWidgetItem(str(i[2])))
+
+            row += 1
+
+    def connectToDB(self):
+        try:
+            db = mdb.connect('localhost', 'root', '', 'aids')
+            return (db)
+
+        except mdb.Error as e:
+            print('Connection failed!')
+            sys.exit(1)
