@@ -36,17 +36,18 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
         # print(result)
 
-        if (not self.result):
+        dbuser = self.result[0][1]
+        dbuserType = self.result[0][3]
+        dbpass = self.result[0][2]
+        strpass = (AESCipher('aids').decrypt(dbpass)).decode()
+
+        if (not self.result or password != strpass):
             print('NOT TODAY BOIII')
-            self.lbl_response.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px; font-style: Helvetica}")
+            self.lbl_response.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
             self.lbl_response.setText('Invalid username/password')
-            self.txt_username.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px; font-style: Helvetica }")
-            self.txt_password.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px; font-style: Helvetica }")
+            self.txt_username.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_password.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
         else:
-            dbuser = self.result[0][1]
-            dbuserType = self.result[0][3]
-            dbpass = self.result[0][2]
-            strpass = (AESCipher('aids').decrypt(dbpass)).decode()
             if (dbuserType == 0 and password == strpass):
                 self.clearText()
                 print('YEHEEEEEY')
@@ -55,6 +56,7 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
                 self.close()
                 self.homepage.show()
             elif (dbuserType == 1 and password == strpass):
+                self.clearText()
                 print('Pilot logging in')
                 self.homepage = pilothomepageClass(parent=self)
                 self.audit("Pilot logged in successfully")
@@ -108,5 +110,15 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         conn.commit()
     
     def clearText(self):
-        self.txt_username.clear()
-        self.txt_password.clear()
+        font = QtGui.QFont()
+
+        font.setPointSize(8)
+        font.setFamily("Helvetica")
+
+        self.txt_username.setFont(font)
+        self.txt_username.setStyleSheet("QLineEdit {padding-left: 4px;}")
+
+        self.txt_password.setFont(font)
+        self.txt_password.setStyleSheet("QLineEdit {padding-left: 4px;}")
+
+        self.lbl_response.setText('')
