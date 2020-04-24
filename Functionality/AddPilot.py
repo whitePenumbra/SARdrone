@@ -157,7 +157,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
         '("%s","%s","%s",%s)' % (address, city, province, zipCode))
-        con.commit()
+        conn.commit()
 
         cur.execute('SELECT address_id FROM address WHERE permanent_address = "%s" AND zipcode = %s' % (address,zipCode))
         result = cur.fetchall()
@@ -182,7 +182,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         str(certNo), str(emContact), str(emNumber), str(operator), gender, birthday, str(email), str(mobile))
 
         cur.execute(query, values)
-        con.commit()
+        conn.commit()
+        self.audit("Admin added pilot " + fname + " " + lname)
 
     def sendEmail(self):
         port = 465
@@ -245,6 +246,22 @@ Password: %s
         with open(fileName, 'rb') as file:
             binaryData = file.read()
         return(binaryData)
+    
+    def audit(self, message):
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute("SELECT user_id FROM users WHERE user_type = 0")
+        result = cur.fetchall()
+
+        uid = result[0][0]
+        currentTime = datetime.datetime.now()
+
+        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
+        values = (str(uid), currentTime, str(message))
+
+        cur.execute(query,values)
+        conn.commit()
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):

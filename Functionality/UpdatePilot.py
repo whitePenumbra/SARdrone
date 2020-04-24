@@ -1,4 +1,4 @@
-import sys
+import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.UpdatePilot import UpdatePilotAlt
@@ -74,17 +74,19 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.aid = addressTuple[0][0]
 
         print('UPDATE PART')
-        print(result)
+        # print(result)
         print(addressTuple)
 
         for i in addressTuple:
             address = i
         
         self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
-        dbPic = result[2]
-        pixmap = QtGui.QPixmap(dbPic[2:(len(dbPic)-1)])
-        print(pixmap)
-        # self.lbl_profilePic.setPixmap(pixmap)
+        image_data = result[2]
+
+        image = QtGui.QImage.fromData(image_data)
+        pixmap = QtGui.QPixmap.fromImage(image)
+
+        self.lbl_profilePic.setPixmap(pixmap)
 
         self.txt_fname.setText(result[4])
         self.txt_lname.setText(result[3])
@@ -92,11 +94,11 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.rbtn_male.toggle()
         else:
             self.rbtn_female.toggle()
-        self.cmb_month.setCurrentIndex(self.cmb_month.findText(result[14].strftime("%B"),
+        self.cmb_month.setCurrentIndex(self.cmb_month.findText(result[15].strftime("%B"),
                                         QtCore.Qt.MatchFixedString))
-        self.cmb_day.setCurrentIndex(self.cmb_day.findText(result[14].strftime("%d"),
+        self.cmb_day.setCurrentIndex(self.cmb_day.findText(result[15].strftime("%d"),
                                         QtCore.Qt.MatchExactly))
-        self.cmb_year.setCurrentIndex(self.cmb_year.findText(result[14].strftime("%Y"),
+        self.cmb_year.setCurrentIndex(self.cmb_year.findText(result[15].strftime("%Y"),
                                         QtCore.Qt.MatchFixedString))
         self.txt_address.setText(address[1])
         self.txt_city.setText(address[2])
@@ -200,6 +202,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         operator,gender, birthday, email, mobile, self.uid))
         
         conn.commit()
+        self.audit("Admin updated pilot " + fname + " " + lname + "'s information.")
 
     def openFileNameDialog(self):
         options = QFileDialog.Options()
@@ -219,6 +222,19 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         except mdb.Error as e:
             print('Connection failed!')
             sys.exit(1)
+    
+    def audit(self, message):
+        uid = self.uid
+        currentTime = datetime.datetime.now()
+
+        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
+        values = (str(uid), currentTime, str(message))
+
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute(query,values)
+        conn.commit()
     
 class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_Dialog):
     def __init__(self,parent):

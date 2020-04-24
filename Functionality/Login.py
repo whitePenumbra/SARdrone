@@ -36,32 +36,39 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
 
         # print(result)
 
-        dbuser = self.result[0][1]
-        dbuserType = self.result[0][3]
-        dbpass = self.result[0][2]
-        strpass = (AESCipher('aids').decrypt(dbpass)).decode()
-
-        if (not self.result or password != strpass):
+        if (not self.result):
             print('NOT TODAY BOIII')
             self.lbl_response.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
             self.lbl_response.setText('Invalid username/password')
             self.txt_username.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
             self.txt_password.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
         else:
-            if (dbuserType == 0 and password == strpass):
-                self.clearText()
-                print('YEHEEEEEY')
-                self.homepage = adminhomepageClass(parent=self)
-                self.audit("Admin logged in successfully")
-                self.close()
-                self.homepage.show()
-            elif (dbuserType == 1 and password == strpass):
-                self.clearText()
-                print('Pilot logging in')
-                self.homepage = pilothomepageClass(parent=self)
-                self.audit("Pilot logged in successfully")
-                self.close()
-                self.homepage.show()
+            dbuser = self.result[0][1]
+            dbuserType = self.result[0][3]
+            dbpass = self.result[0][2]
+            strpass = (AESCipher('aids').decrypt(dbpass)).decode()
+
+            if (password == strpass):
+                if (dbuserType == 0):
+                    self.clearText()
+                    print('YEHEEEEEY')
+                    self.homepage = adminhomepageClass(parent=self)
+                    self.audit("Admin logged in successfully")
+                    self.close()
+                    self.homepage.show()
+                elif (dbuserType == 1):
+                    self.clearText()
+                    print('Pilot logging in')
+                    self.homepage = pilothomepageClass(parent=self)
+                    self.audit("Pilot logged in successfully")
+                    self.close()
+                    self.homepage.show()
+            else:
+                print('NOT TODAY BOIII')
+                self.lbl_response.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+                self.lbl_response.setText('Invalid username/password')
+                self.txt_username.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+                self.txt_password.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
 
         # if user == 'admin' and password == 'admin':
         #     print('Cheheck')

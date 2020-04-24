@@ -1,4 +1,4 @@
-import sys
+import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.ViewPilot import ViewPilotAlt
@@ -66,7 +66,7 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         self.lbl_issuedate.setText(self.result[8].strftime('%B %d, %Y'))
         self.lbl_expirydate.setText(self.result[9].strftime('%B %d, %Y'))
 
-        # print(result)
+        self.audit("Admin viewed " + str(self.result[4]) + " " + str(self.result[3]) + "'s profile")
 
     def cancel(self):
         self.parent.showself()
@@ -114,3 +114,19 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         except mdb.Error as e:
             print('Connection failed!')
             sys.exit(1)
+    
+    def audit(self, message):
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute("SELECT user_id FROM users WHERE user_type = 0")
+        result = cur.fetchall()
+
+        uid = result[0][0]
+        currentTime = datetime.datetime.now()
+
+        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
+        values = (str(uid), currentTime, str(message))
+
+        cur.execute(query,values)
+        conn.commit()
