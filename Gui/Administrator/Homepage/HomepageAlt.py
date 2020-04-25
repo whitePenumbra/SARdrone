@@ -67,6 +67,21 @@ class Ui_MainWindow(object):
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilots.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_pilots.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_pilots.setHorizontalHeaderLabels(["ID","Last Name","First Name", "View","Delete"])
+        self.table_pilots.setHorizontalHeaderItem(3, item)
         self.table_pilots.horizontalHeader().setVisible(True)
         self.table_pilots.horizontalHeader().setCascadingSectionResizes(False)
         self.table_pilots.horizontalHeader().setHighlightSections(True)
@@ -77,77 +92,114 @@ class Ui_MainWindow(object):
         self.table_pilots.verticalHeader().setStretchLastSection(False)
         self.table_pilots.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         self.table_pilots.setColumnWidth(0,100)
+        self.table_pilots.setColumnWidth(3, 50)
+        self.table_pilots.setColumnWidth(4, 50)
         self.table_pilots.horizontalHeader().setSectionResizeMode(0,QtWidgets.QHeaderView.Fixed)
         self.table_pilots.horizontalHeader().setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
         self.table_pilots.horizontalHeader().setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
         self.table_pilots.horizontalHeader().setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
-        #create buttons inside table cell
-        layout = QtWidgets.QHBoxLayout()
+        #self.table_pilots.setSpan(0,3,1,2)
+        # create buttons inside table cell
+        #view
+        layout_view = QtWidgets.QHBoxLayout()
         btn_view = QtWidgets.QPushButton()
-        btn_delete = QtWidgets.QPushButton()
-        #btn_view.setText('View')
+        # btn_view.setText('View')
         btn_view.setFixedHeight(34)
+        btn_view.setFixedWidth(200)
+        btn_view.setIcon(QtGui.QIcon("../../Resources/file_view.png"))
+        btn_view.setIconSize(QtCore.QSize(22, 22))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        btn_view.setFont(font)
+        btn_view.setStyleSheet("QPushButton {\n"
+                               "    background-color: #1E88E5;\n"
+                               "    color: rgb(255, 255, 255);\n"
+                               "border: 1.2px solid #1976D2;\n"
+                               "outline: none;}\n"
+                               "\n"
+                               "QPushButton:hover{\n"
+                               "    background-color: #1976D2;\n"
+                               "outline: none;\n"
+                               "border: none;\n"
+                               "}\n"
+                               "\n"
+                               "QPushButton:pressed{\n"
+                               "    background-color: #1565C0;\n"
+                               "outline: none;\n"
+                               "border: none;\n"
+                               "}\n"
+                               "\n"
+                               "\n"
+                               "")
+        btn_view.setCursor(QtCore.Qt.PointingHandCursor)
+        layout_view.addWidget(btn_view, 10)
+
+        #delete
+        layout = QtWidgets.QHBoxLayout()
+        btn_delete = QtWidgets.QPushButton()
         btn_delete.setFixedHeight(34)
-        btn_delete.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/trash_delete_2.png"))
-        btn_delete.setIconSize(QtCore.QSize(22,22))
-        btn_view.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/file_view.png"))
-        btn_view.setIconSize(QtCore.QSize(22,22))
-        #btn_delete.setText('Delete')
+        btn_delete.setFixedWidth(200)
+        btn_delete.setIcon(QtGui.QIcon("../../Resources/trash_delete_2.png"))
+        btn_delete.setIconSize(QtCore.QSize(22, 22))
+        # btn_delete.setText('Delete')
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
         btn_view.setFont(font)
         btn_delete.setFont(font)
         btn_delete.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: #E53935;\n"
-"border: 1.2px solid #D32F2F;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: #D32F2F;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #C62828;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                                 "color: rgb(255, 255, 255);\n"
+                                 "background-color: #E53935;\n"
+                                 "border: 1.2px solid #D32F2F;\n"
+                                 "outline: none;}\n"
+                                 "\n"
+                                 "QPushButton:hover{\n"
+                                 "background-color: #D32F2F;\n"
+                                 "outline: none;\n"
+                                 "border: none;\n"
+                                 "}\n"
+                                 "\n"
+                                 "QPushButton:pressed{\n"
+                                 "    background-color: #C62828;\n"
+                                 "outline: none;\n"
+                                 "border: none;\n"
+                                 "}\n"
+                                 "\n"
+                                 "\n"
+                                 "")
         btn_view.setStyleSheet("QPushButton {\n"
-"    background-color: #1E88E5;\n"
-"    color: rgb(255, 255, 255);\n"
-"border: 1.2px solid #1976D2;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"    background-color: #1976D2;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #1565C0;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
-        btn_view.setCursor(QtCore.Qt.PointingHandCursor)
+                               "    background-color: #1E88E5;\n"
+                               "    color: rgb(255, 255, 255);\n"
+                               "border: 1.2px solid #1976D2;\n"
+                               "outline: none;}\n"
+                               "\n"
+                               "QPushButton:hover{\n"
+                               "    background-color: #1976D2;\n"
+                               "outline: none;\n"
+                               "border: none;\n"
+                               "}\n"
+                               "\n"
+                               "QPushButton:pressed{\n"
+                               "    background-color: #1565C0;\n"
+                               "outline: none;\n"
+                               "border: none;\n"
+                               "}\n"
+                               "\n"
+                               "\n"
+                               "")
         btn_delete.setCursor(QtCore.Qt.PointingHandCursor)
-        layout.addStretch()
-        layout.addWidget(btn_view,20)
-        layout.addWidget(btn_delete,20)
+        #layout.addStretch()
+        layout.addWidget(btn_delete, 10)
 
         cellWidget = QtWidgets.QWidget()
         cellWidget.setLayout(layout)
 
-        self.table_pilots.setCellWidget(0,3,cellWidget) #buttons placement
+        cellWidget_View = QtWidgets.QWidget()
+        cellWidget_View.setLayout(layout_view)
+
+        self.table_pilots.setCellWidget(0, 3, cellWidget_View)  # buttons placement
+        self.table_pilots.setCellWidget(0, 4, cellWidget)
         self.table_pilots.horizontalHeader().setStyleSheet( "QHeaderView::section{"
             "border-top:0px solid #D8D8D8;"
             "border-left:0px solid #D8D8D8;"
@@ -204,7 +256,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(11)
         self.btn_add.setFont(font)
-        self.btn_add.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/add_user_2.png"))
+        self.btn_add.setIcon(QtGui.QIcon("../../Resources/add_user_2.png"))
         self.btn_add.setIconSize(QtCore.QSize(22,22))
         self.btn_add.setStyleSheet("QPushButton {\n"
 "background-color: #4CAF50;\n"
@@ -249,7 +301,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(11)
         self.btn_search.setFont(font)
-        self.btn_search.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/search_white.png"))
+        self.btn_search.setIcon(QtGui.QIcon("../../Resources/search_white.png"))
         self.btn_search.setIconSize(QtCore.QSize(22,22))
         self.btn_search.setStyleSheet("QPushButton {\n"
 "color: rgb(255, 255, 255);\n"
@@ -368,7 +420,7 @@ class Ui_MainWindow(object):
         item = self.table_pilots.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "First Name"))
         item = self.table_pilots.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Actions"))
+        item.setText(_translate("MainWindow", "View"))
         self.btn_operations.setText(_translate("MainWindow", "Access Previous Operations"))
         self.btn_add.setText(_translate("MainWindow", " Add Pilot"))
         self.lbl_registered.setText(_translate("MainWindow", "REGISTERED PILOTS"))
