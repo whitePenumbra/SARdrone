@@ -7,7 +7,7 @@ sys.path.append('..')
 from Gui.Pilot.Homepage import Homepage
 import MySQLdb as mdb
 from Encryption import AESCipher
-from Gui.NewUser.NewUserQDialog import Ui_Dialog
+from Gui.NewUser import NewUserQDialog
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -34,6 +34,8 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.getPilot()
         print("Current User: ")
         print(self.currentUser)
+
+        self.firstLogin()
         
 
     @QtCore.pyqtSlot()
@@ -107,7 +109,10 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         conn = self.connectToDB()
         cur = conn.cursor()
 
-        cur.execute('SELECT * FROM users WHERE username = "%s" AND user_type = "%s"' % (self.currentUser[0][0], self.currentUser[0][2]))
+        query = "SELECT * FROM users WHERE username = %s AND user_type = %s"
+        values = ((self.currentUser[0][0], self.currentUser[0][2]))
+
+        cur.execute(query,values)
         currentUserInfo = cur.fetchall()
 
         return (currentUserInfo)
@@ -118,3 +123,53 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
             currentUserAddress = cur.fetchall()
 
             return (currentUserAddress)
+
+    def firstLogin(self):
+        self.getPilot()
+
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM audit WHERE user_id = %s" % (self.currentUser[0][0],))
+        result = cur.fetchall()
+
+        print(len(result))
+
+        if (len(result) == 0):
+            self.changePassword = changePasswordClass(parent=self)
+            self.changePassword.setModal(True)
+
+class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.txtConfirmPass.editingFinished.connect(self.checkSimilar)
+
+    def checkSimilar(self):
+        newPass = self.txtNewPass.text()
+        retypePass = self.txtConfirmPass.text()
+
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        font.setFamily("Helvetica")
+
+        if (newPass != retypePass):
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText('Password does not match')
+            self.txtNewPass.setFont(font)
+            self.txtNewPass.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txtConfirmPass.setFont(font)
+            self.txtConfirmPass.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
+        else:
+            self.txtNewPass.setFont(font)
+            self.txtNewPass.setStyleSheet("padding-left: 4px;")
+            self.txtConfirmPass.setFont(font)
+            self.txtConfirmPass.setStyleSheet("padding-left: 4px;")
+            self.lbl_error.setText('')
+    
+    def changePassword(self):
+        conn = self.parent.connectToDB()
+        cur = conn.cursor()
+

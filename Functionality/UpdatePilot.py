@@ -224,14 +224,17 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             sys.exit(1)
     
     def audit(self, message):
-        uid = self.uid
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute("SELECT user_id FROM users WHERE user_type = 0")
+        result = cur.fetchall()
+
+        uid = result[0][0]
         currentTime = datetime.datetime.now()
 
         query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
         values = (str(uid), currentTime, str(message))
-
-        conn = self.connectToDB()
-        cur = conn.cursor()
 
         cur.execute(query,values)
         conn.commit()
