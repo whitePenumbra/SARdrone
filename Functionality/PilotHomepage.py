@@ -1,4 +1,4 @@
-import sys, os, cv2
+import sys, os, cv2, datetime
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget, 
@@ -8,6 +8,7 @@ from Gui.Pilot.Homepage import Homepage
 import MySQLdb as mdb
 from Encryption import AESCipher
 from Gui.NewUser import NewUserQDialog
+from Encryption import AESCipher
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -95,6 +96,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     
     def getPilot(self):
         self.currentUser = self.parent.getUser()
+        return(self.currentUser)
 
     def connectToDB(self):
         try:
@@ -105,24 +107,24 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
             print('Connection failed!')
             sys.exit(1)
 
-    def getPilotInfo(self):
-        conn = self.connectToDB()
-        cur = conn.cursor()
+    # def getPilotInfo(self):
+    #     conn = self.connectToDB()
+    #     cur = conn.cursor()
 
-        query = "SELECT * FROM users WHERE username = %s AND user_type = %s"
-        values = ((self.currentUser[0][0], self.currentUser[0][2]))
+    #     query = "SELECT * FROM users WHERE user_id = %s AND user_type = %s"
+    #     values = (self.currentUser[0][0], self.currentUser[0][2])
 
-        cur.execute(query,values)
-        currentUserInfo = cur.fetchall()
+    #     cur.execute(query,values)
+    #     currentUserInfo = cur.fetchall()
 
-        return (currentUserInfo)
+    #     return (currentUserInfo)
     
-    def getPilotAddress(self, userInfo):
-        if (not userInfo):
-            cur.execute('SELECT * FROM address WHERE address_id = "%s"' % (userInfo[0][1],))
-            currentUserAddress = cur.fetchall()
+    # def getPilotAddress(self, userInfo):
+    #     if (not userInfo):
+    #         cur.execute('SELECT * FROM address WHERE address_id = "%s"' % (userInfo[0][1],))
+    #         currentUserAddress = cur.fetchall()
 
-            return (currentUserAddress)
+    #         return (currentUserAddress)
 
     def firstLogin(self):
         self.getPilot()
@@ -139,13 +141,35 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
             self.changePassword = changePasswordClass(parent=self)
             self.changePassword.setModal(True)
 
+    def audit(self, message):
+        uid = self.currentUser[0][0]
+        currentTime = datetime.datetime.now()
+
+        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
+        values = (str(uid), currentTime, str(message))
+
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute(query,values)
+        conn.commit()
+
 class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
     def __init__(self,parent):
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
+        
+        self.currentUser = self.parent.getPilot()
+        print("THIS IS IN DIALOG")
+        print(self.currentUser[0][0])
 
+        self.btnReset.clicked.connect(self.resetPassword)
         self.txtConfirmPass.editingFinished.connect(self.checkSimilar)
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Return:
+            self.resetPassword()
 
     def checkSimilar(self):
         newPass = self.txtNewPass.text()
@@ -169,7 +193,27 @@ class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
             self.txtConfirmPass.setStyleSheet("padding-left: 4px;")
             self.lbl_error.setText('')
     
-    def changePassword(self):
+    def resetPassword(self):
         conn = self.parent.connectToDB()
         cur = conn.cursor()
+
+        user = self.parent.getPilot()
+        print(user)
+
+        if (self.txtNewPass.text() == self.txtConfirmPass.text()):
+            password = AESCipher('aids').encrypt(self.txtNewPass.text())
+            encpass = password.decode("utf-8")
+
+            query = "UPDATE users SET password = %s WHERE user_id = %s"
+            value = (encpass, user[0][0])
+
+            cur.execute(query,value)
+            conn.commit()
+
+            self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
+        
+        self.close()
+
+
+
 
