@@ -33,8 +33,8 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         self.lbl_addPilot.setFont(font)
         self.lbl_addPilot.setStyleSheet("padding-bottom: 4px;\n"
-"padding-right:4px;\n"
-"")
+                "padding-right:4px;\n"
+                "")
         self.lbl_addPilot.setObjectName("lbl_addPilot")
         self.lbl_caap = QtWidgets.QLabel(self.centralwidget)
         self.lbl_caap.setGeometry(QtCore.QRect(20, 530, 381, 35))
@@ -82,27 +82,27 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_cancel.setFont(font)
         self.btn_cancel.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(0, 0, 0);\n"
+                "    background-color: rgb(202, 202, 202);\n"
+                "border: 1.2px solid #ABABAB;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(171, 171, 171);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(129, 129, 129);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_cancel.setObjectName("btn_cancel")
         self.horizontalLayout.addWidget(self.btn_cancel)
         self.btn_save = QtWidgets.QPushButton(self.layoutWidget)
@@ -113,24 +113,24 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_save.setFont(font)
         self.btn_save.setStyleSheet("QPushButton {\n"
-"background-color: rgb(255, 176, 6);\n"
-"border: 1.2px solid #ff9d07;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(255, 157, 7);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: rgb(254, 140, 8);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "background-color: rgb(255, 176, 6);\n"
+                "border: 1.2px solid #ff9d07;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: rgb(255, 157, 7);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "background-color: rgb(254, 140, 8);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_save.setObjectName("btn_save")
         self.horizontalLayout.addWidget(self.btn_save)
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
@@ -168,7 +168,7 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.lbl_fName.setFont(font)
         self.lbl_fName.setStyleSheet("padding-left: 1px;\n"
-"")
+                "")
         self.lbl_fName.setObjectName("lbl_fName")
         self.fname_layout.addWidget(self.lbl_fName)
         self.txt_fname = QtWidgets.QLineEdit(self.layoutWidget2)
@@ -352,7 +352,7 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         self.txt_email.setFont(font)
         self.txt_email.setStyleSheet("padding-left:4px;\n"
-"margin-left:6px;")
+                "margin-left:6px;")
         self.txt_email.setObjectName("txt_email")
         self.email_layout.addWidget(self.txt_email)
         self.layoutWidget10 = QtWidgets.QWidget(self.centralwidget)
@@ -376,7 +376,7 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         self.txt_mobile.setFont(font)
         self.txt_mobile.setStyleSheet("padding-left:4px;\n"
-"margin-left:1px;")
+                "margin-left:1px;")
         self.txt_mobile.setObjectName("txt_mobile")
         self.mobile_layout.addWidget(self.txt_mobile)
         self.layoutWidget11 = QtWidgets.QWidget(self.centralwidget)
