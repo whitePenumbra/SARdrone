@@ -1,4 +1,5 @@
 import sys, datetime
+import http.client as httplib
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from PyQt5.QtWidgets import QDialog
@@ -18,6 +19,9 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         self.setupUi(self)
         self.btn_login.clicked.connect(self.login)
         self.btn_forgot.clicked.connect(self.forgot)
+
+        internet = self.checkConnection()
+        print (internet)
     
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return:
@@ -129,3 +133,14 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         self.txt_password.setStyleSheet("QLineEdit {padding-left: 4px;}")
 
         self.lbl_response.setText('')
+    
+    def checkConnection(self):
+        internetConn = httplib.HTTPConnection("www.google.com", timeout = 3)
+
+        try:
+            internetConn.request("HEAD", "/")
+            internetConn.close()
+            return ("There is internet")
+        except:
+            internetConn.close()
+            return ("There is no internet")
