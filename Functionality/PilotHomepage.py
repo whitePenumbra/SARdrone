@@ -8,7 +8,6 @@ from Gui.Pilot.Homepage import Homepage
 import MySQLdb as mdb
 from Encryption import AESCipher
 from Gui.NewUser import NewUserQDialog
-from Encryption import AESCipher
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -25,6 +24,8 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.btn_PDF.clicked.connect(self.printPDF)
 
         self.droneStream.setScaledContents(True)
+        self.btn_endOps.setEnabled(False)
+        self.btn_PDF.setEnabled(False)
 
         self.cap = None                                        #  -capture <-> +cap
 
@@ -46,6 +47,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,  640)
         self.timer.start()
 
+        self.btn_Launch.setEnabled(False)
+        self.btn_endOps.setEnabled(True)
+
     @QtCore.pyqtSlot()
     def update_frame(self):
         ret, image = self.cap.read()
@@ -65,6 +69,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     def stop_webcam(self):
         self.timer.stop()
         self.cap.release()
+
+        self.btn_Launch.setEnabled(True)
+        self.btn_endOps.setEnabled(False)
 
     def displayImage(self, img, window=True):
         qformat = QtGui.QImage.Format_Indexed8

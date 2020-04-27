@@ -15,7 +15,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.setupUi(self)
         self.parent = parent
 
-        # self.btn_save.setEnabled(False)
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
@@ -79,6 +78,10 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.dbimage = self.convertToBinaryData(imageLoc)
     
     def cancel(self):
+        self.btn_cancel.setEnabled(False)
+        self.btn_save.setEnabled(False)
+        self.disableAll()
+
         self.addPopup = addPopupClass(parent=self)
         self.addPopup.exec_()
 
@@ -247,6 +250,40 @@ Password: %s
             binaryData = file.read()
         return(binaryData)
     
+    def disableAll(self):
+        self.txt_fname.setReadOnly(True)
+        self.txt_lname.setReadOnly(True)
+
+        self.txt_address.setReadOnly(True)
+        self.txt_city.setReadOnly(True)
+        self.txt_province.setReadOnly(True)
+        self.txt_zip.setReadOnly(True)
+
+        self.txt_email.setReadOnly(True)
+        self.txt_mobile.setReadOnly(True)
+        self.txt_emContact.setReadOnly(True)
+        self.txt_emNumber.setReadOnly(True)
+
+        self.txt_certificate.setReadOnly(True)
+        self.txt_operator.setReadOnly(True)
+    
+    def enableAll(self):
+        self.txt_fname.setReadOnly(False)
+        self.txt_lname.setReadOnly(False)
+
+        self.txt_address.setReadOnly(False)
+        self.txt_city.setReadOnly(False)
+        self.txt_province.setReadOnly(False)
+        self.txt_zip.setReadOnly(False)
+
+        self.txt_email.setReadOnly(False)
+        self.txt_mobile.setReadOnly(False)
+        self.txt_emContact.setReadOnly(False)
+        self.txt_emNumber.setReadOnly(False)
+
+        self.txt_certificate.setReadOnly(False)
+        self.txt_operator.setReadOnly(False)
+    
     def audit(self, message):
         conn = self.connectToDB()
         cur = conn.cursor()
@@ -272,6 +309,10 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
         self.btn_delete.clicked.connect(self.delete)
 
     def cancel(self):
+        self.parent.btn_save.setEnabled(True)
+        self.parent.btn_cancel.setEnabled(True)
+        self.parent.enableAll()
+
         self.close()
     
     def delete(self):
