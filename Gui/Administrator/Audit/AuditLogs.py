@@ -31,6 +31,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_user.setFont(font)
         self.lbl_user.setText("")
         self.lbl_user.setScaledContents(False)
@@ -43,27 +44,28 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_logout.setFont(font)
         self.btn_logout.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: #E53935;\n"
-"border: 1.2px solid #D32F2F;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: #D32F2F;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #C62828;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+            "color: rgb(255, 255, 255);\n"
+            "background-color: #E53935;\n"
+            "border: 1.2px solid #D32F2F;\n"
+            "outline: none;}\n"
+            "\n"
+            "QPushButton:hover{\n"
+            "background-color: #D32F2F;\n"
+            "outline: none;\n"
+            "border: none;\n"
+            "}\n"
+            "\n"
+            "QPushButton:pressed{\n"
+            "    background-color: #C62828;\n"
+            "outline: none;\n"
+            "border: none;\n"
+            "}\n"
+            "\n"
+            "\n"
+            "")
         self.btn_logout.setObjectName("btn_logout")
         self.horizontalLayout.addWidget(self.btn_logout)
         self.btn_search = QtWidgets.QPushButton(self.centralwidget)
@@ -73,29 +75,30 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_search.setFont(font)
-        self.btn_search.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/search_white.png"))
+        self.btn_search.setIcon(QtGui.QIcon("../../Resources/search_white.png"))
         self.btn_search.setIconSize(QtCore.QSize(22,22))
         self.btn_search.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-" background-color: #26A69A;\n"
-"border: 1.2px solid #009688;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: #009688;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: #00897B;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(255, 255, 255);\n"
+                " background-color: #26A69A;\n"
+                "border: 1.2px solid #009688;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: #009688;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "background-color: #00897B;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_search.setObjectName("btn_search")
         self.searchbar = QtWidgets.QLineEdit(self.centralwidget)
         self.searchbar.setGeometry(QtCore.QRect(700, 90, 201, 31))
@@ -109,71 +112,129 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(29)
+        font.setKerning(True)
         self.lbl_audit.setFont(font)
         self.lbl_audit.setObjectName("lbl_audit")
         self.table_audit = QtWidgets.QTableWidget(self.centralwidget)
         self.table_audit.setGeometry(QtCore.QRect(30, 130, 1011, 551))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        self.table_audit.setFont(font)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.table_audit.sizePolicy().hasHeightForWidth())
+        self.table_audit.setSizePolicy(sizePolicy)
+        self.table_audit.setAutoFillBackground(False)
         self.table_audit.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_audit.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.table_audit.setObjectName("table_audit")
         self.table_audit.setColumnCount(3)
-        self.table_audit.setRowCount(0)
+        self.table_audit.setRowCount(1)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         self.table_audit.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_audit.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_audit.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_audit.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_audit.horizontalHeader().setVisible(True)
+        self.table_audit.horizontalHeader().setCascadingSectionResizes(False)
+        self.table_audit.horizontalHeader().setHighlightSections(True)
+        self.table_audit.horizontalHeader().setSortIndicatorShown(True)
         self.table_audit.horizontalHeader().setStretchLastSection(True)
         self.table_audit.verticalHeader().setVisible(False)
+        self.table_audit.verticalHeader().setSortIndicatorShown(False)
         self.table_audit.verticalHeader().setStretchLastSection(False)
         self.table_audit.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.table_audit.setColumnWidth(0,100)
-        self.table_audit.horizontalHeader().setSectionResizeMode(0,QtWidgets.QHeaderView.Fixed)
-        self.table_audit.setColumnWidth(1,140)
-        self.table_audit.horizontalHeader().setSectionResizeMode(1,QtWidgets.QHeaderView.Fixed)
-        self.table_audit.horizontalHeader().setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
+        self.table_audit.setColumnWidth(0, 150)
+        self.table_audit.setColumnWidth(1, 250)
+        self.table_audit.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Fixed)
+        self.table_audit.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.Fixed)
+        self.table_audit.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.Stretch)
+        # add bottom border for horizontal header
+        self.table_audit.horizontalHeader().setStyleSheet("QHeaderView::section{"
+                "border-top:0px solid #D8D8D8;"
+                "border-left:0px solid #D8D8D8;"
+                "border-right:1px solid #D8D8D8;"
+                "border-bottom: 1px solid #D8D8D8;"
+                "background-color:white;"
+                "padding:4px;"
+                "}"
+                "QTableCornerButton::section{"
+                "border-top:0px solid #D8D8D8;"
+                "border-left:0px solid #D8D8D8;"
+                "border-right:1px solid #D8D8D8;"
+                "border-bottom: 1px solid #D8D8D8;"
+                "background-color:white;"
+                "}");
+        # remove select trigger
+        self.table_audit.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.table_audit.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # remove dotted border
+        self.table_audit.setFocusPolicy(QtCore.Qt.NoFocus)
         self.btn_back = QtWidgets.QPushButton(self.centralwidget)
         self.btn_back.setGeometry(QtCore.QRect(920, 690, 121, 31))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_back.setFont(font)
         self.btn_back.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(0, 0, 0);\n"
+                "    background-color: rgb(202, 202, 202);\n"
+                "border: 1.2px solid #ABABAB;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(171, 171, 171);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(129, 129, 129);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_back.setObjectName("btn_back")
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -190,7 +251,7 @@ class Ui_MainWindow(object):
         item = self.table_audit.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "User ID"))
         item = self.table_audit.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "System Access"))
+        item.setText(_translate("MainWindow", "System  Access"))
         item = self.table_audit.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Actions Made"))
         self.btn_back.setText(_translate("MainWindow", "Back"))
