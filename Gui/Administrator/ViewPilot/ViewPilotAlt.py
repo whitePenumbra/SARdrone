@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../Documents/AIDS (GUI)/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.lbl_addPilot.setText("")
         self.lbl_addPilot.setObjectName("lbl_addPilot")
         self.lbl_caap = QtWidgets.QLabel(self.centralwidget)
-        self.lbl_caap.setGeometry(QtCore.QRect(20, 520, 381, 35))
+        self.lbl_caap.setGeometry(QtCore.QRect(20, 522, 381, 35))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(19)
@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         self.lbl_profilePic.setMinimumSize(QtCore.QSize(191, 181))
         self.lbl_profilePic.setMaximumSize(QtCore.QSize(191, 181))
         self.lbl_profilePic.setText("")
-        self.lbl_profilePic.setPixmap(QtGui.QPixmap("../../../../Documents/AIDS (GUI)/Resources/profile_placeholder.png"))
+        self.lbl_profilePic.setPixmap(QtGui.QPixmap("../../Resources/profile_placeholder.png"))
         self.lbl_profilePic.setScaledContents(True)
         self.lbl_profilePic.setObjectName("lbl_profilePic")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -79,29 +79,30 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_cancel.setFont(font)
         self.btn_cancel.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(0, 0, 0);\n"
+                "    background-color: rgb(202, 202, 202);\n"
+                "border: 1.2px solid #ABABAB;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(171, 171, 171);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(129, 129, 129);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_cancel.setObjectName("btn_cancel")
         self.btn_layout.addWidget(self.btn_cancel)
         self.btn_pastops = QtWidgets.QPushButton(self.layoutWidget)
@@ -110,27 +111,28 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_pastops.setFont(font)
         self.btn_pastops.setStyleSheet("QPushButton {\n"
-"background-color: rgb(70, 186, 255);\n"
-"color: rgb(0, 0, 0);\n"
-"border: 1.4px solid #39A0ee;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color: rgb(60, 175, 253);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"\n"
-"background-color: rgb(53, 141, 217);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"")
+                "background-color: rgb(70, 186, 255);\n"
+                "color: rgb(0, 0, 0);\n"
+                "border: 1.4px solid #39A0ee;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "\n"
+                "background-color: rgb(60, 175, 253);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "\n"
+                "background-color: rgb(53, 141, 217);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "")
         self.btn_pastops.setObjectName("btn_pastops")
         self.btn_layout.addWidget(self.btn_pastops)
         self.btn_update = QtWidgets.QPushButton(self.layoutWidget)
@@ -139,30 +141,31 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_update.setFont(font)
         self.btn_update.setStyleSheet("QPushButton {\n"
-"background-color: rgb(255, 176, 6);\n"
-"border: 1.2px solid #ff9d07;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(255, 157, 7);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: rgb(254, 140, 8);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "background-color: rgb(255, 176, 6);\n"
+                "border: 1.2px solid #ff9d07;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: rgb(255, 157, 7);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "background-color: rgb(254, 140, 8);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_update.setObjectName("btn_update")
         self.btn_layout.addWidget(self.btn_update)
         self.layoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget_2.setGeometry(QtCore.QRect(380, 630, 321, 33))
+        self.layoutWidget_2.setGeometry(QtCore.QRect(420, 630, 321, 33))
         self.layoutWidget_2.setObjectName("layoutWidget_2")
         self.expirydate_layout = QtWidgets.QHBoxLayout(self.layoutWidget_2)
         self.expirydate_layout.setContentsMargins(0, 0, 0, 0)
@@ -171,6 +174,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_expirydate_2.setFont(font)
         self.lbl_expirydate_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_expirydate_2.setObjectName("lbl_expirydate_2")
@@ -181,6 +185,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_expirydate.setFont(font)
         self.lbl_expirydate.setText("")
         self.lbl_expirydate.setObjectName("lbl_expirydate")
@@ -195,6 +200,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_gender_2.setFont(font)
         self.lbl_gender_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_gender_2.setObjectName("lbl_gender_2")
@@ -205,6 +211,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_gender.setFont(font)
         self.lbl_gender.setText("")
         self.lbl_gender.setObjectName("lbl_gender")
@@ -219,6 +226,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_address_2.setFont(font)
         self.lbl_address_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_address_2.setObjectName("lbl_address_2")
@@ -229,6 +237,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_address.setFont(font)
         self.lbl_address.setText("")
         self.lbl_address.setObjectName("lbl_address")
@@ -243,6 +252,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_city_2.setFont(font)
         self.lbl_city_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_city_2.setObjectName("lbl_city_2")
@@ -253,6 +263,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_city.setFont(font)
         self.lbl_city.setText("")
         self.lbl_city.setObjectName("lbl_city")
@@ -267,6 +278,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_province_2.setFont(font)
         self.lbl_province_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_province_2.setObjectName("lbl_province_2")
@@ -277,6 +289,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_province.setFont(font)
         self.lbl_province.setText("")
         self.lbl_province.setObjectName("lbl_province")
@@ -291,6 +304,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_zip_2.setFont(font)
         self.lbl_zip_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_zip_2.setObjectName("lbl_zip_2")
@@ -301,6 +315,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_zip.setFont(font)
         self.lbl_zip.setText("")
         self.lbl_zip.setObjectName("lbl_zip")
@@ -315,6 +330,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_email_2.setFont(font)
         self.lbl_email_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_email_2.setObjectName("lbl_email_2")
@@ -325,6 +341,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_email.setFont(font)
         self.lbl_email.setText("")
         self.lbl_email.setObjectName("lbl_email")
@@ -339,6 +356,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_id_2.setFont(font)
         self.lbl_id_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_id_2.setObjectName("lbl_id_2")
@@ -349,6 +367,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_id.setFont(font)
         self.lbl_id.setText("")
         self.lbl_id.setObjectName("lbl_id")
@@ -363,6 +382,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_mobile_2.setFont(font)
         self.lbl_mobile_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_mobile_2.setObjectName("lbl_mobile_2")
@@ -373,6 +393,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_mobile.setFont(font)
         self.lbl_mobile.setText("")
         self.lbl_mobile.setObjectName("lbl_mobile")
@@ -387,6 +408,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_emContact_2.setFont(font)
         self.lbl_emContact_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_emContact_2.setObjectName("lbl_emContact_2")
@@ -397,6 +419,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_emContact.setFont(font)
         self.lbl_emContact.setText("")
         self.lbl_emContact.setObjectName("lbl_emContact")
@@ -411,6 +434,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_emNumber_2.setFont(font)
         self.lbl_emNumber_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_emNumber_2.setObjectName("lbl_emNumber_2")
@@ -421,6 +445,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_emNumber.setFont(font)
         self.lbl_emNumber.setText("")
         self.lbl_emNumber.setObjectName("lbl_emNumber")
@@ -435,6 +460,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_certification_2.setFont(font)
         self.lbl_certification_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_certification_2.setObjectName("lbl_certification_2")
@@ -445,6 +471,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_certification.setFont(font)
         self.lbl_certification.setText("")
         self.lbl_certification.setObjectName("lbl_certification")
@@ -459,6 +486,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_operator_2.setFont(font)
         self.lbl_operator_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_operator_2.setObjectName("lbl_operator_2")
@@ -469,6 +497,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_operator.setFont(font)
         self.lbl_operator.setText("")
         self.lbl_operator.setObjectName("lbl_operator")
@@ -483,6 +512,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_dob_2.setFont(font)
         self.lbl_dob_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_dob_2.setObjectName("lbl_dob_2")
@@ -493,6 +523,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_dob.setFont(font)
         self.lbl_dob.setText("")
         self.lbl_dob.setObjectName("lbl_dob")
@@ -507,6 +538,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_issuedate_2.setFont(font)
         self.lbl_issuedate_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_issuedate_2.setObjectName("lbl_issuedate_2")
@@ -517,6 +549,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_issuedate.setFont(font)
         self.lbl_issuedate.setText("")
         self.lbl_issuedate.setObjectName("lbl_issuedate")
@@ -528,6 +561,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_addressExt.setFont(font)
         self.lbl_addressExt.setText("")
         self.lbl_addressExt.setObjectName("lbl_addressExt")
