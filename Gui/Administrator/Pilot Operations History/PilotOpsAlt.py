@@ -28,6 +28,11 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.table_pilotOps = QtWidgets.QTableWidget(self.centralwidget)
         self.table_pilotOps.setGeometry(QtCore.QRect(30, 130, 1011, 551))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        self.table_pilotOps.setFont(font)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -37,12 +42,13 @@ class Ui_MainWindow(object):
         self.table_pilotOps.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_pilotOps.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.table_pilotOps.setRowCount(2)
-        self.table_pilotOps.setColumnCount(4)
+        self.table_pilotOps.setColumnCount(5)
         self.table_pilotOps.setObjectName("table_pilotOps")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(0, item)
@@ -50,6 +56,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(1, item)
@@ -57,6 +64,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(2, item)
@@ -64,8 +72,26 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_pilotOps.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_pilotOps.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_pilotOps.setHorizontalHeaderLabels(["ID", "Date", "Location", "View", "Download"])
         self.table_pilotOps.setHorizontalHeaderItem(3, item)
         self.table_pilotOps.horizontalHeader().setVisible(True)
         self.table_pilotOps.horizontalHeader().setCascadingSectionResizes(False)
@@ -75,98 +101,114 @@ class Ui_MainWindow(object):
         self.table_pilotOps.verticalHeader().setVisible(False)
         self.table_pilotOps.verticalHeader().setSortIndicatorShown(False)
         self.table_pilotOps.verticalHeader().setStretchLastSection(False)
-        #adjust vertical header
         self.table_pilotOps.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.table_pilotOps.setColumnWidth(0,100)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(0,QtWidgets.QHeaderView.Fixed)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
-        #create buttons inside table cell
-        layout = QtWidgets.QHBoxLayout()
+        self.table_pilotOps.setColumnWidth(0, 100)
+        self.table_pilotOps.setColumnWidth(1, 160)
+        self.table_pilotOps.setColumnWidth(2, 350)
+        self.table_pilotOps.setColumnWidth(3, 200)
+        self.table_pilotOps.setColumnWidth(4, 200)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.Fixed)
+        # add bottom border for horizontal header
+        self.table_pilotOps.horizontalHeader().setStyleSheet("QHeaderView::section{"
+                 "border-top:0px solid #D8D8D8;"
+                 "border-left:0px solid #D8D8D8;"
+                 "border-right:1px solid #D8D8D8;"
+                 "border-bottom: 1px solid #D8D8D8;"
+                 "background-color:white;"
+                 "padding:4px;"
+                 "}"
+                 "QTableCornerButton::section{"
+                 "border-top:0px solid #D8D8D8;"
+                 "border-left:0px solid #D8D8D8;"
+                 "border-right:1px solid #D8D8D8;"
+                 "border-bottom: 1px solid #D8D8D8;"
+                 "background-color:white;"
+                 "}");
+
+        # view button
+        layout_view = QtWidgets.QHBoxLayout()
         btn_view = QtWidgets.QPushButton()
-        btn_download = QtWidgets.QPushButton()
-        #btn_view.setText('View')
         btn_view.setFixedHeight(34)
-        btn_download.setFixedHeight(34)
-        btn_download.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/download.png"))
-        btn_download.setIconSize(QtCore.QSize(22,22))
-        btn_view.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/file_view.png"))
-        btn_view.setIconSize(QtCore.QSize(22,22))
+        btn_view.setFixedWidth(170)
+        btn_view.setIcon(QtGui.QIcon("../../Resources/file_view.png"))
+        btn_view.setIconSize(QtCore.QSize(22, 22))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         btn_view.setFont(font)
+        btn_view.setStyleSheet("QPushButton {\n"
+                   "    background-color: #1E88E5;\n"
+                   "    color: rgb(255, 255, 255);\n"
+                   "border: 1.2px solid #1976D2;\n"
+                   "outline: none;}\n"
+                   "\n"
+                   "QPushButton:hover{\n"
+                   "    background-color: #1976D2;\n"
+                   "outline: none;\n"
+                   "border: none;\n"
+                   "}\n"
+                   "\n"
+                   "QPushButton:pressed{\n"
+                   "    background-color: #1565C0;\n"
+                   "outline: none;\n"
+                   "border: none;\n"
+                   "}\n"
+                   "\n"
+                   "\n"
+                   "")
+        btn_view.setCursor(QtCore.Qt.PointingHandCursor)
+        layout_view.addWidget(btn_view, 10)
+
+        # download button
+        layout = QtWidgets.QHBoxLayout()
+        btn_download = QtWidgets.QPushButton()
+        btn_download.setFixedHeight(34)
+        btn_download.setFixedWidth(170)
+        btn_download.setIcon(QtGui.QIcon("../../Resources/download.png"))
+        btn_download.setIconSize(QtCore.QSize(22, 22))
         btn_download.setFont(font)
         btn_download.setStyleSheet("QPushButton {\n"
-"background-color: rgb(255, 176, 6);\n"
-"border: 1.2px solid #ff9d07;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(255, 157, 7);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: rgb(254, 140, 8);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
-        btn_view.setStyleSheet("QPushButton {\n"
-"    background-color: #1E88E5;\n"
-"    color: rgb(255, 255, 255);\n"
-"border: 1.2px solid #1976D2;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"    background-color: #1976D2;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #1565C0;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
-        btn_view.setCursor(QtCore.Qt.PointingHandCursor)
+                   "background-color: rgb(255, 176, 6);\n"
+                   "border: 1.2px solid #ff9d07;\n"
+                   "outline: none;}\n"
+                   "\n"
+                   "QPushButton:hover{\n"
+                   "background-color: rgb(255, 157, 7);\n"
+                   "outline: none;\n"
+                   "border: none;\n"
+                   "}\n"
+                   "\n"
+                   "QPushButton:pressed{\n"
+                   "background-color: rgb(254, 140, 8);\n"
+                   "outline: none;\n"
+                   "border: none;\n"
+                   "}\n"
+                   "\n"
+                   "\n"
+                   "")
         btn_download.setCursor(QtCore.Qt.PointingHandCursor)
-        layout.addStretch()
-        layout.addWidget(btn_view,20)
-        layout.addWidget(btn_download,20)
+        """layout.addStretch()"""
+        layout.addWidget(btn_download, 10)
 
         cellWidget = QtWidgets.QWidget()
         cellWidget.setLayout(layout)
 
-        self.table_pilotOps.setCellWidget(0,3,cellWidget) #buttons placement
-        self.table_pilotOps.horizontalHeader().setStyleSheet( "QHeaderView::section{"
-            "border-top:0px solid #D8D8D8;"
-            "border-left:0px solid #D8D8D8;"
-            "border-right:1px solid #D8D8D8;"
-            "border-bottom: 1px solid #D8D8D8;"
-            "background-color:white;"
-            "padding:4px;"
-        "}"
-        "QTableCornerButton::section{"
-            "border-top:0px solid #D8D8D8;"
-            "border-left:0px solid #D8D8D8;"
-            "border-right:1px solid #D8D8D8;"
-            "border-bottom: 1px solid #D8D8D8;"
-            "background-color:white;"
-        "}" );
+        cellWidget_View = QtWidgets.QWidget()
+        cellWidget_View.setLayout(layout_view)
 
-        #remove select trigger
+        # buttons placement
+        self.table_pilotOps.setCellWidget(0, 3, cellWidget_View)
+        self.table_pilotOps.setCellWidget(0, 4, cellWidget)
+
+        # remove select trigger
         self.table_pilotOps.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_pilotOps.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        #remove dotted border
+        # remove dotted border
         self.table_pilotOps.setFocusPolicy(QtCore.Qt.NoFocus) 
 
         self.btn_back = QtWidgets.QPushButton(self.centralwidget)
@@ -174,35 +216,37 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_back.setFont(font)
         self.btn_back.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(0, 0, 0);\n"
+                "    background-color: rgb(202, 202, 202);\n"
+                "border: 1.2px solid #ABABAB;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(171, 171, 171);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(129, 129, 129);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_back.setObjectName("btn_back")
         self.lbl_pilotHistory = QtWidgets.QLabel(self.centralwidget)
         self.lbl_pilotHistory.setGeometry(QtCore.QRect(30, 50, 501, 61))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(29)
+        font.setKerning(True)
         self.lbl_pilotHistory.setFont(font)
         self.lbl_pilotHistory.setObjectName("lbl_pilotHistory")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -215,6 +259,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_user.setFont(font)
         self.lbl_user.setText("")
         self.lbl_user.setScaledContents(False)
@@ -227,27 +272,28 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_logout.setFont(font)
         self.btn_logout.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: #E53935;\n"
-"border: 1.2px solid #D32F2F;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: #D32F2F;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #C62828;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(255, 255, 255);\n"
+                "background-color: #E53935;\n"
+                "border: 1.2px solid #D32F2F;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: #D32F2F;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "    background-color: #C62828;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_logout.setObjectName("btn_logout")
         self.horizontalLayout.addWidget(self.btn_logout)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -268,7 +314,7 @@ class Ui_MainWindow(object):
         item = self.table_pilotOps.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Location"))
         item = self.table_pilotOps.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Actions"))
+        item.setText(_translate("MainWindow", "View"))
         self.btn_back.setText(_translate("MainWindow", "Back"))
         self.lbl_pilotHistory.setText(_translate("MainWindow", "Operations History"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
