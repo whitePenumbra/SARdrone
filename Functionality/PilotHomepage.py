@@ -41,10 +41,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
 
     @QtCore.pyqtSlot()
     def start_webcam(self):
-        if self.cap is None:
-            self.cap = cv2.VideoCapture(0)
-            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,  640)
+        self.cap = cv2.VideoCapture(0)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,  640)
         self.timer.start()
 
     @QtCore.pyqtSlot()
@@ -62,6 +61,10 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
             name = "my_image.jpg"
             cv2.imwrite(os.path.join(path, name), frame)
             self._image_counter += 1
+    
+    def stop_webcam(self):
+        self.timer.stop()
+        self.cap.release()
 
     def displayImage(self, img, window=True):
         qformat = QtGui.QImage.Format_Indexed8
@@ -90,6 +93,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
 
     def endOperation(self):
         print('Pilot End Operations button')
+        self.stop_webcam()
 
     def printPDF(self):
         print('Pilot PDF button')
