@@ -33,8 +33,8 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         self.lbl_addPilot.setFont(font)
         self.lbl_addPilot.setStyleSheet("padding-bottom: 4px;\n"
-"padding-right:4px;\n"
-"")
+                "padding-right:4px;\n"
+                "")
         self.lbl_addPilot.setObjectName("lbl_addPilot")
         self.lbl_caap = QtWidgets.QLabel(self.centralwidget)
         self.lbl_caap.setGeometry(QtCore.QRect(20, 530, 381, 35))
@@ -80,29 +80,30 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_cancel.setFont(font)
         self.btn_cancel.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(0, 0, 0);\n"
+                "    background-color: rgb(202, 202, 202);\n"
+                "border: 1.2px solid #ABABAB;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(171, 171, 171);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(129, 129, 129);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_cancel.setObjectName("btn_cancel")
         self.horizontalLayout.addWidget(self.btn_cancel)
         self.btn_save = QtWidgets.QPushButton(self.layoutWidget)
@@ -111,26 +112,27 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_save.setFont(font)
         self.btn_save.setStyleSheet("QPushButton {\n"
-"background-color: rgb(255, 176, 6);\n"
-"border: 1.2px solid #ff9d07;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(255, 157, 7);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: rgb(254, 140, 8);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "background-color: rgb(255, 176, 6);\n"
+                "border: 1.2px solid #ff9d07;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: rgb(255, 157, 7);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "background-color: rgb(254, 140, 8);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_save.setObjectName("btn_save")
         self.horizontalLayout.addWidget(self.btn_save)
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
@@ -164,9 +166,10 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
+        font.setKerning(True)
         self.lbl_fName.setFont(font)
         self.lbl_fName.setStyleSheet("padding-left: 1px;\n"
-"")
+                "")
         self.lbl_fName.setObjectName("lbl_fName")
         self.fname_layout.addWidget(self.lbl_fName)
         self.txt_fname = QtWidgets.QLineEdit(self.layoutWidget2)
@@ -202,6 +205,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
+        font.setKerning(True)
         self.rbtn_female.setFont(font)
         self.rbtn_female.setObjectName("rbtn_female")
         self.gender_layout.addWidget(self.rbtn_female)
@@ -313,6 +317,10 @@ class Ui_MainWindow(object):
         self.txt_zip.setStyleSheet("padding-left:4px;")
         self.txt_zip.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
         self.txt_zip.setText("")
+        # set max length and accept only integers
+        self.txt_zip.setMaxLength(4)
+        onlyInt = QtGui.QIntValidator()
+        self.txt_zip.setValidator(onlyInt)
         self.txt_zip.setObjectName("txt_zip")
         self.zip_layout.addWidget(self.txt_zip)
         self.layoutWidget9 = QtWidgets.QWidget(self.centralwidget)
@@ -333,7 +341,7 @@ class Ui_MainWindow(object):
         self.txt_email = QtWidgets.QLineEdit(self.layoutWidget9)
         self.txt_email.setMinimumSize(QtCore.QSize(251, 31))
         self.txt_email.setStyleSheet("padding-left:4px;\n"
-"margin-left:6px;")
+                "margin-left:6px;")
         self.txt_email.setObjectName("txt_email")
         self.email_layout.addWidget(self.txt_email)
         self.layoutWidget10 = QtWidgets.QWidget(self.centralwidget)
@@ -355,7 +363,7 @@ class Ui_MainWindow(object):
         self.txt_mobile.setMinimumSize(QtCore.QSize(191, 31))
         self.txt_mobile.setMaximumSize(QtCore.QSize(191, 31))
         self.txt_mobile.setStyleSheet("padding-left:4px;\n"
-"margin-left:1px;")
+                "margin-left:1px;")
         self.txt_mobile.setObjectName("txt_mobile")
         self.mobile_layout.addWidget(self.txt_mobile)
         self.layoutWidget11 = QtWidgets.QWidget(self.centralwidget)
@@ -472,6 +480,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(10)
+        font.setKerning(True)
         self.lbl_profile.setFont(font)
         self.lbl_profile.setStyleSheet("padding-right:2px;")
         self.lbl_profile.setObjectName("lbl_profile")
@@ -557,7 +566,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Pilot Registration [Administrator] "))
-        self.lbl_addPilot.setText(_translate("MainWindow", "Update Pilot Info"))
+        self.lbl_addPilot.setText(_translate("MainWindow", "Update Pilot"))
         self.lbl_caap.setText(_translate("MainWindow", "CAAP RPAS Certification Details"))
         self.btn_cancel.setText(_translate("MainWindow", "Cancel"))
         self.btn_save.setText(_translate("MainWindow", "Update"))
