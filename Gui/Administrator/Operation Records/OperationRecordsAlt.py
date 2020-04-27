@@ -27,6 +27,11 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.table_records = QtWidgets.QTableWidget(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        self.table_records.setFont(font)
         self.table_records.setGeometry(QtCore.QRect(30, 130, 1011, 551))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -37,12 +42,13 @@ class Ui_MainWindow(object):
         self.table_records.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_records.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.table_records.setRowCount(2)
-        self.table_records.setColumnCount(4)
+        self.table_records.setColumnCount(5)
         self.table_records.setObjectName("table_records")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_records.setHorizontalHeaderItem(0, item)
@@ -50,6 +56,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_records.setHorizontalHeaderItem(1, item)
@@ -57,6 +64,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_records.setHorizontalHeaderItem(2, item)
@@ -64,8 +72,26 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_records.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_records.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
+        self.table_records.setHorizontalHeaderLabels(["ID", "Date", "Location", "View", "Download"])
         self.table_records.setHorizontalHeaderItem(3, item)
         self.table_records.horizontalHeader().setVisible(True)
         self.table_records.horizontalHeader().setCascadingSectionResizes(False)
@@ -76,97 +102,113 @@ class Ui_MainWindow(object):
         self.table_records.verticalHeader().setSortIndicatorShown(False)
         self.table_records.verticalHeader().setStretchLastSection(False)
         self.table_records.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.table_records.setColumnWidth(0,100)
-        self.table_records.horizontalHeader().setSectionResizeMode(0,QtWidgets.QHeaderView.Fixed)
-        self.table_records.horizontalHeader().setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
-        self.table_records.horizontalHeader().setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
-        self.table_records.horizontalHeader().setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
-        #create buttons inside table cell
-        layout = QtWidgets.QHBoxLayout()
+        self.table_records.setColumnWidth(0, 100)
+        self.table_records.setColumnWidth(1, 160)
+        self.table_records.setColumnWidth(2, 350)
+        self.table_records.setColumnWidth(3, 200)
+        self.table_records.setColumnWidth(4, 200)
+        self.table_records.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Fixed)
+        self.table_records.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.Fixed)
+        self.table_records.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.Fixed)
+        self.table_records.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.Fixed)
+        self.table_records.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.Fixed)
+        # add bottom border for horizontal header
+        self.table_records.horizontalHeader().setStyleSheet("QHeaderView::section{"
+                "border-top:0px solid #D8D8D8;"
+                "border-left:0px solid #D8D8D8;"
+                "border-right:1px solid #D8D8D8;"
+                "border-bottom: 1px solid #D8D8D8;"
+                "background-color:white;"
+                "padding:4px;"
+                "}"
+                "QTableCornerButton::section{"
+                "border-top:0px solid #D8D8D8;"
+                "border-left:0px solid #D8D8D8;"
+                "border-right:1px solid #D8D8D8;"
+                "border-bottom: 1px solid #D8D8D8;"
+                "background-color:white;"
+                "}");
+
+        # view button
+        layout_view = QtWidgets.QHBoxLayout()
         btn_view = QtWidgets.QPushButton()
-        btn_download = QtWidgets.QPushButton()
-        #btn_view.setText('View')
         btn_view.setFixedHeight(34)
-        btn_download.setFixedHeight(34)
-        btn_download.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/download.png"))
-        btn_download.setIconSize(QtCore.QSize(22,22))
-        btn_view.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/file_view.png"))
-        btn_view.setIconSize(QtCore.QSize(22,22))
-        #btn_delete.setText('Delete')
+        btn_view.setFixedWidth(170)
+        btn_view.setIcon(QtGui.QIcon("../../Resources/file_view.png"))
+        btn_view.setIconSize(QtCore.QSize(22, 22))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         btn_view.setFont(font)
+        btn_view.setStyleSheet("QPushButton {\n"
+                "    background-color: #1E88E5;\n"
+                "    color: rgb(255, 255, 255);\n"
+                "border: 1.2px solid #1976D2;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "    background-color: #1976D2;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "    background-color: #1565C0;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
+        btn_view.setCursor(QtCore.Qt.PointingHandCursor)
+        layout_view.addWidget(btn_view, 10)
+
+        # download button
+        layout = QtWidgets.QHBoxLayout()
+        btn_download = QtWidgets.QPushButton()
+        btn_download.setFixedHeight(34)
+        btn_download.setFixedWidth(170)
+        btn_download.setIcon(QtGui.QIcon("../../Resources/download.png"))
+        btn_download.setIconSize(QtCore.QSize(22, 22))
         btn_download.setFont(font)
         btn_download.setStyleSheet("QPushButton {\n"
-"background-color: rgb(255, 176, 6);\n"
-"border: 1.2px solid #ff9d07;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(255, 157, 7);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: rgb(254, 140, 8);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
-        btn_view.setStyleSheet("QPushButton {\n"
-"    background-color: #1E88E5;\n"
-"    color: rgb(255, 255, 255);\n"
-"border: 1.2px solid #1976D2;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"    background-color: #1976D2;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #1565C0;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
-        btn_view.setCursor(QtCore.Qt.PointingHandCursor)
+                "background-color: rgb(255, 176, 6);\n"
+                "border: 1.2px solid #ff9d07;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: rgb(255, 157, 7);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "background-color: rgb(254, 140, 8);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         btn_download.setCursor(QtCore.Qt.PointingHandCursor)
-        layout.addStretch()
-        layout.addWidget(btn_view,20)
-        layout.addWidget(btn_download,20)
+        """layout.addStretch()"""
+        layout.addWidget(btn_download, 10)
 
         cellWidget = QtWidgets.QWidget()
         cellWidget.setLayout(layout)
 
-        self.table_records.setCellWidget(0,3,cellWidget) #buttons placement
-        self.table_records.horizontalHeader().setStyleSheet( "QHeaderView::section{"
-            "border-top:0px solid #D8D8D8;"
-            "border-left:0px solid #D8D8D8;"
-            "border-right:1px solid #D8D8D8;"
-            "border-bottom: 1px solid #D8D8D8;"
-            "background-color:white;"
-            "padding:4px;"
-        "}"
-        "QTableCornerButton::section{"
-            "border-top:0px solid #D8D8D8;"
-            "border-left:0px solid #D8D8D8;"
-            "border-right:1px solid #D8D8D8;"
-            "border-bottom: 1px solid #D8D8D8;"
-            "background-color:white;"
-        "}" );
+        cellWidget_View = QtWidgets.QWidget()
+        cellWidget_View.setLayout(layout_view)
 
-        #remove select trigger
+        # buttons placement
+        self.table_records.setCellWidget(0, 3, cellWidget_View)
+        self.table_records.setCellWidget(0, 4, cellWidget)
+
+        # remove select trigger
         self.table_records.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_records.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        #remove dotted border
+        # remove dotted border
         self.table_records.setFocusPolicy(QtCore.Qt.NoFocus) 
 
         self.lbl_records = QtWidgets.QLabel(self.centralwidget)
@@ -174,6 +216,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(29)
+        font.setKerning(True)
         self.lbl_records.setFont(font)
         self.lbl_records.setObjectName("lbl_records")
         self.searchbar = QtWidgets.QLineEdit(self.centralwidget)
@@ -190,29 +233,30 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_search.setFont(font)
-        self.btn_search.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/search_white.png"))
+        self.btn_search.setIcon(QtGui.QIcon("../../Resources/search_white.png"))
         self.btn_search.setIconSize(QtCore.QSize(22,22))
         self.btn_search.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-" background-color: #26A69A;\n"
-"border: 1.2px solid #009688;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: #009688;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: #00897B;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(255, 255, 255);\n"
+                " background-color: #26A69A;\n"
+                "border: 1.2px solid #009688;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: #009688;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "background-color: #00897B;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_search.setObjectName("btn_search")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget.setGeometry(QtCore.QRect(680, 17, 361, 33))
@@ -224,6 +268,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(11)
+        font.setKerning(True)
         self.lbl_user.setFont(font)
         self.lbl_user.setText("")
         self.lbl_user.setScaledContents(False)
@@ -236,27 +281,28 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_logout.setFont(font)
         self.btn_logout.setStyleSheet("QPushButton {\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: #E53935;\n"
-"border: 1.2px solid #D32F2F;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: #D32F2F;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: #C62828;\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(255, 255, 255);\n"
+                "background-color: #E53935;\n"
+                "border: 1.2px solid #D32F2F;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "background-color: #D32F2F;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "    background-color: #C62828;\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_logout.setObjectName("btn_logout")
         self.horizontalLayout.addWidget(self.btn_logout)
         self.btn_back = QtWidgets.QPushButton(self.centralwidget)
@@ -264,29 +310,30 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
+        font.setKerning(True)
         self.btn_back.setFont(font)
         self.btn_back.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
-"\n"
-"QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
-"outline: none;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                "color: rgb(0, 0, 0);\n"
+                "    background-color: rgb(202, 202, 202);\n"
+                "border: 1.2px solid #ABABAB;\n"
+                "outline: none;}\n"
+                "\n"
+                "QPushButton:hover{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(171, 171, 171);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "QPushButton:pressed{\n"
+                "color: rgb(255, 255, 255);\n"
+                "background-color: rgb(129, 129, 129);\n"
+                "outline: none;\n"
+                "border: none;\n"
+                "}\n"
+                "\n"
+                "\n"
+                "")
         self.btn_back.setObjectName("btn_back")
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -307,7 +354,7 @@ class Ui_MainWindow(object):
         item = self.table_records.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Location"))
         item = self.table_records.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Actions"))
+        item.setText(_translate("MainWindow", "View"))
         self.lbl_records.setText(_translate("MainWindow", "Operation Records"))
         self.btn_search.setText(_translate("MainWindow", "Search"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
