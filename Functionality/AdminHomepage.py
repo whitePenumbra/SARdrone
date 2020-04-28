@@ -82,7 +82,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
         conn.commit()
 
-        self.audit("Admin deleted pilot " + firstName + " " + lastName)
+        self.audits("Admin deleted pilot " + firstName + " " + lastName)
         self.initializeData()
 
     def view(self):
@@ -238,7 +238,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             print('Connection failed!')
             sys.exit(1)
 
-    def audit(self, message):
+    def audits(self, message):
         conn = self.connectToDB()
         cur = conn.cursor()
 

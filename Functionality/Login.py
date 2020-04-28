@@ -12,7 +12,6 @@ from PilotHomepage import pilothomepageClass
 from Encryption import AESCipher
 import MySQLdb as mdb
 
-print("asd")
 class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
     def __init__(self):
         super(self.__class__, self).__init__()
@@ -64,7 +63,7 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
                     self.clearText()
                     print('Pilot logging in')
                     self.homepage = pilothomepageClass(parent=self)
-                    self.audit("Pilot logged in successfully")
+                    self.audit(self.currentUser[0][1] + " logged in successfully")
                     self.close()
                     self.homepage.show()
             else:
