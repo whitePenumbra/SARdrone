@@ -1,4 +1,4 @@
-import sys
+import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.Homepage import HomepageAlt
@@ -18,7 +18,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_operations.clicked.connect(self.operations)
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
-        self.btn_audit.clicked.connect(self.audit)
+        self.btn_audit.clicked.connect(self.openAudit)
 
         self.initializeData()
 
@@ -26,7 +26,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         if event.key() == QtCore.Qt.Key_Return:
             self.search()
 
-    def audit(self):
+    def openAudit(self):
         self.audit = auditClass(parent=self)
         self.audit.show()
         self.hide()
@@ -82,6 +82,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
         conn.commit()
 
+        self.audits("Admin deleted pilot " + firstName + " " + lastName)
         self.initializeData()
 
     def view(self):
@@ -236,3 +237,19 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         except mdb.Error as e:
             print('Connection failed!')
             sys.exit(1)
+
+    def audits(self, message):
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute("SELECT user_id FROM users WHERE user_type = 0")
+        result = cur.fetchall()
+
+        uid = result[0][0]
+        currentTime = datetime.datetime.now()
+
+        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
+        values = (str(uid), currentTime, str(message))
+
+        cur.execute(query,values)
+        conn.commit()

@@ -15,7 +15,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.setupUi(self)
         self.parent = parent
 
-        # self.btn_save.setEnabled(False)
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_save.clicked.connect(self.savePilot)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
@@ -79,6 +78,10 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.dbimage = self.convertToBinaryData(imageLoc)
     
     def cancel(self):
+        self.btn_cancel.setEnabled(False)
+        self.btn_save.setEnabled(False)
+        self.disableAll()
+
         self.addPopup = addPopupClass(parent=self)
         self.addPopup.exec_()
 
@@ -157,7 +160,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
         cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
         '("%s","%s","%s",%s)' % (address, city, province, zipCode))
-        con.commit()
+        conn.commit()
 
         cur.execute('SELECT address_id FROM address WHERE permanent_address = "%s" AND zipcode = %s' % (address,zipCode))
         result = cur.fetchall()
@@ -182,7 +185,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         str(certNo), str(emContact), str(emNumber), str(operator), gender, birthday, str(email), str(mobile))
 
         cur.execute(query, values)
-        con.commit()
+        conn.commit()
+        self.audit("Admin added pilot " + fname + " " + lname)
 
     def sendEmail(self):
         port = 465
@@ -245,6 +249,56 @@ Password: %s
         with open(fileName, 'rb') as file:
             binaryData = file.read()
         return(binaryData)
+    
+    def disableAll(self):
+        self.txt_fname.setReadOnly(True)
+        self.txt_lname.setReadOnly(True)
+
+        self.txt_address.setReadOnly(True)
+        self.txt_city.setReadOnly(True)
+        self.txt_province.setReadOnly(True)
+        self.txt_zip.setReadOnly(True)
+
+        self.txt_email.setReadOnly(True)
+        self.txt_mobile.setReadOnly(True)
+        self.txt_emContact.setReadOnly(True)
+        self.txt_emNumber.setReadOnly(True)
+
+        self.txt_certificate.setReadOnly(True)
+        self.txt_operator.setReadOnly(True)
+    
+    def enableAll(self):
+        self.txt_fname.setReadOnly(False)
+        self.txt_lname.setReadOnly(False)
+
+        self.txt_address.setReadOnly(False)
+        self.txt_city.setReadOnly(False)
+        self.txt_province.setReadOnly(False)
+        self.txt_zip.setReadOnly(False)
+
+        self.txt_email.setReadOnly(False)
+        self.txt_mobile.setReadOnly(False)
+        self.txt_emContact.setReadOnly(False)
+        self.txt_emNumber.setReadOnly(False)
+
+        self.txt_certificate.setReadOnly(False)
+        self.txt_operator.setReadOnly(False)
+    
+    def audit(self, message):
+        conn = self.connectToDB()
+        cur = conn.cursor()
+
+        cur.execute("SELECT user_id FROM users WHERE user_type = 0")
+        result = cur.fetchall()
+
+        uid = result[0][0]
+        currentTime = datetime.datetime.now()
+
+        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
+        values = (str(uid), currentTime, str(message))
+
+        cur.execute(query,values)
+        conn.commit()
 
 class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):
@@ -255,6 +309,10 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
         self.btn_delete.clicked.connect(self.delete)
 
     def cancel(self):
+        self.parent.btn_save.setEnabled(True)
+        self.parent.btn_cancel.setEnabled(True)
+        self.parent.enableAll()
+
         self.close()
     
     def delete(self):
