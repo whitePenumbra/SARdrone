@@ -3,6 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.AddPilot import addpilotAlt
 from Gui.Administrator.AddPilot import UnsavedChangesAlert
+from Gui.Administrator.AddPilot import AddPilotSuccess
+from Gui.Administrator.AddPilot import AddPilotError
 import MySQLdb as mdb
 from Encryption import AESCipher
 from email.mime.multipart import MIMEMultipart
@@ -107,7 +109,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             sys.exit(1)
     
     def insertToDB(self):
-        monthList = {
+        try:
+            monthList = {
             '' : '00',
             'January': '01',
             'February': '02',
@@ -121,71 +124,78 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             'October': '10',
             'November': '11',
             'December': '12'
-        }
+            }
 
-        fname = self.txt_fname.text()
-        lname = self.txt_lname.text()
+            fname = self.txt_fname.text()
+            lname = self.txt_lname.text()
 
-        if (self.rbtn_female.isChecked()):
-            gender = 0
-        elif (self.rbtn_male.isChecked()):
-            gender = 1
-        else:
-            gender = ''
+            if (self.rbtn_female.isChecked()):
+                gender = 0
+            elif (self.rbtn_male.isChecked()):
+                gender = 1
+            else:
+                gender = ''
 
-        month = self.cmb_month.currentText()
-        day = self.cmb_day.currentText()
-        year = self.cmb_year.currentText()
-        birthday = datetime.datetime.strptime(monthList[month] + day + year, '%m%d%Y').date()
+            month = self.cmb_month.currentText()
+            day = self.cmb_day.currentText()
+            year = self.cmb_year.currentText()
+            birthday = datetime.datetime.strptime(monthList[month] + day + year, '%m%d%Y').date()
 
-        address = self.txt_address.text()
-        city = self.txt_city.text()
-        province = self.txt_province.text()
-        zipCode = self.txt_zip.text()
+            address = self.txt_address.text()
+            city = self.txt_city.text()
+            province = self.txt_province.text()
+            zipCode = self.txt_zip.text()
 
-        email = self.txt_email.text()
-        mobile = self.txt_mobile.text()
-        emContact = self.txt_emContact.text()
-        emNumber = self.txt_emNumber.text()
+            email = self.txt_email.text()
+            mobile = self.txt_mobile.text()
+            emContact = self.txt_emContact.text()
+            emNumber = self.txt_emNumber.text()
 
-        certNo = self.txt_certificate.text()
-        operator = self.txt_operator.text()
-        issueDate = datetime.datetime.strptime(monthList[self.cmb_issue_month.currentText()] + self.cmb_issue_day.currentText() +
-                    self.cmb_issue_year.currentText(), '%m%d%Y').date()
-        expire = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
-                    self.cmb_expiry_year.currentText(), '%m%d%Y').date()
+            certNo = self.txt_certificate.text()
+            operator = self.txt_operator.text()
+            issueDate = datetime.datetime.strptime(monthList[self.cmb_issue_month.currentText()] + self.cmb_issue_day.currentText() +
+                        self.cmb_issue_year.currentText(), '%m%d%Y').date()
+            expire = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
+                        self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
-        conn = self.connectToDB()
-        cur = conn.cursor()
+            conn = self.connectToDB()
+            cur = conn.cursor()
 
-        cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
-        '("%s","%s","%s",%s)' % (address, city, province, zipCode))
-        conn.commit()
+            cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
+            '("%s","%s","%s",%s)' % (address, city, province, zipCode))
+            conn.commit()
 
-        cur.execute('SELECT address_id FROM address WHERE permanent_address = "%s" AND zipcode = %s' % (address,zipCode))
-        result = cur.fetchall()
+            cur.execute('SELECT address_id FROM address WHERE permanent_address = "%s" AND zipcode = %s' % (address,zipCode))
+            result = cur.fetchall()
 
-        address_id = 0
-        for row in result:
-            for i in row:
-                address_id = i
+            address_id = 0
+            for row in result:
+                for i in row:
+                    address_id = i
 
-        self.username = fname[0:1] + lname[0:]
-        self.password = lname[0:1] + fname[0:]
-        # password = lname
+            self.username = fname[0:1] + lname[0:]
+            self.password = lname[0:1] + fname[0:]
+            # password = lname
 
-        encpass = AESCipher('aids').encrypt(self.password)
+            encpass = AESCipher('aids').encrypt(self.password)
 
-        query = """INSERT INTO users(address_id, user_img, last_name, first_name, username, password, user_type, license_date,
-         license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, date_of_birth, email, phone_number) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-        # values = (address_id, lname, fname, self.username, encpass, 1, issueDate, expire, certNo, emContact, emNumber,
-        # operator, gender, birthday, email, mobile)
-        values = (str(address_id), self.dbimage, str(lname), str(fname), str(self.username), encpass, 1, issueDate, expire,
-        str(certNo), str(emContact), str(emNumber), str(operator), gender, birthday, str(email), str(mobile))
+            query = """INSERT INTO users(address_id, user_img, last_name, first_name, username, password, user_type, license_date,
+            license_expiry, certif_no, emergency_contact, emergency_number, operator, gender, date_of_birth, email, phone_number) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+            # values = (address_id, lname, fname, self.username, encpass, 1, issueDate, expire, certNo, emContact, emNumber,
+            # operator, gender, birthday, email, mobile)
+            values = (str(address_id), self.dbimage, str(lname), str(fname), str(self.username), encpass, 1, issueDate, expire,
+            str(certNo), str(emContact), str(emNumber), str(operator), gender, birthday, str(email), str(mobile))
 
-        cur.execute(query, values)
-        conn.commit()
+            cur.execute(query, values)
+            conn.commit()
+
+            self.addSuccess = addSuccessClass(parent=self)
+            self.addSuccess.exec_()            
+        except Exception as e:
+            self.addError = addErrorClass(parent=self)
+            self.addError.exec_()
+
         self.audit("Admin added pilot " + fname + " " + lname)
 
     def sendEmail(self):
@@ -318,3 +328,25 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def delete(self):
         self.close()
         self.parent.returnToHome()
+
+class addSuccessClass(QtWidgets.QDialog, AddPilotSuccess.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()
+
+class addErrorClass(QtWidgets.QDialog, AddPilotError.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()

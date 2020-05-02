@@ -1,8 +1,7 @@
 import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
-from Gui.Administrator.UpdatePilot import UpdatePilotAlt
-from Gui.Administrator.UpdatePilot import UpdatePilotConfirm
+from Gui.Administrator.UpdatePilot import UpdatePilotAlt,UpdatePilotConfirm,UpdatePilotError,UpdatePilotSuccess
 import MySQLdb as mdb
 import datetime
 
@@ -140,7 +139,15 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.parent.show()
 
     def saveUpdate(self):
-        self.updateData()
+        try:
+            self.updateData()
+
+            self.updateSuccess = updateSuccessClass(parent=self)
+            self.updateSuccess.exec_()
+        except:
+            self.updateError = updateErrorClass(parent=self)
+            self.updateError.exec_()
+
         self.parent.cancel()
         self.close()
     
@@ -301,3 +308,25 @@ class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_Dialog):
     def save(self):
         self.close()
         self.parent.saveUpdate()
+
+class updateSuccessClass(QtWidgets.QDialog, UpdatePilotSuccess.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()
+
+class updateErrorClass(QtWidgets.QDialog, UpdatePilotError.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()

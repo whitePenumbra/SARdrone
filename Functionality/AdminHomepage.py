@@ -3,6 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.Homepage import HomepageAlt
 from Gui.Administrator.ViewPilot import ViewPilotAlt
+from Gui.Administrator.DeletePilot import DeletePilotError
+from Gui.Administrator.DeletePilot import DeletePilotSuccess
 from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
@@ -75,12 +77,19 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         lastName = self.table_pilots.item(row,1).text()
         firstName = self.table_pilots.item(row,2).text()
 
-        conn = self.connectToDB()
-        cur = conn.cursor()
+        try:
+            conn = self.connectToDB()
+            cur = conn.cursor()
 
-        print(firstName + " " + lastName)
-        cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
-        conn.commit()
+            print(firstName + " " + lastName)
+            cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s"' % (firstName, lastName))
+            conn.commit()
+
+            self.deleteSuccess = deleteSuccessClass(parent=self)
+            self.deleteSuccess.exec_()
+        except Exception as e:
+            self.deleteError = deleteErrorClass(parent=self)
+            self.deleteError.exec_()
 
         self.audits("Admin deleted pilot " + firstName + " " + lastName)
         self.initializeData()
@@ -253,3 +262,25 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
         cur.execute(query,values)
         conn.commit()
+
+class deleteSuccessClass(QtWidgets.QDialog, DeletePilotSuccess.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()
+
+class deleteErrorClass(QtWidgets.QDialog, DeletePilotError.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()
