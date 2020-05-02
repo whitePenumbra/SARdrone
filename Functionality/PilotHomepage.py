@@ -7,7 +7,7 @@ sys.path.append('..')
 from Gui.Pilot.Homepage import Homepage
 import MySQLdb as mdb
 from Encryption import AESCipher
-from Gui.NewUser import NewUserQDialog
+from Gui.NewUser import NewUserQDialog, NewUserSuccess
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -215,14 +215,31 @@ class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
             password = AESCipher('aids').encrypt(self.txtNewPass.text())
             encpass = password.decode("utf-8")
 
-            query = "UPDATE users SET password = %s WHERE user_id = %s"
-            value = (encpass, user[0][0])
+           try:
+                query = "UPDATE users SET password = %s WHERE user_id = %s"
+                value = (encpass, user[0][0])
 
-            cur.execute(query,value)
-            conn.commit()
+                cur.execute(query,value)
+                conn.commit()
+
+                self.changeSuccess = changeSuccessClass(parent=self)
+                self.changeSuccess.exec_()
+            except Exception as e:
+                print(e)
 
             self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
         
+        self.close()
+
+class changeSuccessClass(QtWidgets.QDialog, NewUserSuccess.Ui_Dialog):
+    def __init__(self,parent):
+        super(QtWidgets.QDialog,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
+    def goBack(self):
         self.close()
 
 
