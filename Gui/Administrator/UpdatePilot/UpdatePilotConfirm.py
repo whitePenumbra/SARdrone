@@ -20,7 +20,7 @@ class Ui_Dialog(object):
         icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         #removes ? from title bar
-        Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
+        # Dialog.setWindowFlags(QtCore.Qt.WindowContextHelpButtonHint)
         self.layoutWidget = QtWidgets.QWidget(Dialog)
         self.layoutWidget.setGeometry(QtCore.QRect(30, 30, 475, 81))
         self.layoutWidget.setObjectName("layoutWidget")

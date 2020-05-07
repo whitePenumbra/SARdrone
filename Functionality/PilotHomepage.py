@@ -215,7 +215,7 @@ class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
             password = AESCipher('aids').encrypt(self.txtNewPass.text())
             encpass = password.decode("utf-8")
 
-           try:
+            try:
                 query = "UPDATE users SET password = %s WHERE user_id = %s"
                 value = (encpass, user[0][0])
 
