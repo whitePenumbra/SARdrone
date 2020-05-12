@@ -45,31 +45,26 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_logout.setFont(font)
         self.btn_logout.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: #E53935;\n"
+"border: 1.2px solid #D32F2F;\n"
 "outline: none;}\n"
 "\n"
 "QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color: #D32F2F;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"    background-color: #C62828;\n"
 "outline: none;\n"
 "border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+"}")
         self.btn_logout.setObjectName("btn_logout")
         self.logout_layout.addWidget(self.btn_logout)
         self.btn_profile = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_profile.setGeometry(QtCore.QRect(30, 21, 160, 31))
+        self.btn_profile.setGeometry(QtCore.QRect(30, 22, 160, 31))
         self.btn_profile.setMinimumSize(QtCore.QSize(160, 31))
         self.btn_profile.setMaximumSize(QtCore.QSize(160, 31))
         font = QtGui.QFont()
@@ -77,30 +72,28 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_profile.setFont(font)
         self.btn_profile.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: #009688;\n"
+"background-color: rgb(240, 240, 240);\n"
+"border: 2px solid #009688;\n"
 "outline: none;}\n"
-"\n"
+"                \n"
 "QPushButton:hover{\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color:#26A69A;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
-"\n"
+"                \n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"background-color: #00897B;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
-"\n"
-"\n"
-"")
+"                \n"
+"                ")
         self.btn_profile.setObjectName("btn_profile")
         self.btn_pastOps = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_pastOps.setGeometry(QtCore.QRect(210, 21, 160, 31))
+        self.btn_pastOps.setGeometry(QtCore.QRect(210, 22, 160, 31))
         self.btn_pastOps.setMinimumSize(QtCore.QSize(160, 31))
         self.btn_pastOps.setMaximumSize(QtCore.QSize(160, 31))
         font = QtGui.QFont()
@@ -108,50 +101,27 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_pastOps.setFont(font)
         self.btn_pastOps.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: #009688;\n"
+"background-color: rgb(240, 240, 240);\n"
+"border: 2px solid #009688;\n"
 "outline: none;}\n"
-"\n"
+"                \n"
 "QPushButton:hover{\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color:#26A69A;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
-"\n"
+"                \n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"background-color: #00897B;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
-"\n"
-"\n"
-"")
+"                \n"
+"                ")
         self.btn_pastOps.setObjectName("btn_pastOps")
-
-        #System Errors
-        #call when there are system errors
-
-        """msgBox = QtWidgets.QMessageBox()
-        msgBox.setWindowTitle("Warning")
-        msgBox.setWindowIcon(icon)
-        msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        msgBox.setFont(font)
-        msgBox.setText("Error: Internal Server Error ")
-        #msgBox.setInformativeText("Internal Server Error")
-        
-
-        msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
-        ret = msgBox.exec_()"""
-
-        #END DELETE PILOT
-
-
-        self.droneStream = QtWidgets.QLabel(self.centralwidget)
+        self.droneStream = QtWidgets.QWidget(self.centralwidget)
         self.droneStream.setGeometry(QtCore.QRect(30, 80, 1011, 341))
         self.droneStream.setObjectName("droneStream")
         self.droneConsole = QtWidgets.QWidget(self.centralwidget)
@@ -160,13 +130,13 @@ class Ui_MainWindow(object):
         self.droneMap = QtWidgets.QWidget(self.centralwidget)
         self.droneMap.setGeometry(QtCore.QRect(30, 430, 401, 291))
         self.droneMap.setObjectName("droneMap")
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(450, 480, 162, 181))
-        self.widget.setObjectName("widget")
-        self.operations_layout = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget1.setGeometry(QtCore.QRect(450, 480, 162, 181))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.operations_layout = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.operations_layout.setContentsMargins(0, 0, 0, 0)
         self.operations_layout.setObjectName("operations_layout")
-        self.btn_Launch = QtWidgets.QPushButton(self.widget)
+        self.btn_Launch = QtWidgets.QPushButton(self.layoutWidget1)
         self.btn_Launch.setMinimumSize(QtCore.QSize(160, 31))
         self.btn_Launch.setMaximumSize(QtCore.QSize(160, 31))
         font = QtGui.QFont()
@@ -174,14 +144,14 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_Launch.setFont(font)
         self.btn_Launch.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: rgb(212, 128, 0);\n"
+"background-color: rgb(240, 240, 240);\n"
+"border: 2px solid #FF9D07;\n"
 "outline: none;}\n"
 "\n"
 "QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"color: rgb(0,0,0);\n"
+"background-color: rgb(255, 176, 6);\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
@@ -197,7 +167,7 @@ class Ui_MainWindow(object):
 "")
         self.btn_Launch.setObjectName("btn_Launch")
         self.operations_layout.addWidget(self.btn_Launch)
-        self.btn_endOps = QtWidgets.QPushButton(self.widget)
+        self.btn_endOps = QtWidgets.QPushButton(self.layoutWidget1)
         self.btn_endOps.setMinimumSize(QtCore.QSize(160, 31))
         self.btn_endOps.setMaximumSize(QtCore.QSize(160, 31))
         font = QtGui.QFont()
@@ -205,30 +175,25 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_endOps.setFont(font)
         self.btn_endOps.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
-"outline: none;}\n"
+"background-color: rgb(255, 176, 6);\n"
+"border: 1.2px solid #ff9d07;\n"
+"outline: none;\n"
+"}\n"
 "\n"
 "QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color: rgb(255, 157, 7);\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"background-color: rgb(254, 140, 8);\n"
 "outline: none;\n"
 "border: none;\n"
-"}\n"
-"\n"
-"\n"
-"")
+"}")
         self.btn_endOps.setObjectName("btn_endOps")
         self.operations_layout.addWidget(self.btn_endOps)
-        self.btn_PDF = QtWidgets.QPushButton(self.widget)
+        self.btn_PDF = QtWidgets.QPushButton(self.layoutWidget1)
         self.btn_PDF.setMinimumSize(QtCore.QSize(160, 31))
         self.btn_PDF.setMaximumSize(QtCore.QSize(160, 31))
         font = QtGui.QFont()
@@ -260,11 +225,6 @@ class Ui_MainWindow(object):
         self.btn_PDF.setObjectName("btn_PDF")
         self.operations_layout.addWidget(self.btn_PDF)
         MainWindow.setCentralWidget(self.centralwidget)
-
-        self.image_label = QtWidgets.QLabel(MainWindow)
-        self.image_label.setText("")
-        self.image_label.setObjectName("image_label")
-        # self.verticalLayout.addWidget(self.image_label)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

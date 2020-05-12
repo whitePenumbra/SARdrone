@@ -17,12 +17,16 @@ class Ui_Dialog(object):
         Dialog.setMinimumSize(QtCore.QSize(531, 191))
         Dialog.setMaximumSize(QtCore.QSize(531, 191))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../Desktop/AIDS (GUI) Final/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         #removes ? from title bar
         Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
         self.btn_cancel = QtWidgets.QPushButton(Dialog)
         self.btn_cancel.setGeometry(QtCore.QRect(70, 140, 151, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_cancel.setFont(font)
         self.btn_cancel.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(201, 201, 201);\n"
@@ -48,6 +52,10 @@ class Ui_Dialog(object):
         self.btn_cancel.setObjectName("btn_cancel")
         self.btn_end = QtWidgets.QPushButton(Dialog)
         self.btn_end.setGeometry(QtCore.QRect(310, 140, 151, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_end.setFont(font)
         self.btn_end.setStyleSheet("QPushButton {\n"
 "background-color: rgb(255, 176, 6);\n"
 "border: 1.2px solid #ff9d07;\n"
