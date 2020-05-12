@@ -9,6 +9,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# center table text
+class AlignDelegate(QtWidgets.QStyledItemDelegate):
+    def initStyleOption(self, option, index):
+        super(AlignDelegate, self).initStyleOption(option, index)
+        option.displayAlignment = QtCore.Qt.AlignCenter
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,7 +34,7 @@ class Ui_MainWindow(object):
         self.table_pilotOps = QtWidgets.QTableWidget(self.centralwidget)
         self.table_pilotOps.setGeometry(QtCore.QRect(30, 130, 1011, 551))
         font = QtGui.QFont()
-        font.setFamily("Helvetica")
+        font.setFamily("Segoe UI")
         font.setPointSize(12)
         font.setKerning(True)
         self.table_pilotOps.setFont(font)
@@ -49,6 +54,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(0, item)
@@ -57,6 +63,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(1, item)
@@ -65,6 +72,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(2, item)
@@ -73,6 +81,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(3, item)
@@ -81,6 +90,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(4, item)
@@ -89,6 +99,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderLabels(["ID", "Date", "Location", "View", "Download"])
@@ -208,6 +219,11 @@ class Ui_MainWindow(object):
         # remove select trigger
         self.table_pilotOps.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_pilotOps.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+        # center column text
+        delegate = AlignDelegate(self.table_pilotOps)
+        self.table_pilotOps.setItemDelegate(delegate)
+
         # remove dotted border
         self.table_pilotOps.setFocusPolicy(QtCore.Qt.NoFocus) 
 
