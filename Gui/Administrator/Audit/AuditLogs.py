@@ -9,6 +9,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# center table text
+class AlignDelegate(QtWidgets.QStyledItemDelegate):
+    def initStyleOption(self, option, index):
+        super(AlignDelegate, self).initStyleOption(option, index)
+        option.displayAlignment = QtCore.Qt.AlignCenter
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -118,7 +123,7 @@ class Ui_MainWindow(object):
         self.table_audit = QtWidgets.QTableWidget(self.centralwidget)
         self.table_audit.setGeometry(QtCore.QRect(30, 130, 1011, 551))
         font = QtGui.QFont()
-        font.setFamily("Helvetica")
+        font.setFamily("Segoe UI")
         font.setPointSize(12)
         font.setKerning(True)
         self.table_audit.setFont(font)
@@ -138,12 +143,14 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         self.table_audit.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setBold(True)
         font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
@@ -153,6 +160,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_audit.setHorizontalHeaderItem(2, item)
@@ -161,6 +169,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_audit.setHorizontalHeaderItem(3, item)
@@ -169,6 +178,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(12)
         font.setKerning(True)
+        font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_audit.horizontalHeader().setVisible(True)
@@ -204,12 +214,15 @@ class Ui_MainWindow(object):
         # remove select trigger
         self.table_audit.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_audit.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # center column text
+        delegate = AlignDelegate(self.table_audit)
+        self.table_audit.setItemDelegate(delegate)
         # remove dotted border
         self.table_audit.setFocusPolicy(QtCore.Qt.NoFocus)
         self.btn_back = QtWidgets.QPushButton(self.centralwidget)
         self.btn_back.setGeometry(QtCore.QRect(920, 690, 121, 31))
         font = QtGui.QFont()
-        font.setFamily("Helvetica")
+        font.setFamily("MS Shell Dlg 2")
         font.setPointSize(11)
         font.setKerning(True)
         self.btn_back.setFont(font)
