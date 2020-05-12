@@ -21,9 +21,13 @@ class Ui_MainWindow(object):
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.btnReset = QtWidgets.QPushButton(self.centralwidget)
-        self.btnReset.setGeometry(QtCore.QRect(130, 330, 351, 31))
-        self.btnReset.setStyleSheet("QPushButton {\n"
+        self.btn_reset = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_reset.setGeometry(QtCore.QRect(130, 330, 351, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(10)
+        self.btn_reset.setFont(font)
+        self.btn_reset.setStyleSheet("QPushButton {\n"
 "background-color: rgb(255, 176, 6);\n"
 "border: 1.2px solid #ff9d07;\n"
 "outline: none;}\n"
@@ -42,7 +46,7 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "")
-        self.btnReset.setObjectName("btnReset")
+        self.btn_reset.setObjectName("btnReset")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget.setGeometry(QtCore.QRect(130, 50, 351, 111))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -101,7 +105,7 @@ class Ui_MainWindow(object):
         self.lbl_newpass = QtWidgets.QLabel(self.layoutWidget1)
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(10)
+        font.setPointSize(11)
         self.lbl_newpass.setFont(font)
         self.lbl_newpass.setStyleSheet("")
         self.lbl_newpass.setObjectName("lbl_newpass")
@@ -119,7 +123,7 @@ class Ui_MainWindow(object):
         self.lbl_confirmPass = QtWidgets.QLabel(self.layoutWidget1)
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(10)
+        font.setPointSize(11)
         self.lbl_confirmPass.setFont(font)
         self.lbl_confirmPass.setStyleSheet("")
         self.lbl_confirmPass.setObjectName("lbl_confirmPass")
@@ -137,12 +141,12 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        MainWindow.setTabOrder(self.txtConfirmPass, self.btnReset)
+        MainWindow.setTabOrder(self.txtConfirmPass, self.btn_reset)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Reset Password"))
-        self.btnReset.setText(_translate("MainWindow", "Change Password"))
+        self.btn_reset.setText(_translate("MainWindow", "Change Password"))
         self.lbl_verification_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\">Change Password</span></p></body></html>"))
         self.label.setText(_translate("MainWindow", "Password must have at least 8 characters, an upper case (A-Z),"))
         self.label_2.setText(_translate("MainWindow", "and a number (0-9). Special Characters are optional"))
