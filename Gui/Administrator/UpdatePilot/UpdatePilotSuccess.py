@@ -25,6 +25,10 @@ class Ui_Dialog(object):
         self.btn_OK.setGeometry(QtCore.QRect(199, 139, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_OK.setFont(font)
         self.btn_OK.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(201, 201, 201);\n"

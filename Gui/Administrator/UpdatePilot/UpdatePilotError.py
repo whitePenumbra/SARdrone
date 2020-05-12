@@ -45,6 +45,10 @@ class Ui_Dialog(object):
         self.btn_OK.setGeometry(QtCore.QRect(200, 140, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_OK.setFont(font)
         self.btn_OK.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(201, 201, 201);\n"
@@ -76,7 +80,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Update Pilot Error"))
         self.lbl_error.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">Profile update failed. Try again later.</span></p></body></html>"))
-        self.btn_OK.setText(_translate("Dialog", "Dismiss"))
+        self.btn_OK.setText(_translate("Dialog", "OK"))
 
 
 if __name__ == "__main__":

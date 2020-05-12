@@ -42,11 +42,15 @@ class Ui_Dialog(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(30, 130, 131, 31))
-        self.pushButton.setMinimumSize(QtCore.QSize(131, 31))
-        self.pushButton.setMaximumSize(QtCore.QSize(131, 31))
-        self.pushButton.setStyleSheet("QPushButton {\n"
+        self.btn_cancel = QtWidgets.QPushButton(Dialog)
+        self.btn_cancel.setGeometry(QtCore.QRect(30, 130, 131, 31))
+        self.btn_cancel.setMinimumSize(QtCore.QSize(131, 31))
+        self.btn_cancel.setMaximumSize(QtCore.QSize(131, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_cancel.setFont(font)
+        self.btn_cancel.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(201, 201, 201);\n"
 "border: 1.2px solid #ABABAB;\n"
@@ -68,12 +72,13 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(Dialog)
-        self.pushButton_2.setGeometry(QtCore.QRect(370, 130, 131, 31))
-        self.pushButton_2.setMinimumSize(QtCore.QSize(131, 31))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(131, 31))
-        self.pushButton_2.setStyleSheet("QPushButton {\n"
+        self.btn_cancel.setObjectName("btn_cancel")
+        self.btn_save = QtWidgets.QPushButton(Dialog)
+        self.btn_save.setGeometry(QtCore.QRect(370, 130, 131, 31))
+        self.btn_save.setMinimumSize(QtCore.QSize(131, 31))
+        self.btn_save.setMaximumSize(QtCore.QSize(131, 31))
+        self.btn_save.setFont(font)
+        self.btn_save.setStyleSheet("QPushButton {\n"
 "background-color: rgb(255, 176, 6);\n"
 "border: 1.2px solid #ff9d07;\n"
 "outline: none;}\n"
@@ -92,12 +97,13 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(Dialog)
-        self.pushButton_3.setGeometry(QtCore.QRect(200, 130, 131, 31))
-        self.pushButton_3.setMinimumSize(QtCore.QSize(131, 31))
-        self.pushButton_3.setMaximumSize(QtCore.QSize(131, 31))
-        self.pushButton_3.setStyleSheet("QPushButton {\n"
+        self.btn_save.setObjectName("pushButton_2")
+        self.btn_dontSave = QtWidgets.QPushButton(Dialog)
+        self.btn_dontSave.setGeometry(QtCore.QRect(200, 130, 131, 31))
+        self.btn_dontSave.setMinimumSize(QtCore.QSize(131, 31))
+        self.btn_dontSave.setMaximumSize(QtCore.QSize(131, 31))
+        self.btn_dontSave.setFont(font)
+        self.btn_dontSave.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(201, 201, 201);\n"
 "border: 1.2px solid #ABABAB;\n"
@@ -119,7 +125,7 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "")
-        self.pushButton_3.setObjectName("pushButton_3")
+        self.btn_dontSave.setObjectName("pushButton_3")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -129,9 +135,9 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Update Pilot"))
         self.label.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#2c365d;\">Do you want to save changes to this pilot?</span></p></body></html>"))
         self.label_2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#2c365d;\">This process cannot be undone.</span></p></body></html>"))
-        self.pushButton.setText(_translate("Dialog", "Cancel"))
-        self.pushButton_2.setText(_translate("Dialog", "Save"))
-        self.pushButton_3.setText(_translate("Dialog", "Don\'t Save"))
+        self.btn_cancel.setText(_translate("Dialog", "Cancel"))
+        self.btn_save.setText(_translate("Dialog", "Save"))
+        self.btn_dontSave.setText(_translate("Dialog", "Don\'t Save"))
 
 
 if __name__ == "__main__":
