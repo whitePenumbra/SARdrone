@@ -55,6 +55,7 @@ class Ui_MainWindow(object):
         self.btn_forgot.setMaximumSize(QtCore.QSize(116, 31))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
+        font.setPointSize(10)
         self.btn_forgot.setFont(font)
         self.btn_forgot.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
@@ -124,6 +125,10 @@ class Ui_MainWindow(object):
         self.btn_verify.setSizePolicy(sizePolicy)
         self.btn_verify.setMinimumSize(QtCore.QSize(331, 31))
         self.btn_verify.setMaximumSize(QtCore.QSize(331, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(10)
+        self.btn_verify.setFont(font)
         self.btn_verify.setStyleSheet("QPushButton {\n"
 "background-color: rgb(255, 176, 6);\n"
 "border: 1.2px solid #ff9d07;\n"

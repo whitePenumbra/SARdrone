@@ -23,6 +23,10 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.btn_reset = QtWidgets.QPushButton(self.centralwidget)
         self.btn_reset.setGeometry(QtCore.QRect(140, 280, 331, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(10)
+        self.btn_reset.setFont(font)
         self.btn_reset.setStyleSheet("QPushButton {\n"
 "background-color: rgb(255, 176, 6);\n"
 "border: 1.2px solid #ff9d07;\n"
@@ -68,6 +72,7 @@ class Ui_MainWindow(object):
         self.btn_forgot.setMaximumSize(QtCore.QSize(116, 31))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
+        font.setPointSize(10)
         self.btn_forgot.setFont(font)
         self.btn_forgot.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
@@ -149,7 +154,7 @@ class Ui_MainWindow(object):
         self.lbl_email = QtWidgets.QLabel(self.layoutWidget2)
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(10)
+        font.setPointSize(11)
         self.lbl_email.setFont(font)
         self.lbl_email.setStyleSheet("")
         self.lbl_email.setObjectName("lbl_email")
