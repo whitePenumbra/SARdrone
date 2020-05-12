@@ -279,27 +279,22 @@ border: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-color: rgb(0, 0, 0);
-	background-color: rgb(202, 202, 202);
-border: 1.2px solid #ABABAB;
+color: rgb(255, 255, 255);
+background-color: #E53935;
+border: 1.2px solid #D32F2F;
 outline: none;}
 
 QPushButton:hover{
-color: rgb(255, 255, 255);
-background-color: rgb(171, 171, 171);
+background-color: #D32F2F;
 outline: none;
 border: none;
 }
 
 QPushButton:pressed{
-color: rgb(255, 255, 255);
-background-color: rgb(129, 129, 129);
+    background-color: #C62828;
 outline: none;
 border: none;
-}
-
-
-</string>
+}</string>
        </property>
        <property name="text">
         <string>Logout</string>

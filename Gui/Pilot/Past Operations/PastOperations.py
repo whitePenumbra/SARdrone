@@ -9,6 +9,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# center table text
+class AlignDelegate(QtWidgets.QStyledItemDelegate):
+    def initStyleOption(self, option, index):
+        super(AlignDelegate, self).initStyleOption(option, index)
+        option.displayAlignment = QtCore.Qt.AlignCenter
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,6 +32,11 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.table_pilotOps = QtWidgets.QTableWidget(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setKerning(True)
+        self.table_pilotOps.setFont(font)
         self.table_pilotOps.setGeometry(QtCore.QRect(30, 130, 1011, 551))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -43,6 +53,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setBold(True)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(0, item)
@@ -50,6 +62,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setBold(True)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(1, item)
@@ -57,6 +71,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setBold(True)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(2, item)
@@ -64,6 +80,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(12)
+        font.setBold(True)
+        font.setKerning(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilotOps.setHorizontalHeaderItem(3, item)
@@ -77,17 +95,20 @@ class Ui_MainWindow(object):
         self.table_pilotOps.verticalHeader().setStretchLastSection(False)
         #adjust vertical header
         self.table_pilotOps.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.table_pilotOps.setColumnWidth(0,100)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(0,QtWidgets.QHeaderView.Fixed)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(1,QtWidgets.QHeaderView.Stretch)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(2,QtWidgets.QHeaderView.Stretch)
-        self.table_pilotOps.horizontalHeader().setSectionResizeMode(3,QtWidgets.QHeaderView.Stretch)
+        self.table_pilotOps.setColumnWidth(0, 120)
+        self.table_pilotOps.setColumnWidth(1, 170)
+        self.table_pilotOps.setColumnWidth(2, 400)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.Fixed)
+        self.table_pilotOps.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.Stretch)
         #create buttons inside table cell
         layout = QtWidgets.QHBoxLayout()
         btn_view = QtWidgets.QPushButton()
         btn_view.setFixedHeight(34)
-        btn_view.setIcon(QtGui.QIcon("C:/Users/Hanjuu/Documents/AIDS (GUI)/Resources/file_view.png"))
-        btn_view.setIconSize(QtCore.QSize(22,22))
+        btn_view.setFixedWidth(200)
+        btn_view.setIcon(QtGui.QIcon("../../Resources/file_view.png"))
+        btn_view.setIconSize(QtCore.QSize(22, 22))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(11)
@@ -113,13 +134,14 @@ class Ui_MainWindow(object):
 "\n"
 "")
         btn_view.setCursor(QtCore.Qt.PointingHandCursor)
-        layout.addStretch()
-        layout.addWidget(btn_view,20)
+        #layout.addStretch()
+        layout.addWidget(btn_view, 10)
+        layout.setAlignment(QtCore.Qt.AlignCenter)
 
         cellWidget = QtWidgets.QWidget()
         cellWidget.setLayout(layout)
 
-        self.table_pilotOps.setCellWidget(0,3,cellWidget) #buttons placement
+        self.table_pilotOps.setCellWidget(0, 3, cellWidget) # buttons placement
         self.table_pilotOps.horizontalHeader().setStyleSheet( "QHeaderView::section{"
             "border-top:0px solid #D8D8D8;"
             "border-left:0px solid #D8D8D8;"
@@ -136,10 +158,15 @@ class Ui_MainWindow(object):
             "background-color:white;"
         "}" );
 
-        #remove select trigger
+        # remove select trigger
         self.table_pilotOps.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.table_pilotOps.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        #remove dotted border
+
+        # center column text
+        delegate = AlignDelegate(self.table_pilotOps)
+        self.table_pilotOps.setItemDelegate(delegate)
+
+        # remove dotted border
         self.table_pilotOps.setFocusPolicy(QtCore.Qt.NoFocus) 
 
         self.btn_back = QtWidgets.QPushButton(self.centralwidget)
