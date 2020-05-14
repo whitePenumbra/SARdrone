@@ -25,6 +25,10 @@ class Ui_Dialog(object):
         self.btn_OK.setGeometry(QtCore.QRect(200, 140, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_OK.setFont(font)
         self.btn_OK.setStyleSheet("QPushButton {\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(201, 201, 201);\n"
@@ -90,7 +94,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Delete Pilot Error"))
-        self.btn_OK.setText(_translate("Dialog", "Dismiss"))
+        self.btn_OK.setText(_translate("Dialog", "OK"))
         self.lbl_success.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#2c365d;\">Failed to delete Pilot ID:</span></p></body></html>"))
         self.lbl_success_2.setText(_translate("Dialog", "<html><head/><body><p><br/></p></body></html>"))
 
