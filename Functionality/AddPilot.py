@@ -1,10 +1,7 @@
 import sys, datetime, smtplib, ssl, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
-from Gui.Administrator.AddPilot import addpilotAlt
-from Gui.Administrator.AddPilot import UnsavedChangesAlert
-from Gui.Administrator.AddPilot import AddPilotSuccess
-from Gui.Administrator.AddPilot import AddPilotError
+from Gui.Administrator.AddPilot import addpilotAlt, AddPilotSuccess, AddPilotError, UnsavedChangesAlert
 from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from email.mime.multipart import MIMEMultipart
@@ -318,6 +315,9 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_delete.clicked.connect(self.delete)
 
+    def closeEvent(self, event):
+        self.cancel()
+
     def cancel(self):
         self.parent.btn_save.setEnabled(True)
         self.parent.btn_cancel.setEnabled(True)
@@ -329,7 +329,7 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
         self.close()
         self.parent.returnToHome()
 
-class addSuccessClass(QtWidgets.QDialog, AddPilotSuccess.Ui_Dialog):
+class addSuccessClass(QtWidgets.QDialog, AddPilotSuccess.Ui_MainWindow):
     def __init__(self,parent):
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
@@ -340,7 +340,7 @@ class addSuccessClass(QtWidgets.QDialog, AddPilotSuccess.Ui_Dialog):
     def goBack(self):
         self.close()
 
-class addErrorClass(QtWidgets.QDialog, AddPilotError.Ui_Dialog):
+class addErrorClass(QtWidgets.QDialog, AddPilotError.Ui_MainWindow):
     def __init__(self,parent):
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
