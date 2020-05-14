@@ -1,10 +1,7 @@
 import sys, datetime, smtplib, ssl, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
-from Gui.Administrator.AddPilot import addpilotAlt
-from Gui.Administrator.AddPilot import UnsavedChanges
-from Gui.Administrator.AddPilot import AddPilotSuccess
-from Gui.Administrator.AddPilot import AddPilotError
+from Gui.Administrator.AddPilot import addpilotAlt, AddPilotSuccess, AddPilotError, UnsavedChangesAlert
 from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from email.mime.multipart import MIMEMultipart
@@ -310,7 +307,7 @@ Password: %s
         cur.execute(query,values)
         conn.commit()
 
-class addPopupClass(QtWidgets.QDialog, UnsavedChanges.Ui_MainWindow):
+class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
     def __init__(self,parent):
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
