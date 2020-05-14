@@ -5,9 +5,9 @@ from Gui.Administrator.UpdatePilot import UpdatePilotConfirm,UpdatePilotError,Up
 import MySQLdb as mdb
 import datetime
 
-class cancelUpdateClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_MainWindow):
+class cancelUpdateClass(QtWidgets.QMainWindow, UnsavedChangesAlert.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -28,9 +28,9 @@ class cancelUpdateClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_MainWindow):
 
         self.close()
 
-class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_MainWindow):
+class confirmPopupClass(QtWidgets.QMainWindow, UpdatePilotConfirm.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -54,9 +54,9 @@ class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_MainWindow):
         self.close()
         self.parent.saveUpdate()
 
-class updateSuccessClass(QtWidgets.QDialog, UpdatePilotSuccess.Ui_MainWindow):
+class updateSuccessClass(QtWidgets.QMainWindow, UpdatePilotSuccess.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -65,9 +65,9 @@ class updateSuccessClass(QtWidgets.QDialog, UpdatePilotSuccess.Ui_MainWindow):
     def goBack(self):
         self.close()
 
-class updateErrorClass(QtWidgets.QDialog, UpdatePilotError.Ui_MainWindow):
+class updateErrorClass(QtWidgets.QMainWindow, UpdatePilotError.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 

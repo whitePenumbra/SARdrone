@@ -82,7 +82,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.disableAll()
 
         self.addPopup = addPopupClass(parent=self)
-        self.addPopup.exec_()
+        self.addPopup.show()
 
     def returnToHome(self):
         self.close()
@@ -188,10 +188,10 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             conn.commit()
 
             self.addSuccess = addSuccessClass(parent=self)
-            self.addSuccess.exec_()            
+            self.addSuccess.show()            
         except Exception as e:
             self.addError = addErrorClass(parent=self)
-            self.addError.exec_()
+            self.addError.show()
 
         self.audit("Admin added pilot " + fname + " " + lname)
 
@@ -307,9 +307,9 @@ Password: %s
         cur.execute(query,values)
         conn.commit()
 
-class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_MainWindow):
+class addPopupClass(QtWidgets.QMainWindow, UnsavedChangesAlert.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
         self.btn_cancel.clicked.connect(self.cancel)
@@ -329,9 +329,9 @@ class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_MainWindow):
         self.close()
         self.parent.returnToHome()
 
-class addSuccessClass(QtWidgets.QDialog, AddPilotSuccess.Ui_MainWindow):
+class addSuccessClass(QtWidgets.QMainWindow, AddPilotSuccess.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -340,9 +340,9 @@ class addSuccessClass(QtWidgets.QDialog, AddPilotSuccess.Ui_MainWindow):
     def goBack(self):
         self.close()
 
-class addErrorClass(QtWidgets.QDialog, AddPilotError.Ui_MainWindow):
+class addErrorClass(QtWidgets.QMainWindow, AddPilotError.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
