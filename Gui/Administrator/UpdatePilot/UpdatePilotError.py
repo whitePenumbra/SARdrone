@@ -10,19 +10,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(531, 191)
-        Dialog.setMinimumSize(QtCore.QSize(531, 191))
-        Dialog.setMaximumSize(QtCore.QSize(531, 191))
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(531, 191)
+        MainWindow.setMinimumSize(QtCore.QSize(531, 191))
+        MainWindow.setMaximumSize(QtCore.QSize(531, 191))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Dialog.setWindowIcon(icon)
-        # removes ? from title bar
-        Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
-        self.layoutWidget = QtWidgets.QWidget(Dialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 9, 491, 121))
+        MainWindow.setWindowIcon(icon)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 19, 491, 121))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -41,8 +41,8 @@ class Ui_Dialog(object):
         self.lbl_error.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_error.setObjectName("lbl_error")
         self.verticalLayout_3.addWidget(self.lbl_error)
-        self.btn_OK = QtWidgets.QPushButton(Dialog)
-        self.btn_OK.setGeometry(QtCore.QRect(200, 140, 131, 31))
+        self.btn_OK = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_OK.setGeometry(QtCore.QRect(200, 145, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
         font = QtGui.QFont()
@@ -72,22 +72,23 @@ class Ui_Dialog(object):
 "\n"
 "")
         self.btn_OK.setObjectName("btn_OK")
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Update Pilot Error"))
-        self.lbl_error.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">Profile update failed. Try again later.</span></p></body></html>"))
-        self.btn_OK.setText(_translate("Dialog", "OK"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Update Pilot Error"))
+        self.lbl_error.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">Profile update failed. Try again later</span></p></body></html>"))
+        self.btn_OK.setText(_translate("MainWindow", "Dismiss"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
