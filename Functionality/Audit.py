@@ -50,7 +50,7 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
         con = connectToDB()
         cur = con.cursor()
 
-        cur.execute('SELECT user_id, time, actions_made from audit')
+        cur.execute('SELECT user_id, time, actions_made from audit ORDER BY time DESC')
         result = cur.fetchall()
 
         self.getData(result)
