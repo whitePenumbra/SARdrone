@@ -307,7 +307,7 @@ Password: %s
         cur.execute(query,values)
         conn.commit()
 
-class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_Dialog):
+class addPopupClass(QtWidgets.QDialog, UnsavedChangesAlert.Ui_MainWindow):
     def __init__(self,parent):
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
