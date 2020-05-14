@@ -2,7 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.Audit import AuditLogs
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 from Encryption import AESCipher
 
 class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
@@ -47,7 +47,7 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
             self.initializeData()
     
     def initializeData(self):
-        con = self.connectToDB()
+        con = connectToDB()
         cur = con.cursor()
 
         cur.execute('SELECT user_id, time, actions_made from audit')
@@ -70,12 +70,3 @@ class auditClass(QtWidgets.QMainWindow, AuditLogs.Ui_MainWindow):
             self.table_audit.setItem(row,2, QtWidgets.QTableWidgetItem(str(i[2])))
 
             row += 1
-
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-            return (db)
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)

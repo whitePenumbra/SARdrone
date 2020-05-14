@@ -2,8 +2,9 @@ import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.UpdatePilot import UpdatePilotAlt
-from Gui.Administrator.UpdatePilot import UpdatePilotConfirm
-import MySQLdb as mdb
+from Functionality.UpdatePopUps import updateSuccessClass,updateErrorClass,cancelUpdateClass,confirmPopupClass
+from Functionality.Test import testClass
+from ConnectToDB import connectToDB
 import datetime
 
 class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
@@ -11,7 +12,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
-        self.btn_cancel.clicked.connect(self.returnToView)
+        self.btn_cancel.clicked.connect(self.cancelUpdate)
         self.btn_save.clicked.connect(self.update)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
 
@@ -128,19 +129,25 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         print(result[9].strftime('%d'))
     
     def update(self):
-        self.btn_save.setEnabled(False)
-        self.btn_cancel.setEnabled(False)
         self.disableAll()
 
         self.updateClass = confirmPopupClass(parent=self)
-        self.updateClass.exec_()
+        self.updateClass.exec()
     
     def returnToView(self):
         self.close()
         self.parent.show()
 
     def saveUpdate(self):
-        self.updateData()
+        try:
+            self.updateData()
+
+            self.updateSuccess = updateSuccessClass(parent=self)
+            self.updateSuccess.exec_()
+        except:
+            self.updateError = updateErrorClass(parent=self)
+            self.updateError.exec_()
+
         self.parent.cancel()
         self.close()
     
@@ -193,7 +200,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         expiry = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
                     self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute('UPDATE address SET permanent_address = "%s", city = "%s", province = "%s", zipcode="%s"'
@@ -218,15 +225,6 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             image = QtGui.QPixmap(fileName)
             self.lbl_profilePic.setPixmap(image)
     
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-            return (db)
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)
-    
     def disableAll(self):
         self.txt_fname.setReadOnly(True)
         self.txt_lname.setReadOnly(True)
@@ -243,6 +241,22 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         self.txt_certificate.setReadOnly(True)
         self.txt_operator.setReadOnly(True)
+
+        self.cmb_day.setEnabled(False)
+        self.cmb_month.setEnabled(False)
+        self.cmb_year.setEnabled(False)
+
+        self.cmb_expiry_day.setEnabled(False)
+        self.cmb_expiry_month.setEnabled(False)
+        self.cmb_expiry_year.setEnabled(False)
+
+        self.cmb_issue_day.setEnabled(False)
+        self.cmb_issue_month.setEnabled(False)
+        self.cmb_issue_year.setEnabled(False)
+
+        self.btn_profImg.setEnabled(False)
+        self.btn_save.setEnabled(False)
+        self.btn_cancel.setEnabled(False)
     
     def enableAll(self):
         self.txt_fname.setReadOnly(False)
@@ -260,9 +274,34 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         self.txt_certificate.setReadOnly(False)
         self.txt_operator.setReadOnly(False)
+
+        self.cmb_day.setEnabled(True)
+        self.cmb_month.setEnabled(True)
+        self.cmb_year.setEnabled(True)
+
+        self.cmb_expiry_day.setEnabled(True)
+        self.cmb_expiry_month.setEnabled(True)
+        self.cmb_expiry_year.setEnabled(True)
+
+        self.cmb_issue_day.setEnabled(True)
+        self.cmb_issue_month.setEnabled(True)
+        self.cmb_issue_year.setEnabled(True)
+
+        self.btn_profImg.setEnabled(True)
+        self.btn_save.setEnabled(True)
+        self.btn_cancel.setEnabled(True)
+
+    def cancelUpdate(self):
+        self.disableAll()
+
+        self.cancelUpdate = cancelUpdateClass(parent=self)
+        self.cancelUpdate.exec_()
+
+        # self.testclass = testClass(parent=self)
+        # self.testclass.show()
     
     def audit(self, message):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute("SELECT user_id FROM users WHERE user_type = 0")
@@ -276,28 +315,3 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         cur.execute(query,values)
         conn.commit()
-    
-class confirmPopupClass(QtWidgets.QDialog, UpdatePilotConfirm.Ui_Dialog):
-    def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
-        self.setupUi(self)
-        self.parent = parent
-
-        self.pushButton_2.clicked.connect(self.save)
-        self.pushButton.clicked.connect(self.cancel)
-        self.pushButton_3.clicked.connect(self.delete)
-
-    def cancel(self):
-        self.parent.btn_save.setEnabled(True)
-        self.parent.btn_cancel.setEnabled(True)
-        self.parent.enableAll()
-
-        self.close()
-    
-    def delete(self):
-        self.close()
-        self.parent.returnToView()
-    
-    def save(self):
-        self.close()
-        self.parent.saveUpdate()

@@ -2,7 +2,7 @@ import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.ViewPilot import ViewPilotAlt
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 from UpdatePilot import updateClass
 
 class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
@@ -86,7 +86,7 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         return userTuple
     
     def getAddress(self,result):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor() 
 
         cur.execute('SELECT * FROM address WHERE address_id = %s', (result[1],))
@@ -105,18 +105,9 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
             pixmap = QtGui.QPixmap.fromImage(image)
 
             self.lbl_profilePic.setPixmap(pixmap)
-
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-            return (db)
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)
     
     def audit(self, message):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute("SELECT user_id FROM users WHERE user_type = 0")
