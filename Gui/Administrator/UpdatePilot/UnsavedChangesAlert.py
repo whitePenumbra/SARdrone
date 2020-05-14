@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         self.btn_cancel.setObjectName("btn_cancel")
-        # MainWindow.setCentralWidget(self.centralwidget)
+       # MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
