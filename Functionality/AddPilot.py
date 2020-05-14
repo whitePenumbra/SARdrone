@@ -5,7 +5,7 @@ from Gui.Administrator.AddPilot import addpilotAlt
 from Gui.Administrator.AddPilot import UnsavedChangesAlert
 from Gui.Administrator.AddPilot import AddPilotSuccess
 from Gui.Administrator.AddPilot import AddPilotError
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -158,7 +158,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             expire = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
                         self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
-            conn = self.connectToDB()
+            conn = connectToDB()
             cur = conn.cursor()
 
             cur.execute('INSERT INTO address(permanent_address, city, province, zipcode) VALUES'
@@ -295,7 +295,7 @@ Password: %s
         self.txt_operator.setReadOnly(False)
     
     def audit(self, message):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute("SELECT user_id FROM users WHERE user_type = 0")

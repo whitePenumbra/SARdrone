@@ -4,7 +4,7 @@ sys.path.append('..')
 from Gui.Administrator.UpdatePilot import UpdatePilotAlt
 from Functionality.UpdatePopUps import updateSuccessClass,updateErrorClass,cancelUpdateClass,confirmPopupClass
 from Functionality.Test import testClass
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 import datetime
 
 class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
@@ -200,7 +200,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         expiry = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
                     self.cmb_expiry_year.currentText(), '%m%d%Y').date()
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute('UPDATE address SET permanent_address = "%s", city = "%s", province = "%s", zipcode="%s"'
@@ -224,15 +224,6 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")
             image = QtGui.QPixmap(fileName)
             self.lbl_profilePic.setPixmap(image)
-    
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-            return (db)
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)
     
     def disableAll(self):
         self.txt_fname.setReadOnly(True)
@@ -310,7 +301,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         # self.testclass.show()
     
     def audit(self, message):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute("SELECT user_id FROM users WHERE user_type = 0")

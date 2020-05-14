@@ -10,7 +10,7 @@ from Forgot import forgotClass
 from AdminHomepage import adminhomepageClass
 from PilotHomepage import pilothomepageClass
 from Encryption import AESCipher
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 
 class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
     def __init__(self):
@@ -27,7 +27,7 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
             self.login()
 
     def login(self):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         user = self.txt_username.text()
@@ -95,16 +95,6 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         print('GET USER!!!')
         print(self.currentUser)
         return (self.currentUser)
-    
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)
-        
-        return (db)
 
     def audit(self, message):
         uid = self.result[0][0]
@@ -113,7 +103,7 @@ class loginClass(QtWidgets.QMainWindow, LoginAlt.Ui_MainWindow):
         query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
         values = (str(uid), currentTime, str(message))
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute(query,values)

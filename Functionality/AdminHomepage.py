@@ -8,7 +8,7 @@ from Gui.Administrator.DeletePilot import DeletePilotSuccess
 from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 
 class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -46,7 +46,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         print('search')
         toSearch = self.searchbar.text()
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         if (toSearch != "" or toSearch.startswith('OP-')):
@@ -78,7 +78,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         firstName = self.table_pilots.item(row,2).text()
 
         try:
-            conn = self.connectToDB()
+            conn = connectToDB()
             cur = conn.cursor()
 
             print(firstName + " " + lastName)
@@ -110,7 +110,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         lastName = self.table_pilots.item(row,1).text()
         firstName = self.table_pilots.item(row,2).text()  
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()      
 
         cur.execute('SELECT * FROM users WHERE first_name = "%s" AND last_name = "%s"' % (firstName,lastName))
@@ -124,7 +124,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         return (infoTuple)
 
     def initializeData(self):
-        con = self.connectToDB()
+        con = connectToDB()
         cur = con.cursor()
 
         cur.execute('SELECT user_id,last_name,first_name from users WHERE isActive = 1 AND user_type = 1')
@@ -238,17 +238,8 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             row += 1
             # vars().update(buttonDict)
 
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-            return (db)
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)
-
     def audits(self, message):
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute("SELECT user_id FROM users WHERE user_type = 0")

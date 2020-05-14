@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget,
                              QLabel, QVBoxLayout)
 sys.path.append('..')
 from Gui.Pilot.Homepage import Homepage
-import MySQLdb as mdb
+from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from Gui.NewUser import NewUserQDialog, NewUserSuccess
 
@@ -109,17 +109,8 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.currentUser = self.parent.getUser()
         return(self.currentUser)
 
-    def connectToDB(self):
-        try:
-            db = mdb.connect('localhost', 'root', '', 'aids')
-            return (db)
-
-        except mdb.Error as e:
-            print('Connection failed!')
-            sys.exit(1)
-
     # def getPilotInfo(self):
-    #     conn = self.connectToDB()
+    #     conn = connectToDB()
     #     cur = conn.cursor()
 
     #     query = "SELECT * FROM users WHERE user_id = %s AND user_type = %s"
@@ -140,7 +131,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     def firstLogin(self):
         self.getPilot()
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM audit WHERE user_id = %s" % (self.currentUser[0][0],))
@@ -159,7 +150,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
         values = (str(uid), currentTime, str(message))
 
-        conn = self.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         cur.execute(query,values)
