@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'AddPilotSuccess.ui'
+# Form implementation generated from reading ui file 'NewUserSuccess.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #
@@ -10,19 +10,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(531, 191)
-        Dialog.setMinimumSize(QtCore.QSize(531, 191))
-        Dialog.setMaximumSize(QtCore.QSize(531, 191))
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(531, 191)
+        MainWindow.setMinimumSize(QtCore.QSize(531, 191))
+        MainWindow.setMaximumSize(QtCore.QSize(531, 191))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Dialog.setWindowIcon(icon)
-        # removes ? from title bar
-        Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
-        self.btn_OK = QtWidgets.QPushButton(Dialog)
-        self.btn_OK.setGeometry(QtCore.QRect(200, 140, 131, 31))
+        icon.addPixmap(QtGui.QPixmap("../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.btn_OK = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_OK.setGeometry(QtCore.QRect(199, 145, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
         self.btn_OK.setStyleSheet("QPushButton {\n"
@@ -48,19 +48,19 @@ class Ui_Dialog(object):
 "\n"
 "")
         self.btn_OK.setObjectName("btn_OK")
-        self.widget = QtWidgets.QWidget(Dialog)
-        self.widget.setGeometry(QtCore.QRect(21, 11, 491, 121))
-        self.widget.setObjectName("widget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 21, 491, 121))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.img_success = QtWidgets.QLabel(self.widget)
+        self.img_success = QtWidgets.QLabel(self.layoutWidget)
         self.img_success.setText("")
-        self.img_success.setPixmap(QtGui.QPixmap("../../Resources/success.png"))
+        self.img_success.setPixmap(QtGui.QPixmap("../Resources/success.png"))
         self.img_success.setAlignment(QtCore.Qt.AlignCenter)
         self.img_success.setObjectName("img_success")
         self.verticalLayout.addWidget(self.img_success)
-        self.lbl_success = QtWidgets.QLabel(self.widget)
+        self.lbl_success = QtWidgets.QLabel(self.layoutWidget)
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(19)
@@ -68,22 +68,23 @@ class Ui_Dialog(object):
         self.lbl_success.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_success.setObjectName("lbl_success")
         self.verticalLayout.addWidget(self.lbl_success)
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Success"))
-        self.btn_OK.setText(_translate("Dialog", "OK"))
-        self.lbl_success.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#2c365d;\">Password has been changed successfully</span></p></body></html>"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Change Password Success"))
+        self.btn_OK.setText(_translate("MainWindow", "OK"))
+        self.lbl_success.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\">Password has been changed successfully</span></p></body></html>"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
