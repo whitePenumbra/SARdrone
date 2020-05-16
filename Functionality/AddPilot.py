@@ -197,13 +197,13 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
 
     def sendEmail(self):
         port = 465
-        mypass = (AESCipher('my password').decrypt('30hLaA3Uc12BkhQC2i4ZLjrlxqHAGkeJkedXOB2QdIU=')).decode()
+        mypass = (AESCipher('my password').decrypt('oNp8RcyRuLep8XYQ1JOJl57azvNzmeIrQ9pEKp0cIHs=')).decode()
         context = ssl.create_default_context()
         Recipient = self.txt_email.text()
 
         try:
             with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
-                server.login('loztestcode@gmail.com', mypass)
+                server.login('airbaseddeploymentsystem@gmail.com', mypass)
 
                 msg = MIMEMultipart('alternative')
                 msg['Subject'] = 'Test Message'
@@ -214,7 +214,7 @@ Password: %s
                 """ % (self.username, self.password)
                 msg.attach(MIMEText(message))
 
-                server.sendmail('loztestcode.gmail.com', Recipient, msg.as_string())
+                server.sendmail('airbaseddeploymentsystem@gmail.com', Recipient, msg.as_string())
                 server.quit()
                 print('Email Sent!')
         except Exception as e:

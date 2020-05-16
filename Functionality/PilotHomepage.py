@@ -23,7 +23,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.btn_endOps.clicked.connect(self.endOperation)
         self.btn_PDF.clicked.connect(self.printPDF)
 
-        self.droneStream.setScaledContents(True)
+        # self.droneStream.setScaledContents(True)
         self.btn_endOps.setEnabled(False)
         self.btn_PDF.setEnabled(False)
 

@@ -144,7 +144,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
             self.updateSuccess = updateSuccessClass(parent=self)
             self.updateSuccess.show()
-        except:
+        except Exception as e:
+            print(e)
             self.updateError = updateErrorClass(parent=self)
             self.updateError.show()
 
