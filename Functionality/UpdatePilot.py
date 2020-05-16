@@ -132,7 +132,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.disableAll()
 
         self.updateClass = confirmPopupClass(parent=self)
-        self.updateClass.exec()
+        self.updateClass.show()
     
     def returnToView(self):
         self.close()
@@ -143,10 +143,10 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.updateData()
 
             self.updateSuccess = updateSuccessClass(parent=self)
-            self.updateSuccess.exec_()
+            self.updateSuccess.show()
         except:
             self.updateError = updateErrorClass(parent=self)
-            self.updateError.exec_()
+            self.updateError.show()
 
         self.parent.cancel()
         self.close()
@@ -295,7 +295,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.disableAll()
 
         self.cancelUpdate = cancelUpdateClass(parent=self)
-        self.cancelUpdate.exec_()
+        self.cancelUpdate.show()
 
         # self.testclass = testClass(parent=self)
         # self.testclass.show()
