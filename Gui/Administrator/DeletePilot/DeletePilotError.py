@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.btn_OK = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_OK.setGeometry(QtCore.QRect(200, 146, 131, 31))
+        self.btn_OK.setGeometry(QtCore.QRect(200, 145, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
         font = QtGui.QFont()
@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Delete Pilot Error"))
-        self.btn_OK.setText(_translate("MainWindow", "Dismiss"))
+        self.btn_OK.setText(_translate("MainWindow", "OK"))
         self.lbl_error.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">Failed to delete Pilot ID:</span></p></body></html>"))
         self.lbl_ID.setText(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
 
