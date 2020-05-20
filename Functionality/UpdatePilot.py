@@ -12,6 +12,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
+        
         self.btn_cancel.clicked.connect(self.cancelUpdate)
         self.btn_save.clicked.connect(self.update)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
@@ -144,7 +145,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
             self.updateSuccess = updateSuccessClass(parent=self)
             self.updateSuccess.show()
-        except:
+        except Exception as e:
+            print(e)
             self.updateError = updateErrorClass(parent=self)
             self.updateError.show()
 

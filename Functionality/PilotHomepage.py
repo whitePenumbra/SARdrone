@@ -7,7 +7,7 @@ sys.path.append('..')
 from Gui.Pilot.Homepage import Homepage
 from ConnectToDB import connectToDB
 from Encryption import AESCipher
-from Gui.NewUser import NewUserQDialog, NewUserSuccess
+from Gui.NewUser import newUser, NewUserSuccess
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -23,7 +23,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         self.btn_endOps.clicked.connect(self.endOperation)
         self.btn_PDF.clicked.connect(self.printPDF)
 
-        self.droneStream.setScaledContents(True)
+        # self.droneStream.setScaledContents(True)
         self.btn_endOps.setEnabled(False)
         self.btn_PDF.setEnabled(False)
 
@@ -141,7 +141,7 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
 
         if (len(result) == 0):
             self.changePassword = changePasswordClass(parent=self)
-            self.changePassword.setModal(True)
+            self.changePassword.show()
 
     def audit(self, message):
         uid = self.currentUser[0][0]
@@ -156,9 +156,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
         cur.execute(query,values)
         conn.commit()
 
-class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
+class changePasswordClass(QtWidgets.QMainWindow, newUser.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
         
@@ -166,7 +166,7 @@ class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
         print("THIS IS IN DIALOG")
         print(self.currentUser[0][0])
 
-        self.btnReset.clicked.connect(self.resetPassword)
+        self.btn_reset.clicked.connect(self.resetPassword)
         self.txtConfirmPass.editingFinished.connect(self.checkSimilar)
 
     def keyPressEvent(self, event):
@@ -196,7 +196,7 @@ class changePasswordClass(QtWidgets.QDialog, NewUserQDialog.Ui_Dialog):
             self.lbl_error.setText('')
     
     def resetPassword(self):
-        conn = self.parent.connectToDB()
+        conn = connectToDB()
         cur = conn.cursor()
 
         user = self.parent.getPilot()

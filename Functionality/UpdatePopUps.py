@@ -60,7 +60,7 @@ class updateSuccessClass(QtWidgets.QMainWindow, UpdatePilotSuccess.Ui_MainWindow
         self.setupUi(self)
         self.parent = parent
 
-        self.btn_cancel.clicked.connect(self.goBack)
+        self.btn_OK.clicked.connect(self.goBack)
 
     def goBack(self):
         self.close()
