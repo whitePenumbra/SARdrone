@@ -1,4 +1,4 @@
-import sys, datetime
+import sys, datetime, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.UpdatePilot import UpdatePilotAlt
@@ -16,6 +16,22 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.btn_cancel.clicked.connect(self.cancelUpdate)
         self.btn_save.clicked.connect(self.update)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
+
+        self.txt_fname.editingFinished.connect(self.incName)
+        self.txt_lname.editingFinished.connect(self.incName)
+
+        self.txt_address.editingFinished.connect(self.incAddress)
+        self.txt_city.editingFinished.connect(self.incAddress)
+        self.txt_province.editingFinished.connect(self.incAddress)
+        self.txt_zip.editingFinished.connect(self.incAddress)
+
+        self.txt_email.editingFinished.connect(self.checkEmail)
+        self.txt_mobile.editingFinished.connect(self.incContact)
+        self.txt_emContact.editingFinished.connect(self.incContact)
+        self.txt_emNumber.editingFinished.connect(self.incContact)
+
+        self.txt_certificate.editingFinished.connect(self.incCert)
+        self.txt_operator.editingFinished.connect(self.incCert)
 
         self.txt_address.setMaxLength(255)
         self.txt_zip.setMaxLength(4)
@@ -317,3 +333,70 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         cur.execute(query,values)
         conn.commit()
+
+    def incName(self):
+        if (self.txt_fname.text() == '' or self.txt_lname.text() == ''):
+            self.txt_fname.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_lname.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_fname.setStyleSheet("padding-left: 4px;")
+            self.txt_lname.setStyleSheet("padding-left: 4px;")
+
+            self.btn_save.setEnabled(True)
+    
+    def incAddress(self):
+        if (self.txt_address.text() == '' or self.txt_city.text() == '' or self.txt_province.text() == '' or
+        self.txt_zip.text() == ''):
+            self.txt_address.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_city.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_province.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_zip.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_address.setStyleSheet("padding-left: 4px;")
+            self.txt_city.setStyleSheet("padding-left: 4px;")
+            self.txt_province.setStyleSheet("padding-left: 4px;")
+            self.txt_zip.setStyleSheet("padding-left: 4px;")
+
+            self.btn_save.setEnabled(True)
+    
+    def incContact(self):
+        if (self.txt_email.text() == '' or self.txt_mobile.text() == '' or self.txt_emContact.text() == '' or
+        self.txt_emNumber.text() == ''):
+            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_mobile.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_emContact.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_emNumber.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_mobile.setStyleSheet("padding-left: 4px;")
+            self.txt_emContact.setStyleSheet("padding-left: 4px;")
+            self.txt_emNumber.setStyleSheet("padding-left: 4px;")
+
+            self.btn_save.setEnabled(True)
+    
+    def incCert(self):
+        if (self.txt_certificate.text() == '' or self.txt_operator.text() == ''):
+            self.txt_certificate.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+            self.txt_operator.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_certificate.setStyleSheet("padding-left: 4px;")
+            self.txt_operator.setStyleSheet("padding-left: 4px;")
+
+            self.btn_save.setEnabled(True)
+    
+    def checkEmail(self):
+        font = QtGui.QFont()
+        regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+
+        font.setPointSize(10)
+        font.setFamily("Helvetica")
+
+        if(re.search(regex, self.txt_email.text())):  
+            self.txt_email.setFont(font)
+            self.txt_email.setStyleSheet("padding-left: 4px;")
+            print("Valid Email")
+            self.btn_save.setEnabled(True)        
+        else:  
+            print("Invalid Email")
+            self.txt_email.setFont(font)
+            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
+            self.btn_save.setEnabled(False)

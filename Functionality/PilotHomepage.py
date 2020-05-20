@@ -222,9 +222,9 @@ class changePasswordClass(QtWidgets.QMainWindow, newUser.Ui_MainWindow):
         
         self.close()
 
-class changeSuccessClass(QtWidgets.QDialog, NewUserSuccess.Ui_Dialog):
+class changeSuccessClass(QtWidgets.QMainWindow, NewUserSuccess.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -232,7 +232,3 @@ class changeSuccessClass(QtWidgets.QDialog, NewUserSuccess.Ui_Dialog):
 
     def goBack(self):
         self.close()
-
-
-
-

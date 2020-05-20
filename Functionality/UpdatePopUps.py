@@ -51,8 +51,16 @@ class confirmPopupClass(QtWidgets.QMainWindow, UpdatePilotConfirm.Ui_MainWindow)
         self.parent.returnToView()
     
     def save(self):
-        self.close()
-        self.parent.saveUpdate()
+        if (self.parent.txt_fname.text() == '' or self.parent.txt_lname.text() == '' or 
+        self.parent.txt_address.text() == '' or self.parent.txt_city.text() == '' or self.parent.txt_province.text() == '' or
+        self.parent.txt_zip.text() == '' or self.parent.txt_email.text() == '' or self.parent.txt_mobile.text() == ''
+        or self.parent.txt_emContact.text() == '' or self.parent.txt_emNumber.text() == '' or self.parent.txt_certificate.text() == ''
+        or self.parent.txt_operator.text() == ''):
+            self.close()
+            self.parent.btn_save.setEnabled(False)
+        else:
+            self.close()
+            self.parent.saveUpdate()
 
 class updateSuccessClass(QtWidgets.QMainWindow, UpdatePilotSuccess.Ui_MainWindow):
     def __init__(self,parent):

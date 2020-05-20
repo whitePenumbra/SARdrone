@@ -254,9 +254,9 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         cur.execute(query,values)
         conn.commit()
 
-class deleteSuccessClass(QtWidgets.QDialog, DeletePilotSuccess.Ui_Dialog):
+class deleteSuccessClass(QtWidgets.QMainWindow, DeletePilotSuccess.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -265,9 +265,9 @@ class deleteSuccessClass(QtWidgets.QDialog, DeletePilotSuccess.Ui_Dialog):
     def goBack(self):
         self.close()
 
-class deleteErrorClass(QtWidgets.QDialog, DeletePilotError.Ui_Dialog):
+class deleteErrorClass(QtWidgets.QMainWindow, DeletePilotError.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
