@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
         layout.addWidget(self.scrollArea)
 
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1112, 1790)) #x,y,w,h
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 830, 1790)) #x,y,w,h
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -60,21 +60,19 @@ class Ui_MainWindow(object):
         self.btn_logout_3.setFont(font)
         self.btn_logout_3.setText("Logout")
         self.btn_logout_3.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: #E53935;\n"
+"border: 1.2px solid #D32F2F;\n"
 "outline: none;}\n"
 "\n"
 "QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color: #D32F2F;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"    background-color: #C62828;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
