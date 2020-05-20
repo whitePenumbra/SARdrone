@@ -81,7 +81,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Add Pilot Error"))
         self.lbl_error.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">An error has occurred. Try again later</span></p></body></html>"))
-        self.btn_OK.setText(_translate("MainWindow", "Dismiss"))
+        self.btn_OK.setText(_translate("MainWindow", "OK"))
 
 
 if __name__ == "__main__":
