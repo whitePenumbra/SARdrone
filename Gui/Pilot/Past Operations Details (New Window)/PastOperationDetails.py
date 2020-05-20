@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
         layout.addWidget(self.scrollArea)
 
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1112, 1770))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 830, 1770))
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -301,7 +301,7 @@ class Ui_MainWindow(object):
         #horizontal line 1
 
         self.line = QtWidgets.QFrame(self.scrollAreaWidgetContents)
-        self.line.setGeometry(QtCore.QRect(40, 550, 755, 20))
+        self.line.setGeometry(QtCore.QRect(40, 550, 769, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
@@ -397,7 +397,7 @@ class Ui_MainWindow(object):
         #expedition logs
 
         self.table_exLog = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
-        self.table_exLog.setGeometry(QtCore.QRect(40, 1070, 755, 131))
+        self.table_exLog.setGeometry(QtCore.QRect(40, 1070, 760, 122))
         self.table_exLog.setRowCount(4)
         self.table_exLog.setColumnCount(2)
         self.table_exLog.setObjectName("table_exLog")
@@ -405,8 +405,14 @@ class Ui_MainWindow(object):
         self.table_exLog.horizontalHeader().setStretchLastSection(True)
         self.table_exLog.verticalHeader().setVisible(False)
         self.table_exLog.verticalHeader().setStretchLastSection(False)
+        self.table_exLog.setColumnWidth(0, 390)
+        # remove select trigger
+        self.table_exLog.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.table_exLog.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # remove dotted border
+        self.table_exLog.setFocusPolicy(QtCore.Qt.NoFocus)
         self.img_mapExp = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.img_mapExp.setGeometry(QtCore.QRect(40, 830, 781, 211))
+        self.img_mapExp.setGeometry(QtCore.QRect(40, 830, 770, 211))
         self.img_mapExp.setMinimumSize(QtCore.QSize(755, 211))
         self.img_mapExp.setMaximumSize(QtCore.QSize(755, 211))
         self.img_mapExp.setText("")
@@ -491,7 +497,7 @@ class Ui_MainWindow(object):
         self.totalObjCount.addWidget(self.lbl_totalObjCount)
         self.comparison_layout.addLayout(self.totalObjCount)
         self.table_comparison = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
-        self.table_comparison.setGeometry(QtCore.QRect(40, 1650, 755, 71))
+        self.table_comparison.setGeometry(QtCore.QRect(40, 1650, 760, 71))
         self.table_comparison.setRowCount(2)
         self.table_comparison.setColumnCount(2)
         self.table_comparison.setObjectName("table_comparison")
@@ -499,8 +505,14 @@ class Ui_MainWindow(object):
         self.table_comparison.horizontalHeader().setStretchLastSection(True)
         self.table_comparison.verticalHeader().setVisible(False)
         self.table_comparison.verticalHeader().setStretchLastSection(True)
+        self.table_comparison.setColumnWidth(0, 390)
+        # remove select trigger
+        self.table_comparison.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.table_comparison.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # remove dotted border
+        self.table_comparison.setFocusPolicy(QtCore.Qt.NoFocus)
         self.img_mapComparison = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.img_mapComparison.setGeometry(QtCore.QRect(40, 1410, 781, 211))
+        self.img_mapComparison.setGeometry(QtCore.QRect(40, 1410, 770, 211))
         self.img_mapComparison.setMinimumSize(QtCore.QSize(755, 211))
         self.img_mapComparison.setMaximumSize(QtCore.QSize(755, 211))
         self.img_mapComparison.setText("")
