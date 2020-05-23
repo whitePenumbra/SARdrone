@@ -203,24 +203,47 @@ class changePasswordClass(QtWidgets.QMainWindow, newUser.Ui_MainWindow):
         print(user)
 
         if (self.txtNewPass.text() == self.txtConfirmPass.text()):
-            password = AESCipher('aids').encrypt(self.txtNewPass.text())
-            encpass = password.decode("utf-8")
+            if (self.validatePassword):
+                password = AESCipher('aids').encrypt(self.txtNewPass.text())
+                encpass = password.decode("utf-8")
 
-            try:
-                query = "UPDATE users SET password = %s WHERE user_id = %s"
-                value = (encpass, user[0][0])
+                try:
+                    query = "UPDATE users SET password = %s WHERE user_id = %s"
+                    value = (encpass, user[0][0])
 
-                cur.execute(query,value)
-                conn.commit()
+                    cur.execute(query,value)
+                    conn.commit()
 
-                self.changeSuccess = changeSuccessClass(parent=self)
-                self.changeSuccess.exec_()
-            except Exception as e:
-                print(e)
+                    self.changeSuccess = changeSuccessClass(parent=self)
+                    self.changeSuccess.exec_()
+                except Exception as e:
+                    print(e)
 
-            self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
-        
-        self.close()
+                self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
+
+            self.close()
+    
+    def validatePassword(self):
+        password = self.txtNewPass.text()
+
+        if len(password) < 8:
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password is at lest 8 letters")
+            return(False)
+        elif re.search('[0-9]',password) is None:
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password has a number in it")
+            return(False)
+        elif re.search('[A-Z]',password) is None: 
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password has a capital letter in it")
+            return(False)
+        elif (' ' in password):
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password doesn't have a space in it")
+            return(False)
+        else:
+            return(True)
 
 class changeSuccessClass(QtWidgets.QMainWindow, NewUserSuccess.Ui_MainWindow):
     def __init__(self,parent):
