@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>1880</height>
+    <width>871</width>
+    <height>1649</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>890</width>
+    <width>871</width>
     <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>890</width>
+    <width>871</width>
     <height>16777215</height>
    </size>
   </property>
@@ -31,7 +31,7 @@
      <rect>
       <x>40</x>
       <y>70</y>
-      <width>641</width>
+      <width>431</width>
       <height>57</height>
      </rect>
     </property>
@@ -470,7 +470,7 @@
    <widget class="QWidget" name="layoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>490</x>
       <y>740</y>
       <width>221</width>
       <height>33</height>
@@ -484,6 +484,9 @@
          <family>Segoe UI</family>
          <pointsize>12</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
        </property>
        <property name="text">
         <string>Total Objects Found :</string>
@@ -568,7 +571,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">color: rgb(68, 68, 68);</string>
        </property>
        <property name="text">
         <string>Battery Capacity :</string>
@@ -599,11 +602,11 @@
       <x>40</x>
       <y>1100</y>
       <width>781</width>
-      <height>131</height>
+      <height>161</height>
      </rect>
     </property>
     <property name="rowCount">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="columnCount">
      <number>2</number>
@@ -620,6 +623,7 @@
     <attribute name="verticalHeaderStretchLastSection">
      <bool>true</bool>
     </attribute>
+    <row/>
     <row/>
     <row/>
     <row/>
@@ -680,8 +684,8 @@
    <widget class="QWidget" name="layoutWidget_7">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>1380</y>
+      <x>490</x>
+      <y>1400</y>
       <width>231</width>
       <height>28</height>
      </rect>
@@ -695,8 +699,11 @@
          <pointsize>12</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
        <property name="text">
-        <string>Total Object Count :</string>
+        <string>Updated Total Count :</string>
        </property>
       </widget>
      </item>
@@ -722,7 +729,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1320</y>
+      <y>1340</y>
       <width>251</width>
       <height>28</height>
      </rect>
@@ -741,7 +748,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1260</y>
+      <y>1280</y>
       <width>311</width>
       <height>41</height>
      </rect>
@@ -760,7 +767,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1380</y>
+      <y>1400</y>
       <width>251</width>
       <height>28</height>
      </rect>
@@ -773,6 +780,9 @@
          <family>Segoe UI</family>
          <pointsize>12</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
        </property>
        <property name="text">
         <string>Missed Object Counts :</string>
@@ -801,7 +811,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1720</y>
+      <y>1500</y>
       <width>781</width>
       <height>71</height>
      </rect>
@@ -828,37 +838,6 @@
     <row/>
     <column/>
     <column/>
-   </widget>
-   <widget class="QLabel" name="img_mapComparison">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>1480</y>
-      <width>781</width>
-      <height>211</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>781</width>
-      <height>211</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>781</width>
-      <height>211</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../../Resources/map-placeholder.jpg</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
    </widget>
    <widget class="QWidget" name="layoutWidget_9">
     <property name="geometry">
@@ -944,7 +923,7 @@ border: none;
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1430</y>
+      <y>1450</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -997,7 +976,7 @@ border: none;
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>1810</y>
+      <y>1600</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -1044,6 +1023,50 @@ border: none;
     <property name="text">
      <string>Submit</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_10">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>740</y>
+      <width>231</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="totalWaypoint_layout">
+     <item>
+      <widget class="QLabel" name="lbl_totalWaypoint">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Number of Waypoints :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_totalWaypoint">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

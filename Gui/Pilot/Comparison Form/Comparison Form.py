@@ -9,10 +9,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+class ReadOnlyDelegate(QtWidgets.QStyledItemDelegate):
+    def createEditor(self, parent, option, index):
+        return
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setMaximumSize(QtCore.QSize(871,0))
+        MainWindow.setMaximumSize(QtCore.QSize(871, 760))
         MainWindow.setMinimumSize(QtCore.QSize(871, 760))
         MainWindow.setWindowTitle("AIDS – Comparison Form")
 
@@ -29,7 +32,7 @@ class Ui_MainWindow(object):
         layout.addWidget(self.scrollArea)
 
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 890, 1810))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 830, 1535))
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -73,21 +76,19 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.btn_logout.setFont(font)
         self.btn_logout.setStyleSheet("QPushButton {\n"
-"color: rgb(0, 0, 0);\n"
-"    background-color: rgb(202, 202, 202);\n"
-"border: 1.2px solid #ABABAB;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: #E53935;\n"
+"border: 1.2px solid #D32F2F;\n"
 "outline: none;}\n"
 "\n"
 "QPushButton:hover{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(171, 171, 171);\n"
+"background-color: #D32F2F;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 129, 129);\n"
+"    background-color: #C62828;\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
@@ -315,9 +316,9 @@ class Ui_MainWindow(object):
         self.lbl_droneReport.setObjectName("lbl_droneReport")
 
         #drone generated report
-        
+
         self.layoutWidget_4 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.layoutWidget_4.setGeometry(QtCore.QRect(40, 720, 221, 23))
+        self.layoutWidget_4.setGeometry(QtCore.QRect(478, 710, 221, 23))
         self.layoutWidget_4.setObjectName("layoutWidget_4")
         self.totalObjFound_layout = QtWidgets.QHBoxLayout(self.layoutWidget_4)
         self.totalObjFound_layout.setContentsMargins(0, 0, 0, 0)
@@ -341,8 +342,33 @@ class Ui_MainWindow(object):
         self.lbl_totalObjFound.setText("")
         self.lbl_totalObjFound.setObjectName("lbl_totalObjFound")
         self.totalObjFound_layout.addWidget(self.lbl_totalObjFound)
+        self.layoutWidget_9 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
+        self.layoutWidget_9.setGeometry(QtCore.QRect(40, 710, 231, 23))
+        self.layoutWidget_9.setObjectName("layoutWidget_9")
+        self.totalWaypoint_layout = QtWidgets.QHBoxLayout(self.layoutWidget_9)
+        self.totalWaypoint_layout.setContentsMargins(0, 0, 0, 0)
+        self.totalWaypoint_layout.setObjectName("totalWaypoint_layout")
+        self.lbl_totalWaypoints = QtWidgets.QLabel(self.layoutWidget_9)
+        self.lbl_totalWaypoints.setText("Number of Waypoints :")
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        self.lbl_totalWaypoints.setFont(font)
+        self.lbl_totalWaypoints.setStyleSheet("color: rgb(68, 68, 68);")
+        self.lbl_totalWaypoints.setObjectName("lbl_totalWaypoints")
+        self.totalWaypoint_layout.addWidget(self.lbl_totalWaypoints)
+        self.lbl_totalWaypoint_2 = QtWidgets.QLabel(self.layoutWidget_9)
+        self.lbl_totalWaypoint_2.setMinimumSize(QtCore.QSize(51, 21))
+        self.lbl_totalWaypoint_2.setMaximumSize(QtCore.QSize(51, 21))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        self.lbl_totalWaypoint_2.setFont(font)
+        self.lbl_totalWaypoint_2.setText("")
+        self.lbl_totalWaypoint_2.setObjectName("lbl_totalWaypoint_2")
+        self.totalWaypoint_layout.addWidget(self.lbl_totalWaypoint_2)
         self.layoutWidget_5 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.layoutWidget_5.setGeometry(QtCore.QRect(40, 650, 341, 43))
+        self.layoutWidget_5.setGeometry(QtCore.QRect(40, 640, 341, 43))
         self.layoutWidget_5.setObjectName("layoutWidget_5")
         self.flightduration_layout = QtWidgets.QHBoxLayout(self.layoutWidget_5)
         self.flightduration_layout.setContentsMargins(0, 0, 0, 0)
@@ -367,7 +393,7 @@ class Ui_MainWindow(object):
         self.lbl_flightduration.setObjectName("lbl_flightduration")
         self.flightduration_layout.addWidget(self.lbl_flightduration)
         self.layoutWidget_6 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.layoutWidget_6.setGeometry(QtCore.QRect(490, 650, 341, 43))
+        self.layoutWidget_6.setGeometry(QtCore.QRect(479, 640, 341, 43))
         self.layoutWidget_6.setObjectName("layoutWidget_6")
         self.battery_layout = QtWidgets.QHBoxLayout(self.layoutWidget_6)
         self.battery_layout.setContentsMargins(0, 0, 0, 0)
@@ -395,8 +421,8 @@ class Ui_MainWindow(object):
         #expedition logs
 
         self.table_exLog = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
-        self.table_exLog.setGeometry(QtCore.QRect(40, 1080, 770, 122))
-        self.table_exLog.setRowCount(4)
+        self.table_exLog.setGeometry(QtCore.QRect(40, 1080, 770, 152))
+        self.table_exLog.setRowCount(5)
         self.table_exLog.setColumnCount(2)
         self.table_exLog.setObjectName("table_exLog")
         self.table_exLog.horizontalHeader().setVisible(False)
@@ -406,12 +432,9 @@ class Ui_MainWindow(object):
         self.table_exLog.setColumnWidth(0, 390)
         # remove select trigger
         self.table_exLog.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.table_exLog.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         # remove dotted border
         self.table_exLog.setFocusPolicy(QtCore.Qt.NoFocus)
-        #first column read-only
-        item = QtWidgets.QTableWidgetItem()
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.table_exLog.setItem(0, 0, item)
         self.img_mapExp = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.img_mapExp.setGeometry(QtCore.QRect(40, 835, 770, 211))
         self.img_mapExp.setMinimumSize(QtCore.QSize(770, 211))
@@ -431,28 +454,27 @@ class Ui_MainWindow(object):
 
         #comparison form
         self.layoutWidget_7 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.layoutWidget_7.setGeometry(QtCore.QRect(480, 1300, 231, 31))
+        self.layoutWidget_7.setGeometry(QtCore.QRect(490, 1300, 231, 31))
         self.layoutWidget_7.setObjectName("layoutWidget_7")
         self.totalObjCount = QtWidgets.QHBoxLayout(self.layoutWidget_7)
         self.totalObjCount.setContentsMargins(0, 0, 0, 0)
         self.totalObjCount.setObjectName("totalObjCount")
         self.lbl_totalObjCount_2 = QtWidgets.QLabel(self.layoutWidget_7)
+        self.lbl_totalObjCount_2.setText("Updated Total Count :")
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(12)
         self.lbl_totalObjCount_2.setFont(font)
-        self.lbl_totalObjCount_2.setText("Total Object Count :")
         self.lbl_totalObjCount_2.setStyleSheet("color: rgb(68, 68, 68);")
         self.lbl_totalObjCount_2.setObjectName("lbl_totalObjCount_2")
         self.totalObjCount.addWidget(self.lbl_totalObjCount_2)
         self.txt_totalObjCount = QtWidgets.QLineEdit(self.layoutWidget_7)
         self.txt_totalObjCount.setMinimumSize(QtCore.QSize(51, 31))
         self.txt_totalObjCount.setMaximumSize(QtCore.QSize(51, 31))
-        self.txt_totalObjCount.setStyleSheet("padding-left: 4px;")
         self.txt_totalObjCount.setObjectName("txt_totalObjCount")
         self.totalObjCount.addWidget(self.txt_totalObjCount)
         self.lbl_missedCount = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.lbl_missedCount.setGeometry(QtCore.QRect(40, 1240, 251, 28))
+        self.lbl_missedCount.setGeometry(QtCore.QRect(40, 1250, 251, 28))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(19)
@@ -513,7 +535,7 @@ class Ui_MainWindow(object):
                                       "")
         self.btn_addLog.setObjectName("btn_addLog")
         self.table_comparison = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
-        self.table_comparison.setGeometry(QtCore.QRect(40, 1660, 770, 71))
+        self.table_comparison.setGeometry(QtCore.QRect(40, 1400, 770, 71))
         self.table_comparison.setRowCount(2)
         self.table_comparison.setColumnCount(2)
         self.table_comparison.setObjectName("table_comparison")
@@ -527,19 +549,10 @@ class Ui_MainWindow(object):
         # remove dotted border
         self.table_comparison.setFocusPolicy(QtCore.Qt.NoFocus)
         # first column read-only
-        item = QtWidgets.QTableWidgetItem()
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.table_comparison.setItem(0, 0, item)
-        self.img_mapComparison = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.img_mapComparison.setGeometry(QtCore.QRect(40, 1410, 770, 211))
-        self.img_mapComparison.setMinimumSize(QtCore.QSize(770, 211))
-        self.img_mapComparison.setMaximumSize(QtCore.QSize(770, 211))
-        self.img_mapComparison.setText("")
-        self.img_mapComparison.setPixmap(QtGui.QPixmap("../../Resources/map-placeholder.jpg"))
-        self.img_mapComparison.setScaledContents(False)
-        self.img_mapComparison.setObjectName("img_mapComparison")
+        delegate = ReadOnlyDelegate(self.table_comparison)
+        self.table_comparison.setItemDelegateForColumn(0, delegate)
         self.btn_submit = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.btn_submit.setGeometry(QtCore.QRect(679, 1760, 131, 31))
+        self.btn_submit.setGeometry(QtCore.QRect(679, 1490, 131, 31))
         self.btn_submit.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_submit.setMaximumSize(QtCore.QSize(131, 31))
         font = QtGui.QFont()
