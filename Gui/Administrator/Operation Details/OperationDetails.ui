@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>871</width>
-    <height>1770</height>
+    <height>1513</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -576,7 +576,7 @@
    <widget class="QWidget" name="layoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>490</x>
       <y>710</y>
       <width>221</width>
       <height>23</height>
@@ -590,6 +590,9 @@
          <family>Segoe UI</family>
          <pointsize>12</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
        </property>
        <property name="text">
         <string>Total Objects Found :</string>
@@ -640,6 +643,9 @@
          <family>Segoe UI</family>
          <pointsize>12</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
        </property>
        <property name="text">
         <string>Flight Duration :</string>
@@ -692,7 +698,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">color: rgb(68, 68, 68);</string>
        </property>
        <property name="text">
         <string>Battery Capacity :</string>
@@ -732,11 +738,11 @@
       <x>40</x>
       <y>1070</y>
       <width>781</width>
-      <height>131</height>
+      <height>161</height>
      </rect>
     </property>
     <property name="rowCount">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="columnCount">
      <number>2</number>
@@ -753,6 +759,7 @@
     <attribute name="verticalHeaderStretchLastSection">
      <bool>true</bool>
     </attribute>
+    <row/>
     <row/>
     <row/>
     <row/>
@@ -810,61 +817,11 @@
      <string>[ Expedition Logs ]</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget_7">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>1350</y>
-      <width>231</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="totalObjCount">
-     <item>
-      <widget class="QLabel" name="lbl_totalObjCount_2">
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Total Object Count :</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lbl_totalObjCount">
-       <property name="minimumSize">
-        <size>
-         <width>51</width>
-         <height>21</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>51</width>
-         <height>21</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>8</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QLabel" name="lbl_missedCount">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1290</y>
+      <y>1310</y>
       <width>251</width>
       <height>28</height>
      </rect>
@@ -883,7 +840,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1230</y>
+      <y>1250</y>
       <width>311</width>
       <height>41</height>
      </rect>
@@ -898,61 +855,11 @@
      <string>Pilot Comparison Form</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget_8">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>1350</y>
-      <width>251</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="missedobj_layout">
-     <item>
-      <widget class="QLabel" name="lbl_missedobj_2">
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Missed Object Counts :</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lbl_missedobj">
-       <property name="minimumSize">
-        <size>
-         <width>51</width>
-         <height>21</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>51</width>
-         <height>21</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>8</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QTableWidget" name="table_comparison">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1650</y>
+      <y>1420</y>
       <width>781</width>
       <height>71</height>
      </rect>
@@ -980,36 +887,164 @@
     <column/>
     <column/>
    </widget>
-   <widget class="QLabel" name="img_mapComparison">
+   <widget class="QWidget" name="layoutWidget_9">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>1410</y>
-      <width>781</width>
-      <height>211</height>
+      <y>710</y>
+      <width>231</width>
+      <height>23</height>
      </rect>
     </property>
-    <property name="minimumSize">
-     <size>
-      <width>781</width>
-      <height>211</height>
-     </size>
+    <layout class="QHBoxLayout" name="totalWaypoint_layout">
+     <item>
+      <widget class="QLabel" name="lbl_totalWaypoints">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Number of Waypoints :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_totalWaypoint_2">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_7">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>1370</y>
+      <width>221</width>
+      <height>23</height>
+     </rect>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>781</width>
-      <height>211</height>
-     </size>
+    <layout class="QHBoxLayout" name="totalObjCount">
+     <item>
+      <widget class="QLabel" name="lbl_totalObjCount_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Updated Total Count :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_totalObjCount">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_8">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1370</y>
+      <width>251</width>
+      <height>23</height>
+     </rect>
     </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../../Resources/map-placeholder.jpg</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
+    <layout class="QHBoxLayout" name="missedobj_layout">
+     <item>
+      <widget class="QLabel" name="lbl_missedobj_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Missed Object Counts :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_missedobj">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>
