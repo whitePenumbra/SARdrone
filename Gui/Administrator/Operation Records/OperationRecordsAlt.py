@@ -244,6 +244,10 @@ class Ui_MainWindow(object):
         self.searchbar.setMinimumSize(QtCore.QSize(201, 31))
         self.searchbar.setMaximumSize(QtCore.QSize(201, 31))
         self.searchbar.setStyleSheet("padding-left: 4px;")
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(9)
+        self.searchbar.setFont(font)
         self.searchbar.setText("")
         self.searchbar.setObjectName("searchbar")
         self.btn_search = QtWidgets.QPushButton(self.centralwidget)
@@ -355,6 +359,34 @@ class Ui_MainWindow(object):
                 "\n"
                 "")
         self.btn_back.setObjectName("btn_back")
+        self.btn_opsSummary = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_opsSummary.setGeometry(QtCore.QRect(670, 695, 231, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_opsSummary.setFont(font)
+        self.btn_opsSummary.setStyleSheet("QPushButton {\n"
+"color: rgb(212, 128, 0);\n"
+"background-color: rgb(240, 240, 240);\n"
+"border: 2px solid #FF9D07;\n"
+"outline: none;}\n"
+"\n"
+"QPushButton:hover{\n"
+"color: rgb(0,0,0);\n"
+"background-color: rgb(255, 176, 6);\n"
+"outline: none;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"background-color: rgb(254, 140, 8);;\n"
+"outline: none;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.btn_opsSummary.setObjectName("btn_opsSummary")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -365,7 +397,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Home [Administrator]"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Operation Records [Administrator]"))
         self.table_records.setSortingEnabled(True)
         item = self.table_records.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
@@ -379,6 +411,7 @@ class Ui_MainWindow(object):
         self.btn_search.setText(_translate("MainWindow", "Search"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
         self.btn_back.setText(_translate("MainWindow", "Back"))
+        self.btn_opsSummary.setText(_translate("MainWindow", "Email Operations Summary"))
 
 
 if __name__ == "__main__":
