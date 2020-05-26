@@ -14,7 +14,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setMaximumSize(QtCore.QSize(871,0))
         MainWindow.setMinimumSize(QtCore.QSize(871, 760))
-        MainWindow.setWindowTitle("AIDS – Operation ")
+        MainWindow.setWindowTitle("AIDS – Operation Report")
 
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -621,7 +621,7 @@ class Ui_MainWindow(object):
         
         def retranslateUi(self, MainWindow):
             _translate = QtCore.QCoreApplication.translate
-            MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Operations History [Administrator]"))
+            MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Operation Report"))
             self.lbl_ops.setText(_translate("MainWindow", "Operation Details"))
             self.lbl_opsid_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#434343;\">Operation ID : </span></p></body></html>"))
             self.lbl_droneid_2.setText(_translate("MainWindow", "Drone ID :"))
