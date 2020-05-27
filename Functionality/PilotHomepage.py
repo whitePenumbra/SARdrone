@@ -202,7 +202,7 @@ class changePasswordClass(QtWidgets.QMainWindow, newUser.Ui_MainWindow):
         print(user)
 
         if (self.txtNewPass.text() == self.txtConfirmPass.text()):
-            if (self.validatePassword):
+            if (self.validatePassword()):
                 password = AESCipher('aids').encrypt(self.txtNewPass.text())
                 encpass = password.decode("utf-8")
 

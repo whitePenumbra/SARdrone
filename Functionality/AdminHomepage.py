@@ -86,10 +86,10 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             conn.commit()
 
             self.deleteSuccess = deleteSuccessClass(parent=self)
-            self.deleteSuccess.exec_()
+            self.deleteSuccess.show()
         except Exception as e:
             self.deleteError = deleteErrorClass(parent=self)
-            self.deleteError.exec_()
+            self.deleteError.show()
 
         self.audits("Admin deleted pilot " + firstName + " " + lastName)
         self.initializeData()
