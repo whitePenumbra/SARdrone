@@ -39,7 +39,6 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
 
         self.firstLogin()
         
-
     @QtCore.pyqtSlot()
     def start_webcam(self):
         self.cap = cv2.VideoCapture(0)

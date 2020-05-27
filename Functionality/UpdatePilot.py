@@ -343,6 +343,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.txt_lname.setStyleSheet("padding-left: 4px;")
 
             self.btn_save.setEnabled(True)
+        
+        self.checkContent()
     
     def incAddress(self):
         if (self.txt_address.text() == '' or self.txt_city.text() == '' or self.txt_province.text() == '' or
@@ -356,8 +358,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.txt_city.setStyleSheet("padding-left: 4px;")
             self.txt_province.setStyleSheet("padding-left: 4px;")
             self.txt_zip.setStyleSheet("padding-left: 4px;")
-
-            self.btn_save.setEnabled(True)
+        
+        self.checkContent()
     
     def incContact(self):
         if (self.txt_email.text() == '' or self.txt_mobile.text() == '' or self.txt_emContact.text() == '' or
@@ -371,7 +373,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.txt_emContact.setStyleSheet("padding-left: 4px;")
             self.txt_emNumber.setStyleSheet("padding-left: 4px;")
 
-            self.btn_save.setEnabled(True)
+            self.checkContent()
     
     def incCert(self):
         if (self.txt_certificate.text() == '' or self.txt_operator.text() == ''):
@@ -381,8 +383,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.txt_certificate.setStyleSheet("padding-left: 4px;")
             self.txt_operator.setStyleSheet("padding-left: 4px;")
 
-            self.btn_save.setEnabled(True)
-    
+            self.checkContent()
+            
     def checkEmail(self):
         font = QtGui.QFont()
         regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
@@ -400,3 +402,19 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.txt_email.setFont(font)
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
             self.btn_save.setEnabled(False)
+    
+    def checkContent(self):
+        if (self.txt_fname.text() == '' or self.txt_lname.text() == ''
+        or self.txt_address.text() == '' or self.txt_city.text() == '' 
+        or self.txt_province.text() == '' or self.txt_zip.text() == '' 
+        or self.txt_email.text() == '' or self.txt_mobile.text() == '' 
+        or self.txt_emContact.text() == '' or self.txt_emNumber.text() == ''
+        or self.txt_certificate.text() == '' or self.txt_operator.text() == ''
+        or self.cmb_day.currentText() == '' or self.cmb_month.currentText() == ''
+        or self.cmb_year.currentText() == '' or self.cmb_issue_day.currentText() == ''
+        or self.cmb_issue_month.currentText() == '' or self.cmb_issue_year.currentText() == ''
+        or self.cmb_expiry_day.currentText() == '' or self.cmb_expiry_month.currentText() == ''
+        or self.cmb_expiry_year.currentText() == '' or not(self.rbtn_male.isChecked() or self.rbtn_female.isChecked())):
+            self.btn_save.setEnabled(False)
+        else:
+            self.btn_save.setEnabled(True)
