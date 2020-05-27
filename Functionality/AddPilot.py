@@ -107,7 +107,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.parent.initializeData()
     
     def savePilot(self):
-        self.ifEmpty()  
         self.insertToDB()
         self.sendEmail()
 
@@ -309,13 +308,6 @@ Password: %s
         self.txt_certificate.setReadOnly(False)
         self.txt_operator.setReadOnly(False)
     
-    # def ifEmpty(self):
-    #     if (self.txt_fname.text() or self.txt_lname.text() or 
-    #     self.txt_address.text() or self.txt_city.text() or self.txt_province.text() or
-    #     self.txt_zip.text() or self.txt_email.text() or self.txt_mobile.text() or self.txt_emContact.text() or
-    #     self.txt_emNumber.text() or self.txt_certificate.text() or self.txt_operator.text()) == '':
-    #         self.btn_save.setEnabled(False)
-    
     def audit(self, message):
         conn = connectToDB()
         cur = conn.cursor()
@@ -365,6 +357,7 @@ Password: %s
             self.txt_emContact.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
             self.txt_emNumber.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
         else:
+            self.txt_email.setStyleSheet("padding-left: 4px;")
             self.txt_mobile.setStyleSheet("padding-left: 4px;")
             self.txt_emContact.setStyleSheet("padding-left: 4px;")
             self.txt_emNumber.setStyleSheet("padding-left: 4px;")
