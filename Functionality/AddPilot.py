@@ -28,13 +28,29 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_province.editingFinished.connect(self.incAddress)
         self.txt_zip.editingFinished.connect(self.incAddress)
 
-        self.txt_email.editingFinished.connect(self.checkEmail)
+        self.txt_email.textChanged.connect(self.checkEmail)
+        self.txt_email.editingFinished.connect(self.incContact)
         self.txt_mobile.editingFinished.connect(self.incContact)
         self.txt_emContact.editingFinished.connect(self.incContact)
         self.txt_emNumber.editingFinished.connect(self.incContact)
 
         self.txt_certificate.editingFinished.connect(self.incCert)
         self.txt_operator.editingFinished.connect(self.incCert)
+
+        self.cmb_day.currentTextChanged.connect(self.checkContent)
+        self.cmb_month.currentTextChanged.connect(self.checkContent)
+        self.cmb_year.currentTextChanged.connect(self.checkContent)
+
+        self.cmb_issue_day.currentTextChanged.connect(self.checkContent)
+        self.cmb_issue_month.currentTextChanged.connect(self.checkContent)
+        self.cmb_issue_year.currentTextChanged.connect(self.checkContent)
+
+        self.cmb_expiry_day.currentTextChanged.connect(self.checkContent)
+        self.cmb_expiry_month.currentTextChanged.connect(self.checkContent)
+        self.cmb_expiry_year.currentTextChanged.connect(self.checkContent)
+
+        self.rbtn_female.clicked.connect(self.checkContent)
+        self.rbtn_male.clicked.connect(self.checkContent)
 
         self.txt_zip.setMaxLength(4)
         self.txt_address.setMaxLength(255)
@@ -248,12 +264,12 @@ Password: %s
             self.txt_email.setFont(font)
             self.txt_email.setStyleSheet("padding-left: 4px;")
             print("Valid Email")
-            self.btn_save.setEnabled(True)        
+            return (True)    
         else:  
             print("Invalid Email")
             self.txt_email.setFont(font)
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
-            self.btn_save.setEnabled(False)
+            return (False)
     
     def openFileNameDialog(self):
         options = QFileDialog.Options()
@@ -350,6 +366,7 @@ Password: %s
         self.checkContent()
     
     def incContact(self):
+        
         if (self.txt_email.text() == '' or self.txt_mobile.text() == '' or self.txt_emContact.text() == '' or
         self.txt_emNumber.text() == ''):
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")

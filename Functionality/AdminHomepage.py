@@ -9,6 +9,7 @@ from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
 from ConnectToDB import connectToDB
+from Operations import operationClass
 
 class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -41,6 +42,9 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
     def operations(self):
         print('operations')
+        self.operations = operationClass(parent=self)
+        self.operations.show()
+        self.close()
 
     def search(self):
         print('search')
@@ -53,7 +57,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             if (toSearch.startswith('OP-') or toSearch.startswith('op-')):
                 toSearch = toSearch[3:]
             cur.execute('SELECT user_id,last_name,first_name from users WHERE '
-            'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))
+            '(user_id = "%s" OR last_name = "%s" OR first_name = "%s") AND isActive = "1"' % (toSearch,toSearch,toSearch))
             result = cur.fetchall()
             self.getData(result)
         else:

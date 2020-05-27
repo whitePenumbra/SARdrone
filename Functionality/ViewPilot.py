@@ -10,6 +10,7 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
+        
         self.btn_cancel.clicked.connect(self.cancel)
         self.btn_pastops.clicked.connect(self.pastOps)
         self.btn_update.clicked.connect(self.updateInfo)
