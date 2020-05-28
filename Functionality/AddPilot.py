@@ -97,10 +97,14 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.cmb_issue_year.addItem('')
         self.cmb_expiry_year.addItem('')
         while year < 2024:
-            self.cmb_year.addItem(str(year))
             self.cmb_issue_year.addItem(str(year))
             self.cmb_expiry_year.addItem(str(year))
             year += 1
+        
+        birthYear=1970
+        while birthYear < 2021:
+            self.cmb_year.addItem(str(birthYear))
+            birthYear += 1
 
         imageLoc = "../Gui/Resources/profile_placeholder.jpg"
         image = QtGui.QPixmap(imageLoc)
