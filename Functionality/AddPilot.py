@@ -56,9 +56,11 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_emNumber.setMaxLength(11)
         self.txt_address.setMaxLength(255)
 
-        onlyInt = QtGui.QIntValidator()
+        rxInt = QtCore.QRegExp("^[0-9]+$")
+        onlyInt = QtGui.QRegExpValidator(rxInt)
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
+        self.txt_zip.setValidator(onlyInt)
 
         rx = QtCore.QRegExp("^[a-zA-Z ]+$")
         letterOnly = QtGui.QRegExpValidator(rx)
@@ -234,10 +236,12 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             conn.commit()
 
             self.addSuccess = addSuccessClass(parent=self)
-            self.addSuccess.show()            
+            self.addSuccess.show()  
+            self.addSuccess.activateWindow()          
         except Exception as e:
             self.addError = addErrorClass(parent=self)
             self.addError.show()
+            self.addError.activateWindow()
 
         self.audit("Admin added pilot " + fname + " " + lname)
 

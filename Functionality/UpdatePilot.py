@@ -50,7 +50,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.txt_mobile.setMaxLength(11)
         self.txt_emNumber.setMaxLength(11)
 
-        onlyInt = QtGui.QIntValidator()
+        rxInt = QtCore.QRegExp("^[0-9]+$")
+        onlyInt = QtGui.QRegExpValidator(rxInt)
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
         self.txt_zip.setValidator(onlyInt)
@@ -195,10 +196,16 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
             self.updateSuccess = updateSuccessClass(parent=self)
             self.updateSuccess.show()
+
+            self.updateSuccess.activateWindow()
+            self.updateSuccess.raise_()
+            self.updateSuccess.setFocus()
         except Exception as e:
             print(e)
             self.updateError = updateErrorClass(parent=self)
             self.updateError.show()
+            self.updateError.activateWindow()
+            self.updateError.raise_()
 
         self.parent.cancel()
         self.close()

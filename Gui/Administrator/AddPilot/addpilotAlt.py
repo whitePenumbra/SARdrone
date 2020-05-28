@@ -377,6 +377,7 @@ class Ui_MainWindow(object):
         self.txt_mobile.setFont(font)
         self.txt_mobile.setStyleSheet("padding-left:4px;\n"
                 "margin-left:1px;")
+        self.txt_zip.setMaxLength(11)
         self.txt_mobile.setObjectName("txt_mobile")
         self.mobile_layout.addWidget(self.txt_mobile)
         self.layoutWidget11 = QtWidgets.QWidget(self.centralwidget)
@@ -422,6 +423,7 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         self.txt_emNumber.setFont(font)
         self.txt_emNumber.setStyleSheet("padding-left:4px;")
+        self.txt_emNumber.setMaxLength(11)
         self.txt_emNumber.setObjectName("txt_emNumber")
         self.emmobile_layout.addWidget(self.txt_emNumber)
         self.layoutWidget13 = QtWidgets.QWidget(self.centralwidget)
