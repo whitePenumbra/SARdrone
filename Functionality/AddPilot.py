@@ -60,7 +60,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
 
-        rx = QtCore.QRegExp("^[a-zA-Z]+$")
+        rx = QtCore.QRegExp("^[a-zA-Z ]+$")
         letterOnly = QtGui.QRegExpValidator(rx)
         self.txt_fname.setValidator(letterOnly)
         self.txt_lname.setValidator(letterOnly)

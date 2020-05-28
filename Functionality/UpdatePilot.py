@@ -54,6 +54,13 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
 
+        rx = QtCore.QRegExp("^[a-zA-Z ]+$")
+        letterOnly = QtGui.QRegExpValidator(rx)
+        self.txt_fname.setValidator(letterOnly)
+        self.txt_lname.setValidator(letterOnly)
+        self.txt_emContact.setValidator(letterOnly)
+        self.txt_operator.setValidator(letterOnly)
+
         addressTuple = self.parent.getAddress(result)
 
         dayList = [
