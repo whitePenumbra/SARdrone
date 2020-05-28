@@ -17,21 +17,33 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.btn_save.clicked.connect(self.update)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
 
-        self.txt_fname.editingFinished.connect(self.incName)
-        self.txt_lname.editingFinished.connect(self.incName)
+        self.txt_fname.editingFinished.connect(self.checkfname)
+        self.txt_lname.editingFinished.connect(self.checklname)
 
-        self.txt_address.editingFinished.connect(self.incAddress)
-        self.txt_city.editingFinished.connect(self.incAddress)
-        self.txt_province.editingFinished.connect(self.incAddress)
-        self.txt_zip.editingFinished.connect(self.incAddress)
+        self.txt_address.editingFinished.connect(self.checkAddress)
+        self.txt_city.editingFinished.connect(self.checkCity)
+        self.txt_province.editingFinished.connect(self.checkProvince)
+        self.txt_zip.editingFinished.connect(self.checkZip)
 
         self.txt_email.editingFinished.connect(self.checkEmail)
-        self.txt_mobile.editingFinished.connect(self.incContact)
-        self.txt_emContact.editingFinished.connect(self.incContact)
-        self.txt_emNumber.editingFinished.connect(self.incContact)
+        self.txt_mobile.editingFinished.connect(self.checkMobile)
+        self.txt_emContact.editingFinished.connect(self.checkEmContact)
+        self.txt_emNumber.editingFinished.connect(self.checkEmNumber)
 
-        self.txt_certificate.editingFinished.connect(self.incCert)
-        self.txt_operator.editingFinished.connect(self.incCert)
+        self.txt_certificate.editingFinished.connect(self.checkCertificate)
+        self.txt_operator.editingFinished.connect(self.checkOperator)
+
+        self.cmb_day.currentTextChanged.connect(self.checkContent)
+        self.cmb_month.currentTextChanged.connect(self.checkContent)
+        self.cmb_year.currentTextChanged.connect(self.checkContent)
+
+        self.cmb_issue_day.currentTextChanged.connect(self.checkContent)
+        self.cmb_issue_month.currentTextChanged.connect(self.checkContent)
+        self.cmb_issue_year.currentTextChanged.connect(self.checkContent)
+
+        self.cmb_expiry_day.currentTextChanged.connect(self.checkContent)
+        self.cmb_expiry_month.currentTextChanged.connect(self.checkContent)
+        self.cmb_expiry_year.currentTextChanged.connect(self.checkContent)
 
         self.txt_address.setMaxLength(255)
         self.txt_zip.setMaxLength(4)
@@ -88,11 +100,18 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.cmb_expiry_month.addItems(monthList)
 
         year=2016
+        self.cmb_year.addItem('')
+        self.cmb_issue_year.addItem('')
+        self.cmb_expiry_year.addItem('')
         while year < 2024:
-            self.cmb_year.addItem(str(year))
             self.cmb_issue_year.addItem(str(year))
             self.cmb_expiry_year.addItem(str(year))
             year += 1
+        
+        birthYear=1970
+        while birthYear < 2021:
+            self.cmb_year.addItem(str(birthYear))
+            birthYear += 1
 
         self.uid = result[0]
         self.aid = addressTuple[0][0]
@@ -114,10 +133,11 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         self.txt_fname.setText(result[4])
         self.txt_lname.setText(result[3])
-        if (result[13] == 1):
-            self.rbtn_male.toggle()
-        else:
+
+        if (int(result[14]) == 0):
             self.rbtn_female.toggle()
+        else:
+            self.rbtn_male.toggle()
         self.cmb_month.setCurrentIndex(self.cmb_month.findText(result[15].strftime("%B"),
                                         QtCore.Qt.MatchFixedString))
         self.cmb_day.setCurrentIndex(self.cmb_day.findText(result[15].strftime("%d"),
@@ -340,57 +360,54 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         cur.execute(query,values)
         conn.commit()
 
-    def incName(self):
-        if (self.txt_fname.text() == '' or self.txt_lname.text() == ''):
+    def checkfname(self):
+        if (self.txt_fname.text() == ''):
             self.txt_fname.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_lname.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
         else:
             self.txt_fname.setStyleSheet("padding-left: 4px;")
-            self.txt_lname.setStyleSheet("padding-left: 4px;")
+        
+        self.checkContent()
 
-            self.btn_save.setEnabled(True)
+    def checklname(self):
+        if (self.txt_lname.text() == ''):
+            self.txt_lname.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_lname.setStyleSheet("padding-left: 4px;")
         
         self.checkContent()
     
-    def incAddress(self):
-        if (self.txt_address.text() == '' or self.txt_city.text() == '' or self.txt_province.text() == '' or
-        self.txt_zip.text() == ''):
+    def checkAddress(self):
+        if (self.txt_address.text() == '' ):
             self.txt_address.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_city.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_province.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_zip.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
         else:
             self.txt_address.setStyleSheet("padding-left: 4px;")
+        
+        self.checkContent()
+
+    def checkCity(self):
+        if (self.txt_city.text() == ''):
+            self.txt_city.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
             self.txt_city.setStyleSheet("padding-left: 4px;")
+
+        self.checkContent()
+
+    def checkProvince(self):
+        if (self.txt_province.text() == ''):
+            self.txt_province.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
             self.txt_province.setStyleSheet("padding-left: 4px;")
+        
+        self.checkContent()
+
+    def checkZip(self):
+        if (self.txt_zip.text() == ''):
+           self.txt_zip.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
             self.txt_zip.setStyleSheet("padding-left: 4px;")
         
         self.checkContent()
     
-    def incContact(self):
-        if (self.txt_email.text() == '' or self.txt_mobile.text() == '' or self.txt_emContact.text() == '' or
-        self.txt_emNumber.text() == ''):
-            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_mobile.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_emContact.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_emNumber.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-        else:
-            self.txt_mobile.setStyleSheet("padding-left: 4px;")
-            self.txt_emContact.setStyleSheet("padding-left: 4px;")
-            self.txt_emNumber.setStyleSheet("padding-left: 4px;")
-
-            self.checkContent()
-    
-    def incCert(self):
-        if (self.txt_certificate.text() == '' or self.txt_operator.text() == ''):
-            self.txt_certificate.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-            self.txt_operator.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
-        else:
-            self.txt_certificate.setStyleSheet("padding-left: 4px;")
-            self.txt_operator.setStyleSheet("padding-left: 4px;")
-
-            self.checkContent()
-            
     def checkEmail(self):
         font = QtGui.QFont()
         regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
@@ -408,6 +425,53 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.txt_email.setFont(font)
             self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
             self.btn_save.setEnabled(False)
+
+        if (self.txt_email.text() == ''):
+            self.txt_email.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px;}")
+        else:
+            self.txt_email.setStyleSheet("padding-left: 4px;")
+        
+        self.checkContent()
+
+    def checkMobile(self):
+        if (self.txt_mobile.text() == ''):
+            self.txt_mobile.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_mobile.setStyleSheet("padding-left: 4px;")
+
+        self.checkContent()
+
+    def checkEmContact(self):
+        if (self.txt_emContact.text() == ''):
+            self.txt_emContact.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_emContact.setStyleSheet("padding-left: 4px;")
+        
+        self.checkContent()
+
+    def checkEmNumber(self):
+        if (self.txt_emNumber.text() == ''):
+            self.txt_emNumber.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_emNumber.setStyleSheet("padding-left: 4px;")
+
+            self.checkContent()
+    
+    def checkCertificate(self):
+        if (self.txt_certificate.text() == ''):
+            self.txt_certificate.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_certificate.setStyleSheet("padding-left: 4px;")
+        
+        self.checkContent()
+
+    def checkOperator(self):
+        if (self.txt_operator.text() == ''): 
+            self.txt_operator.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
+        else:
+            self.txt_operator.setStyleSheet("padding-left: 4px;")
+
+            self.checkContent()
     
     def checkContent(self):
         if (self.txt_fname.text() == '' or self.txt_lname.text() == ''
