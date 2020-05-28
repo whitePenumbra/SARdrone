@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Delete Pilot Success"))
         self.btn_OK.setText(_translate("MainWindow", "OK"))
         self.lbl_success.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">Successfully removed Pilot ID:</span></p></body></html>"))
-        self.lbl_ID.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\"><br/></span></p></body></html>"))
+        self.lbl_ID.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\"></span></p></body></html>"))
 
 
 if __name__ == "__main__":
