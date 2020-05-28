@@ -1,4 +1,4 @@
-import sys
+import sys, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.ForgotPassword import resetpassword
@@ -38,12 +38,35 @@ class resetPassClass(QtWidgets.QMainWindow, resetpassword.Ui_MainWindow):
         cur = conn.cursor()
 
         self.newPass = self.txtNewPass.text()
-        encpass = AESCipher('aids').encrypt(self.newPass)
+        if (self.validatePassword):
+            encpass = AESCipher('aids').encrypt(self.newPass)
 
-        query = "UPDATE users SET password = %s WHERE email = %s"
-        values = (encpass, self.email)
+            query = "UPDATE users SET password = %s WHERE email = %s"
+            values = (encpass, self.email)
 
-        cur.execute(query,values)
-        conn.commit()
+            cur.execute(query,values)
+            conn.commit()
 
-        self.parent.returnToHome()
+            self.parent.returnToHome()
+
+    def validatePassword(self):
+        password = self.txtNewPass.text()
+
+        if len(password) < 8:
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password is at lest 8 letters")
+            return(False)
+        elif re.search('[0-9]',password) is None:
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password has a number in it")
+            return(False)
+        elif re.search('[A-Z]',password) is None: 
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password has a capital letter in it")
+            return(False)
+        elif (' ' in password):
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password doesn't have a space in it")
+            return(False)
+        else:
+            return(True)

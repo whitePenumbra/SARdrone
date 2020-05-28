@@ -1,4 +1,4 @@
-import sys, os, cv2, datetime
+import sys, os, cv2, datetime, re
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget, 
@@ -8,6 +8,7 @@ from Gui.Pilot.Homepage import Homepage
 from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from Gui.NewUser import newUser, NewUserSuccess
+from PilotOperations import pilotOperationClass
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -39,7 +40,6 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
 
         self.firstLogin()
         
-
     @QtCore.pyqtSlot()
     def start_webcam(self):
         self.cap = cv2.VideoCapture(0)
@@ -90,6 +90,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     
     def operations(self):
         print('Pilot Operations button')
+        self.operations = pilotOperationClass(parent=self)
+        self.operations.show()
+        self.close()
     
     def logout(self):
         self.close()
@@ -203,28 +206,51 @@ class changePasswordClass(QtWidgets.QMainWindow, newUser.Ui_MainWindow):
         print(user)
 
         if (self.txtNewPass.text() == self.txtConfirmPass.text()):
-            password = AESCipher('aids').encrypt(self.txtNewPass.text())
-            encpass = password.decode("utf-8")
+            if (self.validatePassword()):
+                password = AESCipher('aids').encrypt(self.txtNewPass.text())
+                encpass = password.decode("utf-8")
 
-            try:
-                query = "UPDATE users SET password = %s WHERE user_id = %s"
-                value = (encpass, user[0][0])
+                try:
+                    query = "UPDATE users SET password = %s WHERE user_id = %s"
+                    value = (encpass, user[0][0])
 
-                cur.execute(query,value)
-                conn.commit()
+                    cur.execute(query,value)
+                    conn.commit()
 
-                self.changeSuccess = changeSuccessClass(parent=self)
-                self.changeSuccess.exec_()
-            except Exception as e:
-                print(e)
+                    self.changeSuccess = changeSuccessClass(parent=self)
+                    self.changeSuccess.show()
+                except Exception as e:
+                    print(e)
 
-            self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
-        
-        self.close()
+                self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
 
-class changeSuccessClass(QtWidgets.QDialog, NewUserSuccess.Ui_Dialog):
+                self.close()
+    
+    def validatePassword(self):
+        password = self.txtNewPass.text()
+
+        if len(password) < 8:
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password is at least 8 letters")
+            return(False)
+        elif re.search('[0-9]',password) is None:
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password has a number in it")
+            return(False)
+        elif re.search('[A-Z]',password) is None: 
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password has a capital letter in it")
+            return(False)
+        elif (' ' in password):
+            self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
+            self.lbl_error.setText("Make sure your password doesn't have a space in it")
+            return(False)
+        else:
+            return(True)
+
+class changeSuccessClass(QtWidgets.QMainWindow, NewUserSuccess.Ui_MainWindow):
     def __init__(self,parent):
-        super(QtWidgets.QDialog,self).__init__(parent)
+        super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
         self.parent = parent
 
@@ -232,7 +258,3 @@ class changeSuccessClass(QtWidgets.QDialog, NewUserSuccess.Ui_Dialog):
 
     def goBack(self):
         self.close()
-
-
-
-

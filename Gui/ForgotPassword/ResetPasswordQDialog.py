@@ -17,7 +17,7 @@ class Ui_Dialog(object):
         Dialog.setMinimumSize(QtCore.QSize(600, 400))
         Dialog.setMaximumSize(QtCore.QSize(600, 400))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../Gui/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         #removes ? from title bar
         Dialog.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)

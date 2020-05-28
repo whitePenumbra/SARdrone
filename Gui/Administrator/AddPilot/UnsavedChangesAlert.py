@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(531, 191))
         MainWindow.setMaximumSize(QtCore.QSize(531, 191))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../Gui/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         self.btn_cancel.setObjectName("btn_cancel")
-        # MainWindow.setCentralWidget(self.centralwidget)
+        MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
