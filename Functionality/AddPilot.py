@@ -61,6 +61,11 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
 
+        rx = QtCore.QRegExp("^[a-zA-Z]+$")
+        stringOnly = QtGui.QRegExpValidator(rx)
+        self.txt_fname.setValidator(stringOnly)
+        self.txt_lname.setValidator(stringOnly)
+
         day=0
         self.cmb_day.addItem('')
         self.cmb_issue_day.addItem('')
@@ -109,9 +114,6 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         imageLoc = "../Gui/Resources/profile_placeholder.jpg"
         image = QtGui.QPixmap(imageLoc)
         self.lbl_profilePic.setPixmap(image)
-
-        # self.txt_mobile.setValidator(QIntValidator())
-        # self.txt_emNumber.setValidator(QIntValidator())
 
         imageLoc = "../Gui/Resources/profile_placeholder.png"
         image = QtGui.QPixmap(imageLoc)
