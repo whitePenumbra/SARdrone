@@ -236,13 +236,12 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             conn.commit()
 
             self.addSuccess = addSuccessClass(parent=self)
-            self.addSuccess.show()  
-            self.addSuccess.activateWindow()          
+            self.addSuccess.setWindowFlags(self.addSuccess.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
+            self.addSuccess.show()        
         except Exception as e:
             self.addError = addErrorClass(parent=self)
+            self.addError.setWindowFlags(self.addError.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
             self.addError.show()
-            self.addError.activateWindow()
-
         self.audit("Admin added pilot " + fname + " " + lname)
 
     def sendEmail(self):

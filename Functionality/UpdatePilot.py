@@ -195,17 +195,13 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.updateData()
 
             self.updateSuccess = updateSuccessClass(parent=self)
+            self.updateSuccess.setWindowFlags(self.updateSuccess.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
             self.updateSuccess.show()
-
-            self.updateSuccess.activateWindow()
-            self.updateSuccess.raise_()
-            self.updateSuccess.setFocus()
         except Exception as e:
             print(e)
             self.updateError = updateErrorClass(parent=self)
+            self.updateError.setWindowFlags(self.updateError.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
             self.updateError.show()
-            self.updateError.activateWindow()
-            self.updateError.raise_()
 
         self.parent.cancel()
         self.close()
