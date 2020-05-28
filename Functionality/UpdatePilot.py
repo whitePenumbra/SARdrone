@@ -17,21 +17,21 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.btn_save.clicked.connect(self.update)
         self.btn_profImg.clicked.connect(self.openFileNameDialog)
 
-        self.txt_fname.editingFinished.connect(self.checkfname)
-        self.txt_lname.editingFinished.connect(self.checklname)
+        self.txt_fname.textChanged.connect(self.checkfname)
+        self.txt_lname.textChanged.connect(self.checklname)
 
         self.txt_address.editingFinished.connect(self.checkAddress)
         self.txt_city.editingFinished.connect(self.checkCity)
         self.txt_province.editingFinished.connect(self.checkProvince)
-        self.txt_zip.editingFinished.connect(self.checkZip)
+        self.txt_zip.textChanged.connect(self.checkZip)
 
         self.txt_email.editingFinished.connect(self.checkEmail)
-        self.txt_mobile.editingFinished.connect(self.checkMobile)
-        self.txt_emContact.editingFinished.connect(self.checkEmContact)
-        self.txt_emNumber.editingFinished.connect(self.checkEmNumber)
+        self.txt_mobile.textChanged.connect(self.checkMobile)
+        self.txt_emContact.textChanged.connect(self.checkEmContact)
+        self.txt_emNumber.textChanged.connect(self.checkEmNumber)
 
-        self.txt_certificate.editingFinished.connect(self.checkCertificate)
-        self.txt_operator.editingFinished.connect(self.checkOperator)
+        self.txt_certificate.textChanged.connect(self.checkCertificate)
+        self.txt_operator.textChanged.connect(self.checkOperator)
 
         self.cmb_day.currentTextChanged.connect(self.checkContent)
         self.cmb_month.currentTextChanged.connect(self.checkContent)
@@ -53,6 +53,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         onlyInt = QtGui.QIntValidator()
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
+        self.txt_zip.setValidator(onlyInt)
 
         rx = QtCore.QRegExp("^[a-zA-Z ]+$")
         letterOnly = QtGui.QRegExpValidator(rx)
