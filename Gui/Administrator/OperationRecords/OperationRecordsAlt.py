@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(1071, 739))
         MainWindow.setMaximumSize(QtCore.QSize(1071, 739))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../Gui/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -149,7 +149,7 @@ class Ui_MainWindow(object):
         btn_view = QtWidgets.QPushButton()
         btn_view.setFixedHeight(34)
         btn_view.setFixedWidth(170)
-        btn_view.setIcon(QtGui.QIcon("../../Resources/file_view.png"))
+        btn_view.setIcon(QtGui.QIcon("../Gui/Resources/file_view.png"))
         btn_view.setIconSize(QtCore.QSize(22, 22))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
@@ -184,7 +184,7 @@ class Ui_MainWindow(object):
         btn_download = QtWidgets.QPushButton()
         btn_download.setFixedHeight(34)
         btn_download.setFixedWidth(170)
-        btn_download.setIcon(QtGui.QIcon("../../Resources/download.png"))
+        btn_download.setIcon(QtGui.QIcon("../Gui/Resources/download.png"))
         btn_download.setIconSize(QtCore.QSize(22, 22))
         btn_download.setFont(font)
         btn_download.setStyleSheet("QPushButton {\n"
@@ -255,7 +255,7 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         font.setKerning(True)
         self.btn_search.setFont(font)
-        self.btn_search.setIcon(QtGui.QIcon("../../Resources/search_white.png"))
+        self.btn_search.setIcon(QtGui.QIcon("../Gui/Resources/search_white.png"))
         self.btn_search.setIconSize(QtCore.QSize(22,22))
         self.btn_search.setStyleSheet("QPushButton {\n"
                 "color: rgb(255, 255, 255);\n"

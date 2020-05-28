@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle("AIDS – Operation ")
 
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../Gui/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -416,7 +416,7 @@ class Ui_MainWindow(object):
         self.img_mapExp.setMinimumSize(QtCore.QSize(755, 211))
         self.img_mapExp.setMaximumSize(QtCore.QSize(755, 211))
         self.img_mapExp.setText("")
-        self.img_mapExp.setPixmap(QtGui.QPixmap("../../Resources/map-placeholder.jpg"))
+        self.img_mapExp.setPixmap(QtGui.QPixmap("../Gui/Resources/map-placeholder.jpg"))
         self.img_mapExp.setScaledContents(False)
         self.img_mapExp.setObjectName("img_mapExp")
         self.lbl_expeditionLogs = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -516,7 +516,7 @@ class Ui_MainWindow(object):
         self.img_mapComparison.setMinimumSize(QtCore.QSize(755, 211))
         self.img_mapComparison.setMaximumSize(QtCore.QSize(755, 211))
         self.img_mapComparison.setText("")
-        self.img_mapComparison.setPixmap(QtGui.QPixmap("../../Resources/map-placeholder.jpg"))
+        self.img_mapComparison.setPixmap(QtGui.QPixmap("../Gui/Resources/map-placeholder.jpg"))
         self.img_mapComparison.setScaledContents(False)
         self.img_mapComparison.setObjectName("img_mapComparison")
 
