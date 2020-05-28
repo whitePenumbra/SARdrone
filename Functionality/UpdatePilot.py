@@ -5,7 +5,7 @@ from Gui.Administrator.UpdatePilot import UpdatePilotAlt
 from Functionality.UpdatePopUps import updateSuccessClass,updateErrorClass,cancelUpdateClass,confirmPopupClass
 from Functionality.Test import testClass
 from ConnectToDB import connectToDB
-import datetime
+from PyQt5.QtWidgets import QFileDialog
 
 class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
     def __init__(self,result,parent):
@@ -236,7 +236,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
     def openFileNameDialog(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self,"Change Image", "","All Files (*);;Python Files (*.py)", options=options)
         if fileName:
             print(fileName)
             self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")

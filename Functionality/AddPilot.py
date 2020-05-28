@@ -274,7 +274,7 @@ Password: %s
     def openFileNameDialog(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self,"Add Image", "","All Files (*);;Python Files (*.py)", options=options)
         if (fileName):
             print(fileName)
             self.lbl_profilePic.setStyleSheet("border-image:url(fileName);")

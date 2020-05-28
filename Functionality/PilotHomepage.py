@@ -1,4 +1,4 @@
-import sys, os, cv2, datetime
+import sys, os, cv2, datetime, re
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget, 
@@ -8,6 +8,7 @@ from Gui.Pilot.Homepage import Homepage
 from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from Gui.NewUser import newUser, NewUserSuccess
+from PilotOperations import pilotOperationClass
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -89,6 +90,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     
     def operations(self):
         print('Pilot Operations button')
+        self.operations = pilotOperationClass(parent=self)
+        self.operations.show()
+        self.close()
     
     def logout(self):
         self.close()
@@ -214,20 +218,20 @@ class changePasswordClass(QtWidgets.QMainWindow, newUser.Ui_MainWindow):
                     conn.commit()
 
                     self.changeSuccess = changeSuccessClass(parent=self)
-                    self.changeSuccess.exec_()
+                    self.changeSuccess.show()
                 except Exception as e:
                     print(e)
 
                 self.parent.audit("Pilot " + str(user[0][0]) + " changed his password.")
 
-            self.close()
+                self.close()
     
     def validatePassword(self):
         password = self.txtNewPass.text()
 
         if len(password) < 8:
             self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
-            self.lbl_error.setText("Make sure your password is at lest 8 letters")
+            self.lbl_error.setText("Make sure your password is at least 8 letters")
             return(False)
         elif re.search('[0-9]',password) is None:
             self.lbl_error.setStyleSheet("QLabel {\ncolor: red; padding-left: 4px}")
