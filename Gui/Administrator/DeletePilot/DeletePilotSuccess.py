@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.btn_OK = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_OK.setGeometry(QtCore.QRect(203, 148, 131, 31))
+        self.btn_OK.setGeometry(QtCore.QRect(200, 145, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
         font = QtGui.QFont()
@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
 "")
         self.btn_OK.setObjectName("btn_OK")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(40, 10, 461, 121))
+        self.layoutWidget.setGeometry(QtCore.QRect(60, 10, 421, 121))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -98,7 +98,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Delete Pilot Success"))
         self.btn_OK.setText(_translate("MainWindow", "OK"))
         self.lbl_success.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\">Successfully removed Pilot ID:</span></p></body></html>"))
-        self.lbl_success_2.setText(_translate("MainWindow", "<html><head/><body><p></p></body></html>"))
+        self.lbl_success_2.setText(_translate("MainWindow", "<html><head/><body><p>10</p></body></html>"))
 
 
 if __name__ == "__main__":

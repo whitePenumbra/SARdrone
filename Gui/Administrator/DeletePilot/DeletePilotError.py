@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.btn_OK = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_OK.setGeometry(QtCore.QRect(200, 148, 131, 31))
+        self.btn_OK.setGeometry(QtCore.QRect(200, 145, 131, 31))
         self.btn_OK.setMinimumSize(QtCore.QSize(131, 31))
         self.btn_OK.setMaximumSize(QtCore.QSize(131, 31))
         font = QtGui.QFont()
@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
 "")
         self.btn_OK.setObjectName("btn_OK")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(65, 10, 401, 121))
+        self.layoutWidget.setGeometry(QtCore.QRect(70, 10, 391, 121))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -98,7 +98,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Delete Pilot Error"))
         self.btn_OK.setText(_translate("MainWindow", "OK"))
         self.lbl_success.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#2c365d;\">Failed to delete Pilot ID:</span></p></body></html>"))
-        self.lbl_success_2.setText(_translate("MainWindow", "<html><head/><body><p>10</p></body></html>"))
+        self.lbl_success_2.setText(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
 
 
 if __name__ == "__main__":
