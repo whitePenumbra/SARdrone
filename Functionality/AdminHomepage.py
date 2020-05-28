@@ -3,11 +3,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.Homepage import HomepageAlt
 from Gui.Administrator.ViewPilot import ViewPilotAlt
-from Gui.Administrator.DeletePilot import DeletePilotError
-from Gui.Administrator.DeletePilot import DeletePilotSuccess
 from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
+from DeletePilot import deleteClass, deleteSuccessClass, deleteErrorClass
 from ConnectToDB import connectToDB
 from Operations import operationClass
 
@@ -71,11 +70,16 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.initializeData()
         self.show()
     
-    def softDelete(self):
-        print('del')
+    def deletes(self):
         button = self.sender()
-        row = self.table_pilots.indexAt(button.pos()).row()
+        self.rows = self.table_pilots.indexAt(button.pos()).row()
 
+        print("Call delete class")
+        self.deleteData = deleteClass(parent=self)
+        self.deleteData.show()
+    
+    def softDelete(self, row):
+        print("Soft Delete:I was called")
         tempID = self.table_pilots.item(row,0).text()[3:]
         self.pilotID = int(tempID)
 
@@ -92,7 +96,6 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
             self.deleteSuccess = deleteSuccessClass(parent=self)
             self.deleteSuccess.show()
-
             self.deleteSuccess.activateWindow()
         except Exception as e:
             self.deleteError = deleteErrorClass(parent=self)
@@ -101,7 +104,6 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             print(e)
 
         self.audits("Admin deleted pilot " + firstName + " " + lastName)
-
         self.initializeData()
 
     def view(self):
@@ -162,7 +164,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             self.btn_view = QtWidgets.QPushButton()
             self.btn_view.clicked.connect(self.view)
             self.btn_delete = QtWidgets.QPushButton()
-            self.btn_delete.clicked.connect(self.softDelete)
+            self.btn_delete.clicked.connect(self.deletes)
             # buttonDict["btn_view{0}".format(i)] = QtWidgets.QPushButton()
             # buttonDict["btn_delete{0}".format(i)] = QtWidgets.QPushButton()
             #btn_view.setText('View')
@@ -263,27 +265,3 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
         cur.execute(query,values)
         conn.commit()
-
-class deleteSuccessClass(QtWidgets.QMainWindow, DeletePilotSuccess.Ui_MainWindow):
-    def __init__(self,parent):
-        super(QtWidgets.QMainWindow,self).__init__(parent)
-        self.setupUi(self)
-        self.parent = parent
-
-        self.btn_OK.clicked.connect(self.goBack)
-
-        self.lbl_ID.setText(str(self.parent.pilotID))
-
-    def goBack(self):
-        self.close()
-
-class deleteErrorClass(QtWidgets.QMainWindow, DeletePilotError.Ui_MainWindow):
-    def __init__(self,parent):
-        super(QtWidgets.QMainWindow,self).__init__(parent)
-        self.setupUi(self)
-        self.parent = parent
-
-        self.btn_OK.clicked.connect(self.goBack)
-
-    def goBack(self):
-        self.close()

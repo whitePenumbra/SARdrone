@@ -445,7 +445,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.checkContent()
 
     def checkMobile(self):
-        if (self.txt_mobile.text() == ''):
+        if (len(self.txt_mobile.text()) < 11 or self.txt_mobile.text() == ''):
             self.txt_mobile.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
         else:
             self.txt_mobile.setStyleSheet("padding-left: 4px;")
@@ -461,7 +461,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.checkContent()
 
     def checkEmNumber(self):
-        if (self.txt_emNumber.text() == ''):
+        if (len(self.txt_emNumber.text()) < 11 or self.txt_emNumber.text() == ''):
             self.txt_emNumber.setStyleSheet("QLineEdit {\nborder: 1.2px solid red; padding-left: 4px}")
         else:
             self.txt_emNumber.setStyleSheet("padding-left: 4px;")
@@ -485,7 +485,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
             self.checkContent()
     
     def checkContent(self):
-        if (self.txt_fname.text() == '' or self.txt_lname.text() == ''
+        if (len(self.txt_mobile.text()) < 11 or len(self.txt_emNumber.text()) < 11
+        or self.txt_fname.text() == '' or self.txt_lname.text() == ''
         or self.txt_address.text() == '' or self.txt_city.text() == '' 
         or self.txt_province.text() == '' or self.txt_zip.text() == '' 
         or self.txt_email.text() == '' or self.txt_mobile.text() == '' 
