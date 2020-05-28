@@ -62,9 +62,11 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_emNumber.setValidator(onlyInt)
 
         rx = QtCore.QRegExp("^[a-zA-Z]+$")
-        stringOnly = QtGui.QRegExpValidator(rx)
-        self.txt_fname.setValidator(stringOnly)
-        self.txt_lname.setValidator(stringOnly)
+        letterOnly = QtGui.QRegExpValidator(rx)
+        self.txt_fname.setValidator(letterOnly)
+        self.txt_lname.setValidator(letterOnly)
+        self.txt_emContact.setValidator(letterOnly)
+        self.txt_operator.setValidator(letterOnly)
 
         day=0
         self.cmb_day.addItem('')
