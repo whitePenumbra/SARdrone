@@ -53,7 +53,13 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.rbtn_male.clicked.connect(self.checkContent)
 
         self.txt_zip.setMaxLength(4)
+        self.txt_mobile.setMaxLength(11)
+        self.txt_emNumber.setMaxLength(11)
         self.txt_address.setMaxLength(255)
+
+        onlyInt = QtGui.QIntValidator()
+        self.txt_mobile.setValidator(onlyInt)
+        self.txt_emNumber.setValidator(onlyInt)
 
         day=0
         self.cmb_day.addItem('')
@@ -86,11 +92,11 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.cmb_issue_month.addItems(monthList)
         self.cmb_expiry_month.addItems(monthList)
 
-        year=1970
+        year=2016
         self.cmb_year.addItem('')
         self.cmb_issue_year.addItem('')
         self.cmb_expiry_year.addItem('')
-        while year < 2021:
+        while year < 2024:
             self.cmb_year.addItem(str(year))
             self.cmb_issue_year.addItem(str(year))
             self.cmb_expiry_year.addItem(str(year))

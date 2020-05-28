@@ -35,6 +35,12 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
 
         self.txt_address.setMaxLength(255)
         self.txt_zip.setMaxLength(4)
+        self.txt_mobile.setMaxLength(11)
+        self.txt_emNumber.setMaxLength(11)
+
+        onlyInt = QtGui.QIntValidator()
+        self.txt_mobile.setValidator(onlyInt)
+        self.txt_emNumber.setValidator(onlyInt)
 
         addressTuple = self.parent.getAddress(result)
 
@@ -81,8 +87,8 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.cmb_issue_month.addItems(monthList)
         self.cmb_expiry_month.addItems(monthList)
 
-        year=1970
-        while year < 2021:
+        year=2016
+        while year < 2024:
             self.cmb_year.addItem(str(year))
             self.cmb_issue_year.addItem(str(year))
             self.cmb_expiry_year.addItem(str(year))
