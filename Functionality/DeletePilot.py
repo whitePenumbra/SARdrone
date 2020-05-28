@@ -29,7 +29,7 @@ class deleteSuccessClass(QtWidgets.QMainWindow, DeletePilotSuccess.Ui_MainWindow
         self.parent = parent
 
         self.btn_OK.clicked.connect(self.goBack)
-        self.lbl_ID.setText(str(self.parent.pilotID))
+        self.lbl_success_2.setText(str(self.parent.pilotID))
 
     def goBack(self):
         self.close()
