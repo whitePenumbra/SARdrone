@@ -82,21 +82,21 @@ border: none;
 </string>
     </property>
     <property name="text">
-     <string>Dismiss</string>
+     <string>OK</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>20</y>
-      <width>481</width>
-      <height>123</height>
+      <width>461</width>
+      <height>121</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="img_success">
        <property name="text">
         <string/>
        </property>
@@ -109,19 +109,19 @@ border: none;
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLabel" name="lbl_success">
          <property name="minimumSize">
           <size>
-           <width>350</width>
-           <height>49</height>
+           <width>342</width>
+           <height>31</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>350</width>
-           <height>49</height>
+           <width>342</width>
+           <height>31</height>
           </size>
          </property>
          <property name="font">
@@ -131,7 +131,7 @@ border: none;
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#2c365d;&quot;&gt;Successfully removed Pilot ID:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#2c365d;&quot;&gt;Successfully removed Pilot ID:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -139,17 +139,17 @@ border: none;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="lbl_ID">
+        <widget class="QLabel" name="lbl_success_2">
          <property name="minimumSize">
           <size>
-           <width>121</width>
-           <height>49</height>
+           <width>81</width>
+           <height>31</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>121</width>
-           <height>49</height>
+           <width>81</width>
+           <height>31</height>
           </size>
          </property>
          <property name="font">
@@ -158,8 +158,11 @@ border: none;
            <pointsize>19</pointsize>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(44, 54, 93);</string>
+         </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#2c365d;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
