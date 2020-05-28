@@ -77,7 +77,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         row = self.table_pilots.indexAt(button.pos()).row()
 
         tempID = self.table_pilots.item(row,0).text()[3:]
-        pilotID = int(tempID)
+        self.pilotID = int(tempID)
 
         lastName = self.table_pilots.item(row,1).text()
         firstName = self.table_pilots.item(row,2).text()
@@ -86,8 +86,8 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             conn = connectToDB()
             cur = conn.cursor()
 
-            print(str(pilotID) + " " + firstName + " " + lastName)
-            cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s" AND user_id = "%s"' % (firstName, lastName, pilotID))
+            print(str(self.pilotID) + " " + firstName + " " + lastName)
+            cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s" AND user_id = "%s"' % (firstName, lastName, self.pilotID))
             conn.commit()
 
             self.deleteSuccess = deleteSuccessClass(parent=self)
@@ -268,6 +268,8 @@ class deleteSuccessClass(QtWidgets.QMainWindow, DeletePilotSuccess.Ui_MainWindow
         self.parent = parent
 
         self.btn_OK.clicked.connect(self.goBack)
+
+        self.lbl_ID.setText(str(self.parent.pilotID))
 
     def goBack(self):
         self.close()
