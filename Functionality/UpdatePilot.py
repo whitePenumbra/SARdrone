@@ -3,7 +3,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
 from Gui.Administrator.UpdatePilot import UpdatePilotAlt
 from Functionality.UpdatePopUps import updateSuccessClass,updateErrorClass,cancelUpdateClass,confirmPopupClass
-from Functionality.Test import testClass
 from ConnectToDB import connectToDB
 from PyQt5.QtWidgets import QFileDialog
 
