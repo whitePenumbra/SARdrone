@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>871</width>
+    <height>1649</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>871</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>871</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>431</width>
+      <height>57</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="header_layout">
+     <item>
+      <widget class="QLabel" name="lbl_ops">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>31</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Pilot Comparison Form</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>140</y>
+      <width>411</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="opsdeets1_layout">
+     <item>
+      <layout class="QHBoxLayout" name="opsid_layout">
+       <item>
+        <widget class="QLabel" name="lbl_opsid_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#434343;&quot;&gt;Operation ID : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_opsID">
+         <property name="minimumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="droneid_layout">
+       <item>
+        <widget class="QLabel" name="lbl_droneid_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Drone ID :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_droneID">
+         <property name="minimumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="pilotid_layout">
+       <item>
+        <widget class="QLabel" name="lbl_pilotid_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Pilot ID : </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_pilotID">
+         <property name="minimumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="piltoname_layout">
+       <item>
+        <widget class="QLabel" name="lbl_pilotname_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Pilot Name : </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_pilotName">
+         <property name="minimumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="coPilotID_layout">
+       <item>
+        <widget class="QLabel" name="lbl_coID_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Co-Pilot ID :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_coID">
+         <property name="minimumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="coPilotName_layout">
+       <item>
+        <widget class="QLabel" name="lbl_coPilotName_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Co-Pilot Name : </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_coName">
+         <property name="minimumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>281</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>140</y>
+      <width>341</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="opsdeets2_layout">
+     <item>
+      <layout class="QHBoxLayout" name="location_layout">
+       <item>
+        <widget class="QLabel" name="lbl_location_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Location :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_location">
+         <property name="minimumSize">
+          <size>
+           <width>229</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>231</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="date_layout">
+       <item>
+        <widget class="QLabel" name="lbl_date_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Date :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_date">
+         <property name="minimumSize">
+          <size>
+           <width>229</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>231</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="timeStart_layout">
+       <item>
+        <widget class="QLabel" name="lbl_timeStart_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Time Started :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_timeStart">
+         <property name="minimumSize">
+          <size>
+           <width>229</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>231</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="timeEnd_layout">
+       <item>
+        <widget class="QLabel" name="lbl_timeEnd">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(68, 68, 68);</string>
+         </property>
+         <property name="text">
+          <string>Time Ended :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_timeEnd">
+         <property name="minimumSize">
+          <size>
+           <width>229</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>231</width>
+           <height>31</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>580</y>
+      <width>791</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_droneReport">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>610</y>
+      <width>331</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica</family>
+      <pointsize>22</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Drone Generated Report</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>740</y>
+      <width>221</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="totalObjFound_layout">
+     <item>
+      <widget class="QLabel" name="lbl_totalObjFound_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Total Objects Found :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_totalObjFound">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>670</y>
+      <width>341</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="flightduration_layout">
+     <item>
+      <widget class="QLabel" name="lbl_flightduration_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Flight Duration :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_flightDuration">
+       <property name="minimumSize">
+        <size>
+         <width>171</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>171</width>
+         <height>31</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>670</y>
+      <width>341</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="battery_layout">
+     <item>
+      <widget class="QLabel" name="lbl_battery_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Battery Capacity :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_battery">
+       <property name="minimumSize">
+        <size>
+         <width>191</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>191</width>
+         <height>31</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="table_exLog">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1100</y>
+      <width>781</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="rowCount">
+     <number>5</number>
+    </property>
+    <property name="columnCount">
+     <number>2</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column/>
+    <column/>
+   </widget>
+   <widget class="QLabel" name="img_mapExp">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>860</y>
+      <width>781</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>781</width>
+      <height>211</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>781</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../Resources/map-placeholder.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_expeditionLogs">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>800</y>
+      <width>211</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica</family>
+      <pointsize>19</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>[ Expedition Logs ]</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_7">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>1400</y>
+      <width>231</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="totalObjCount">
+     <item>
+      <widget class="QLabel" name="lbl_totalObjCount_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Updated Total Count :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_totalObjCount">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="lbl_missedCount">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1340</y>
+      <width>251</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica</family>
+      <pointsize>19</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>[ Missed Count Logs ]</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_comparison">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1280</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica</family>
+      <pointsize>22</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pilot Comparison Form</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_8">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1400</y>
+      <width>251</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="missedobj_layout">
+     <item>
+      <widget class="QLabel" name="lbl_missedobj_2">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Missed Object Counts :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_missedObj">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="table_comparison">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1500</y>
+      <width>781</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="rowCount">
+     <number>2</number>
+    </property>
+    <property name="columnCount">
+     <number>2</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <column/>
+    <column/>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_9">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>20</y>
+      <width>361</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="lbl_user_3">
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_logout_3">
+       <property name="minimumSize">
+        <size>
+         <width>121</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>121</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: rgb(0, 0, 0);
+	background-color: rgb(202, 202, 202);
+border: 1.2px solid #ABABAB;
+outline: none;}
+
+QPushButton:hover{
+color: rgb(255, 255, 255);
+background-color: rgb(171, 171, 171);
+outline: none;
+border: none;
+}
+
+QPushButton:pressed{
+color: rgb(255, 255, 255);
+background-color: rgb(129, 129, 129);
+outline: none;
+border: none;
+}
+
+
+</string>
+       </property>
+       <property name="text">
+        <string>Logout</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="btn_addLog">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1450</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>121</width>
+      <height>31</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>121</width>
+      <height>31</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgb(102, 187, 106);
+color: rgb(255, 255, 255);
+border: 1.2px solid #43A047;
+outline: none;}
+
+QPushButton:hover{
+	background-color: rgb(67, 160, 71);
+outline: none;
+border: none;
+}
+
+QPushButton:pressed{
+	background-color: rgb(56, 142, 60);
+outline: none;
+border: none;
+}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Add Log</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_submit">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>1600</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>131</width>
+      <height>31</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>131</width>
+      <height>31</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgb(255, 176, 6);
+border: 1.2px solid #ff9d07;
+outline: none;}
+
+QPushButton:hover{
+background-color: rgb(255, 157, 7);
+outline: none;
+border: none;
+}
+
+QPushButton:pressed{
+background-color: rgb(254, 140, 8);
+outline: none;
+border: none;
+}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Submit</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_10">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>740</y>
+      <width>231</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="totalWaypoint_layout">
+     <item>
+      <widget class="QLabel" name="lbl_totalWaypoint">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(68, 68, 68);</string>
+       </property>
+       <property name="text">
+        <string>Number of Waypoints :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_totalWaypoint">
+       <property name="minimumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>51</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>btn_logout_3</tabstop>
+  <tabstop>txt_opsID</tabstop>
+  <tabstop>txt_droneID</tabstop>
+  <tabstop>txt_pilotID</tabstop>
+  <tabstop>txt_pilotName</tabstop>
+  <tabstop>txt_coID</tabstop>
+  <tabstop>txt_coName</tabstop>
+  <tabstop>txt_location</tabstop>
+  <tabstop>txt_date</tabstop>
+  <tabstop>txt_timeStart</tabstop>
+  <tabstop>txt_timeEnd</tabstop>
+  <tabstop>txt_flightDuration</tabstop>
+  <tabstop>txt_battery</tabstop>
+  <tabstop>txt_totalObjFound</tabstop>
+  <tabstop>table_exLog</tabstop>
+  <tabstop>txt_missedObj</tabstop>
+  <tabstop>txt_totalObjCount</tabstop>
+  <tabstop>btn_addLog</tabstop>
+  <tabstop>table_comparison</tabstop>
+  <tabstop>btn_submit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
