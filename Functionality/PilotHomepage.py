@@ -9,6 +9,7 @@ from ConnectToDB import connectToDB
 from Encryption import AESCipher
 from Gui.NewUser import newUser, NewUserSuccess
 from PilotOperations import pilotOperationClass
+from PilotViewProfile import pilotViewClass
 
 
 class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
@@ -87,6 +88,9 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
 
     def view(self):
         print('Pilot View button')
+        self.viewPilot = pilotViewClass(parent=self)
+        self.viewPilot.show()
+        self.close()
     
     def operations(self):
         print('Pilot Operations button')
@@ -111,25 +115,6 @@ class pilothomepageClass(QtWidgets.QMainWindow, Homepage.Ui_MainWindow):
     def getPilot(self):
         self.currentUser = self.parent.getUser()
         return(self.currentUser)
-
-    # def getPilotInfo(self):
-    #     conn = connectToDB()
-    #     cur = conn.cursor()
-
-    #     query = "SELECT * FROM users WHERE user_id = %s AND user_type = %s"
-    #     values = (self.currentUser[0][0], self.currentUser[0][2])
-
-    #     cur.execute(query,values)
-    #     currentUserInfo = cur.fetchall()
-
-    #     return (currentUserInfo)
-    
-    # def getPilotAddress(self, userInfo):
-    #     if (not userInfo):
-    #         cur.execute('SELECT * FROM address WHERE address_id = "%s"' % (userInfo[0][1],))
-    #         currentUserAddress = cur.fetchall()
-
-    #         return (currentUserAddress)
 
     def firstLogin(self):
         self.getPilot()

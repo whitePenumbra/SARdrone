@@ -11,8 +11,6 @@ class viewOperationClass(QtWidgets.QMainWindow, OperationDetails.Ui_MainWindow):
         self.parent = parent
 
         self.info = self.getData()
-        print("asdasdasdasdasdasda")
-        print(self.info[0])
         self.compData = self.compareData()
         self.mainPilotInfo = self.getMainPilot()
         self.coPilotInfo = self.getCoPilot()

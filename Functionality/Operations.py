@@ -11,6 +11,9 @@ class operationClass(QtWidgets.QMainWindow, OperationRecordsAlt.Ui_MainWindow):
         self.setupUi(self)
         self.parent = parent
 
+        self.btn_logout.clicked.connect(self.logout)
+        self.btn_back.clicked.connect(self.cancel)
+
         self.initializeData()
 
     def search(self):
@@ -23,8 +26,8 @@ class operationClass(QtWidgets.QMainWindow, OperationRecordsAlt.Ui_MainWindow):
         if (toSearch != "" or toSearch.startswith('OP-')):
             if (toSearch.startswith('OP-') or toSearch.startswith('op-')):
                 toSearch = toSearch[3:]
-            cur.execute('SELECT user_id,last_name,first_name from users WHERE '
-            'user_id = "%s" OR last_name = "%s" OR first_name = "%s"' % (toSearch,toSearch,toSearch))
+            cur.execute('SELECT ops_id, ops_location, time_start from users WHERE '
+            'ops_id = "%s" OR ops_location = "%s" OR time_start = "%s"' % (toSearch,toSearch,toSearch))
             result = cur.fetchall()
             self.getData(result)
         else:
@@ -36,7 +39,7 @@ class operationClass(QtWidgets.QMainWindow, OperationRecordsAlt.Ui_MainWindow):
 
     def logout(self):
         self.close()
-        self.parent.showself()
+        self.parent.logout()
 
     def initializeData(self):
         con = connectToDB()
