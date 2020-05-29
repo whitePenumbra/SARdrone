@@ -24,7 +24,7 @@ class viewOperationClass(QtWidgets.QMainWindow, OperationDetails.Ui_MainWindow):
         self.lbl_flightduration.setText(str(self.info[4]))
         self.lbl_totalObjFound.setText(str(self.info[5]))
         self.lbl_battery.setText(str(self.info[6]))
-        # self.lbl_date.setText(self.info[7].strftime("%B%d%Y"))
+        self.lbl_date.setText(self.info[7].strftime("%B %d, %Y"))
 
         self.lbl_missedobj.setText(str(self.compData[2]))
         self.lbl_totalObjCount.setText(str(self.compData[3]))

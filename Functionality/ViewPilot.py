@@ -4,6 +4,7 @@ sys.path.append('..')
 from Gui.Administrator.ViewPilot import ViewPilotAlt
 from ConnectToDB import connectToDB
 from UpdatePilot import updateClass
+from AdminViewPilotHistory import adminViewHistory
 
 class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
     def __init__(self,parent):
@@ -80,6 +81,9 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
 
     def pastOps(self):
         print('past')
+        self.pilotHistory = adminViewHistory(parent=self)
+        self.pilotHistory.show()
+        self.close()
     
     def getData(self):
         userTuple = self.parent.getInfo()
