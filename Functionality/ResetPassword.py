@@ -38,7 +38,7 @@ class resetPassClass(QtWidgets.QMainWindow, resetpassword.Ui_MainWindow):
         cur = conn.cursor()
 
         self.newPass = self.txtNewPass.text()
-        if (self.validatePassword):
+        if (self.validatePassword()):
             encpass = AESCipher('aids').encrypt(self.newPass)
 
             query = "UPDATE users SET password = %s WHERE email = %s"
