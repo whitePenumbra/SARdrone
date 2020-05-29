@@ -1,22 +1,19 @@
-import sys, datetime
+import sys, datetime, smtplib, ssl, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
-from Gui.Administrator.ViewPilot import ViewPilotAlt
 from ConnectToDB import connectToDB
-from UpdatePilot import updateClass
-from AdminViewPilotHistory import adminViewHistory
+from Gui.Pilot.ViewProfile import ViewProfile
 
-class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
+class pilotViewClass(QtWidgets.QMainWindow, ViewProfile.Ui_MainWindow):
     def __init__(self,parent):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
-        
-        self.btn_cancel.clicked.connect(self.cancel)
-        self.btn_pastops.clicked.connect(self.pastOps)
-        self.btn_update.clicked.connect(self.updateInfo)
 
-        self.result = self.getData()
+        self.btn_cancel.clicked.connect(self.goBack)
+
+        self.pilot = self.parent.currentUser[0]
+        self.getData()
         addressTuple = self.getAddress(self.result)
         self.getImage()
 
@@ -68,28 +65,6 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         self.lbl_issuedate.setText(self.result[8].strftime('%B %d, %Y'))
         self.lbl_expirydate.setText(self.result[9].strftime('%B %d, %Y'))
 
-        self.audit("Admin viewed " + str(self.result[4]) + " " + str(self.result[3]) + "'s profile")
-
-    def cancel(self):
-        self.parent.showself()
-        self.close()
-
-    def updateInfo(self):
-        self.updateForm = updateClass(self.result, parent=self)
-        self.updateForm.show()
-        self.hide()
-
-    def pastOps(self):
-        print('past')
-        self.pilotHistory = adminViewHistory(parent=self)
-        self.pilotHistory.show()
-        self.close()
-    
-    def getData(self):
-        userTuple = self.parent.getInfo()
-
-        return userTuple
-    
     def getAddress(self,result):
         conn = connectToDB()
         cur = conn.cursor() 
@@ -110,19 +85,16 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
             pixmap = QtGui.QPixmap.fromImage(image)
 
             self.lbl_profilePic.setPixmap(pixmap)
-    
-    def audit(self, message):
+
+    def getData(self):
         conn = connectToDB()
         cur = conn.cursor()
 
-        cur.execute("SELECT user_id FROM users WHERE user_type = 0")
-        result = cur.fetchall()
+        cur.execute('SELECT * FROM users WHERE user_id = %s', (str(self.pilot[0]),))
+        result1 = cur.fetchall()
 
-        uid = result[0][0]
-        currentTime = datetime.datetime.now()
+        self.result = result1[0]
 
-        query = "INSERT INTO audit(user_id, time, actions_made) VALUES (%s, %s, %s)"
-        values = (str(uid), currentTime, str(message))
-
-        cur.execute(query,values)
-        conn.commit()
+    def goBack(self):
+        self.close()
+        self.parent.show()

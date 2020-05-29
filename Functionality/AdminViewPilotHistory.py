@@ -1,32 +1,19 @@
 import sys, os, cv2, datetime
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget, 
-                             QLabel, QVBoxLayout)
-sys.path.append('..')
-from Gui.Pilot.PastOperations import PastOperations
 from ConnectToDB import connectToDB
+from Gui.Administrator.PilotOperationsHistory import PilotOpsAlt
 from ViewOperation import viewOperationClass
 
-class pilotOperationClass(QtWidgets.QMainWindow, PastOperations.Ui_MainWindow):
+class adminViewHistory(QtWidgets.QMainWindow, PilotOpsAlt.Ui_MainWindow):
     def __init__(self,parent):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
 
-        self.btn_logout.clicked.connect(self.logout)
-        self.btn_back.clicked.connect(self.back)
+        self.pilot = self.parent.result
 
-        self.pilot = self.parent.currentUser[0]
         self.initializeData()
-
-    def logout(self):
-        self.parent.logout()
-        self.close()
-    
-    def back(self):
-        self.close()
-        self.parent.show()
 
     def initializeData(self):
         con = connectToDB()

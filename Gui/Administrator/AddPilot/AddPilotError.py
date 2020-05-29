@@ -10,12 +10,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(531, 191)
-        Dialog.setMinimumSize(QtCore.QSize(531, 191))
-        Dialog.setMaximumSize(QtCore.QSize(531, 191))
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(531, 191)
+        MainWindow.setMinimumSize(QtCore.QSize(531, 191))
+        MainWindow.setMaximumSize(QtCore.QSize(531, 191))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../Gui/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -72,42 +72,23 @@ class Ui_Dialog(object):
 "\n"
 "")
         self.btn_OK.setObjectName("btn_OK")
-        self.widget = QtWidgets.QWidget(Dialog)
-        self.widget.setGeometry(QtCore.QRect(20, 9, 491, 121))
-        self.widget.setObjectName("widget")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.widget)
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label = QtWidgets.QLabel(self.widget)
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../../Resources/error.png"))
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.verticalLayout_3.addWidget(self.label)
-        self.lbl_error = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setFamily("Helvetica")
-        font.setPointSize(19)
-        self.lbl_error.setFont(font)
-        self.lbl_error.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbl_error.setObjectName("lbl_error")
-        self.verticalLayout_3.addWidget(self.lbl_error)
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Add Pilot Error"))
-        self.btn_OK.setText(_translate("Dialog", "OK"))
-        self.lbl_error.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">An error has occurred. Try again later</span></p></body></html>"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Add Pilot Error"))
+        self.lbl_error.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; color:#2c365d;\">An error has occurred. Try again later</span></p></body></html>"))
+        self.btn_OK.setText(_translate("MainWindow", "OK"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
