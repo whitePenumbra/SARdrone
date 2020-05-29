@@ -10,6 +10,8 @@ class operationClass(QtWidgets.QMainWindow, OperationRecordsAlt.Ui_MainWindow):
         self.setupUi(self)
         self.parent = parent
 
+        self.initializeData()
+
     def search(self):
         print('search')
         toSearch = self.searchbar.text()
@@ -34,3 +36,12 @@ class operationClass(QtWidgets.QMainWindow, OperationRecordsAlt.Ui_MainWindow):
     def logout(self):
         self.close()
         self.parent.showself()
+
+    def initializeData(self):
+        con = connectToDB()
+        cur = con.cursor()
+
+        cur.execute('SELECT * FROM operations')
+        result = cur.fetchall()
+
+        self.getData(result)
