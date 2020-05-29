@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget,
 sys.path.append('..')
 from Gui.Pilot.PastOperations import PastOperations
 from ConnectToDB import connectToDB
+from ViewOperation import viewOperationClass
 
 class pilotOperationClass(QtWidgets.QMainWindow, PastOperations.Ui_MainWindow):
     def __init__(self,parent):
@@ -56,7 +57,7 @@ class pilotOperationClass(QtWidgets.QMainWindow, PastOperations.Ui_MainWindow):
             else:
                 self.table_pilotOps.setItem(row,0, QtWidgets.QTableWidgetItem('OP-' + str(i[0])))
 
-            self.table_pilotOps.setItem(row,1, QtWidgets.QTableWidgetItem(i[2].strftime("%d %b %Y")))
+            self.table_pilotOps.setItem(row,1, QtWidgets.QTableWidgetItem(i[1].strftime("%d %B %Y")))
             # self.table_pilotOps.setItem(row,1, QtWidgets.QTableWidgetItem("0000-00-00"))
             self.table_pilotOps.setItem(row,2, QtWidgets.QTableWidgetItem(i[2]))
 
@@ -109,3 +110,28 @@ class pilotOperationClass(QtWidgets.QMainWindow, PastOperations.Ui_MainWindow):
 
     def view(self):
         print("asdasdasdasdasd")
+        self.viewing = viewOperationClass(parent=self)
+        self.viewing.show()
+        self.close()
+
+    def getInfo(self):
+        button = self.sender()
+        row = self.table_pilotOps.indexAt(button.pos()).row()
+
+        opsID = self.table_pilotOps.item(row,0).text()[3:]
+        location = self.table_pilotOps.item(row,2).text()
+        dateData = self.table_pilotOps.item(row,1).text()
+        date = datetime.datetime.strptime(dateData,"%d %B %Y") 
+
+        conn = connectToDB()
+        cur = conn.cursor()      
+
+        cur.execute('SELECT * FROM operations WHERE ops_location = "%s" AND ops_id = "%s"' % (location,int(opsID)))
+        result = cur.fetchall()
+        # print(result)
+
+        infoTuple = ((),)
+        for i in result:
+            infoTuple = i
+        
+        return (infoTuple)
