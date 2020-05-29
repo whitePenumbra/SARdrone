@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Pointer</title>
+  <meta charset='utf-8' />
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no"> 
+  <link rel="stylesheet" href="leaflet.css" />
+  <script src="leaflet.js"></script>
+</head>
+
+<style>
+
+#mapDiv {
+	position: absolute;
+	z-index:1;
+	top:0; 
+	bottom:0; 
+	right:0; 
+	left:0; 
+	overflow:hidden; 
+	background-color:grey;
+	}
+
+</style>
+
+<body>
+	<div  id="mapDiv" ></div>
+</body>
+<script src="qwebchannel.js"></script>
+<script>
+
+var MyChannel = null;
+new QWebChannel(qt.webChannelTransport, function(channel) {
+                MyChannel = channel.objects.MyChannel;
+});
+
+function onMapClick(e) {
+    var lat  = e.latlng.lat.toFixed(5);
+    var lon  = e.latlng.lng.toFixed(5);
+    var gps = "";
+    if (lat>0) gps+='N'; else gps+='S';
+    if (10>Math.abs(lat))  gps += "0";
+    gps += Math.abs(lat).toFixed(5)+" ";
+    if (lon>0) gps+='E'; else gps+='W';
+    if (10>Math.abs(lon))  gps += "0";
+    if (100>Math.abs(lon)) gps += "0";
+    gps += Math.abs(lon).toFixed(5);
+    var textArea = document.createElement("textarea");
+    textArea.value = gps;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'Successfully' : 'Unsuccessfully';
+      console.log(msg + ' copied ' + gps + ' to clipboard ');
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+    document.body.removeChild(textArea);
+    MyChannel.addWaypoint(textArea.value)
+}
+	
+var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+var osm = new L.TileLayer(osmUrl, {minZoom:2, maxZoom:19});
+
+var map = new L.Map('mapDiv', { doubleClickZoom:false, zoomControl:false, maxBounds:([[90,-270],[-90,270]]) });
+
+map.addLayer(osm);
+map.fitBounds([[0,-180],[0,180]]);
+map.on('click', onMapClick);
+	
+</script>
+
+</html>
