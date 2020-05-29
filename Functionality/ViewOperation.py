@@ -20,8 +20,8 @@ class viewOperationClass(QtWidgets.QMainWindow, OperationDetails.Ui_MainWindow):
         self.lbl_opsid.setText(str(self.info[0]))
         self.lbl_location.setText(str(self.info[1]))
 
-        self.lbl_timeStart.setText(self.info[2].strftime("%B %d %Y %H:%M:%S"))
-        self.lbl_timeEnd_2.setText(self.info[3].strftime("%B %d %Y %H:%M:%S"))
+        self.lbl_timeStart.setText(self.info[2].strftime("%H:%M:%S"))
+        self.lbl_timeEnd_2.setText(self.info[3].strftime("%H:%M:%S"))
 
         self.lbl_flightduration.setText(str(self.info[4]))
         self.lbl_totalObjFound.setText(str(self.info[5]))
