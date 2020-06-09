@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
         self.table_pilots.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.table_pilots.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.table_pilots.setRowCount(2)
-        self.table_pilots.setColumnCount(5)
+        self.table_pilots.setColumnCount(6)
         self.table_pilots.setObjectName("table_pilots")
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -102,7 +102,15 @@ class Ui_MainWindow(object):
         font.setBold(True)
         item.setFont(font)
         item.setBackground(QtGui.QColor(203, 203, 203))
-        self.table_pilots.setHorizontalHeaderLabels(["ID", "Last Name", "First Name", "View", "Delete"])
+        self.table_pilots.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(12)
+        font.setKerning(True)
+        font.setBold(True)
+        item.setFont(font)
+        item.setBackground(QtGui.QColor(203, 203, 203))
         self.table_pilots.setHorizontalHeaderItem(3, item)
         self.table_pilots.horizontalHeader().setVisible(True)
         self.table_pilots.horizontalHeader().setCascadingSectionResizes(False)
@@ -113,16 +121,18 @@ class Ui_MainWindow(object):
         self.table_pilots.verticalHeader().setSortIndicatorShown(False)
         self.table_pilots.verticalHeader().setStretchLastSection(False)
         self.table_pilots.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
-        self.table_pilots.setColumnWidth(0, 100)
-        self.table_pilots.setColumnWidth(1, 250)
-        self.table_pilots.setColumnWidth(2, 250)
-        self.table_pilots.setColumnWidth(3, 200)
+        self.table_pilots.setColumnWidth(0, 20)
+        self.table_pilots.setColumnWidth(1, 80)
+        self.table_pilots.setColumnWidth(2, 240)
+        self.table_pilots.setColumnWidth(3, 240)
         self.table_pilots.setColumnWidth(4, 200)
+        self.table_pilots.setColumnWidth(5, 200)
         self.table_pilots.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Fixed)
         self.table_pilots.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.Fixed)
         self.table_pilots.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.Fixed)
         self.table_pilots.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.Fixed)
         self.table_pilots.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.Fixed)
+        self.table_pilots.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.Fixed)
         # add bottom border for horizontal header
         self.table_pilots.horizontalHeader().setStyleSheet("QHeaderView::section{"
                    "border-top:0px solid #D8D8D8;"
@@ -176,7 +186,7 @@ class Ui_MainWindow(object):
         layout_view.addWidget(btn_view, 10)
 
         # delete button
-        layout = QtWidgets.QHBoxLayout()
+        layout_delbtn = QtWidgets.QHBoxLayout()
         btn_delete = QtWidgets.QPushButton()
         btn_delete.setFixedHeight(34)
         btn_delete.setFixedWidth(170)
@@ -184,38 +194,49 @@ class Ui_MainWindow(object):
         btn_delete.setIconSize(QtCore.QSize(22, 22))
         btn_delete.setFont(font)
         btn_delete.setStyleSheet("QPushButton {\n"
-                 "color: rgb(255, 255, 255);\n"
-                 "background-color: #E53935;\n"
-                 "border: 1.2px solid #D32F2F;\n"
-                 "outline: none;}\n"
-                 "\n"
-                 "QPushButton:hover{\n"
-                 "background-color: #D32F2F;\n"
-                 "outline: none;\n"
-                 "border: none;\n"
-                 "}\n"
-                 "\n"
-                 "QPushButton:pressed{\n"
-                 "    background-color: #C62828;\n"
-                 "outline: none;\n"
-                 "border: none;\n"
-                 "}\n"
-                 "\n"
-                 "\n"
-                 "")
+                                 "color: rgb(255, 255, 255);\n"
+                                 "background-color: #E53935;\n"
+                                 "border: 1.2px solid #D32F2F;\n"
+                                 "outline: none;}\n"
+                                 "\n"
+                                 "QPushButton:hover{\n"
+                                 "background-color: #D32F2F;\n"
+                                 "outline: none;\n"
+                                 "border: none;\n"
+                                 "}\n"
+                                 "\n"
+                                 "QPushButton:pressed{\n"
+                                 "    background-color: #C62828;\n"
+                                 "outline: none;\n"
+                                 "border: none;\n"
+                                 "}\n"
+                                 "\n"
+                                 "\n"
+                                 "")
         btn_delete.setCursor(QtCore.Qt.PointingHandCursor)
-        """layout.addStretch()"""
-        layout.addWidget(btn_delete, 10)
+        layout_delbtn.addWidget(btn_delete, 10)
+
+        # delete multiple
+        layout_delete = QtWidgets.QHBoxLayout()
+        cb_delete = QtWidgets.QCheckBox()
+        cb_delete.setCheckState(QtCore.Qt.Unchecked)
+        layout_delete.addWidget(cb_delete, 10)
+        layout_delete.setAlignment(QtCore.Qt.AlignCenter)
+        layout_delete.setContentsMargins(18, 0, 0, 0)
 
         cellWidget = QtWidgets.QWidget()
-        cellWidget.setLayout(layout)
+        cellWidget.setLayout(layout_delete)
 
         cellWidget_View = QtWidgets.QWidget()
         cellWidget_View.setLayout(layout_view)
 
+        cellWidget_Delete = QtWidgets.QWidget()
+        cellWidget_Delete.setLayout(layout_delbtn)
+
         # buttons placement
-        self.table_pilots.setCellWidget(0, 3, cellWidget_View)
-        self.table_pilots.setCellWidget(0, 4, cellWidget)
+        self.table_pilots.setCellWidget(0, 4, cellWidget_View)
+        self.table_pilots.setCellWidget(0, 5, cellWidget_Delete)
+        self.table_pilots.setCellWidget(0, 0, cellWidget)
 
         # remove select trigger
         self.table_pilots.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
@@ -285,6 +306,34 @@ class Ui_MainWindow(object):
                 "\n"
                 "")
         self.btn_add.setObjectName("btn_add")
+        self.btn_deleteall = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_deleteall.setGeometry(QtCore.QRect(160, 90, 150, 31))
+        self.btn_deleteall.setMinimumSize(QtCore.QSize(150, 31))
+        self.btn_deleteall.setMaximumSize(QtCore.QSize(150, 31))
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(11)
+        self.btn_deleteall.setFont(font)
+        self.btn_deleteall.setIcon(QtGui.QIcon("../Gui/Resources/trash_delete_2.png"))
+        self.btn_deleteall.setIconSize(QtCore.QSize(22, 22))
+        self.btn_deleteall.setStyleSheet("QPushButton {\n"
+                                         "color: rgb(255, 255, 255);\n"
+                                         "background-color: #E53935;\n"
+                                         "border: 1.2px solid #D32F2F;\n"
+                                         "outline: none;}\n"
+                                         "\n"
+                                         "QPushButton:hover{\n"
+                                         "background-color: #D32F2F;\n"
+                                         "outline: none;\n"
+                                         "border: none;\n"
+                                         "}\n"
+                                         "\n"
+                                         "QPushButton:pressed{\n"
+                                         "    background-color: #C62828;\n"
+                                         "outline: none;\n"
+                                         "border: none;\n"
+                                         "}")
+        self.btn_deleteall.setObjectName("btn_deleteall")
         self.lbl_registered = QtWidgets.QLabel(self.centralwidget)
         self.lbl_registered.setGeometry(QtCore.QRect(30, 20, 361, 61))
         font = QtGui.QFont()
@@ -428,16 +477,19 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AIDS – Home [Administrator]"))
         self.table_pilots.setSortingEnabled(True)
-        item = self.table_pilots.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "ID"))
         item = self.table_pilots.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Last Name"))
+        item.setText(_translate("MainWindow", "ID"))
         item = self.table_pilots.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "First Name"))
+        item.setText(_translate("MainWindow", "Last Name"))
         item = self.table_pilots.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "First Name"))
+        item = self.table_pilots.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "View"))
+        item = self.table_pilots.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Delete"))
         self.btn_operations.setText(_translate("MainWindow", "Access Previous Operations"))
         self.btn_add.setText(_translate("MainWindow", " Add Pilot"))
+        self.btn_deleteall.setText(_translate("MainWindow", " Delete Selected"))
         self.lbl_registered.setText(_translate("MainWindow", "Registered Pilots"))
         self.btn_search.setText(_translate("MainWindow", "Search"))
         self.btn_logout.setText(_translate("MainWindow", "Logout"))
