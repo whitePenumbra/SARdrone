@@ -150,14 +150,27 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         row = 0
         # buttonDict = {}
         for i in result:
+
+            # delete multiple
+            layout_delete = QtWidgets.QHBoxLayout()
+            cb_delete = QtWidgets.QCheckBox()
+            cb_delete.setCheckState(QtCore.Qt.Unchecked)
+            layout_delete.addWidget(cb_delete, 10)
+            layout_delete.setAlignment(QtCore.Qt.AlignCenter)
+            layout_delete.setContentsMargins(18, 0, 0, 0)
+
+            cellWidget = QtWidgets.QWidget()
+            cellWidget.setLayout(layout_delete)
+
+            self.table_pilots.setCellWidget(row,0,cellWidget)
             if (i[0] <= 9 and i[0] > 0):
-                self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
+                self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
             elif (i[0] > 9):
-                self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-0' + str(i[0])))
+                self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem('OP-0' + str(i[0])))
             else:
-                self.table_pilots.setItem(row,0, QtWidgets.QTableWidgetItem('OP-' + str(i[0])))
-            self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem(i[1]))
-            self.table_pilots.setItem(row,2, QtWidgets.QTableWidgetItem(i[2]))
+                self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem('OP-' + str(i[0])))
+            self.table_pilots.setItem(row,2, QtWidgets.QTableWidgetItem(i[1]))
+            self.table_pilots.setItem(row,3, QtWidgets.QTableWidgetItem(i[2]))
 
             #create buttons inside table cell
             layout = QtWidgets.QHBoxLayout()
@@ -229,8 +242,8 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             # self.cellWidget = QtWidgets.QWidget()
             # self.cellWidget.setLayout(layout)
 
-            self.table_pilots.setCellWidget(row,3,self.btn_view) #buttons placement
-            self.table_pilots.setCellWidget(row,4,self.btn_delete)
+            self.table_pilots.setCellWidget(row,4,self.btn_view) #buttons placement
+            self.table_pilots.setCellWidget(row,5,self.btn_delete)
             self.table_pilots.horizontalHeader().setStyleSheet( "QHeaderView::section{"
                 "border-top:0px solid #D8D8D8;"
                 "border-left:0px solid #D8D8D8;"
