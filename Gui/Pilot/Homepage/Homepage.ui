@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1071</width>
-    <height>739</height>
+    <width>1260</width>
+    <height>821</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1071</width>
-    <height>739</height>
+    <width>1260</width>
+    <height>821</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1071</width>
-    <height>739</height>
+    <width>1260</width>
+    <height>821</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>870</x>
       <y>20</y>
       <width>361</width>
       <height>33</height>
@@ -81,27 +81,22 @@
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-color: rgb(0, 0, 0);
-	background-color: rgb(202, 202, 202);
-border: 1.2px solid #ABABAB;
+color: rgb(255, 255, 255);
+background-color: #E53935;
+border: 1.2px solid #D32F2F;
 outline: none;}
 
 QPushButton:hover{
-color: rgb(255, 255, 255);
-background-color: rgb(171, 171, 171);
+background-color: #D32F2F;
 outline: none;
 border: none;
 }
 
 QPushButton:pressed{
-color: rgb(255, 255, 255);
-background-color: rgb(129, 129, 129);
+    background-color: #C62828;
 outline: none;
 border: none;
-}
-
-
-</string>
+}</string>
        </property>
        <property name="text">
         <string>Logout</string>
@@ -139,27 +134,25 @@ border: none;
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-color: rgb(0, 0, 0);
-	background-color: rgb(202, 202, 202);
-border: 1.2px solid #ABABAB;
+color: #009688;
+background-color: rgb(240, 240, 240);
+border: 2px solid #009688;
 outline: none;}
-
+                
 QPushButton:hover{
 color: rgb(255, 255, 255);
-background-color: rgb(171, 171, 171);
+background-color:#26A69A;
 outline: none;
 border: none;
 }
-
+                
 QPushButton:pressed{
-color: rgb(255, 255, 255);
-background-color: rgb(129, 129, 129);
+background-color: #00897B;
 outline: none;
 border: none;
 }
-
-
-</string>
+                
+                </string>
     </property>
     <property name="text">
      <string>View Profile</string>
@@ -194,27 +187,25 @@ border: none;
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-color: rgb(0, 0, 0);
-	background-color: rgb(202, 202, 202);
-border: 1.2px solid #ABABAB;
+color: #009688;
+background-color: rgb(240, 240, 240);
+border: 2px solid #009688;
 outline: none;}
-
+                
 QPushButton:hover{
 color: rgb(255, 255, 255);
-background-color: rgb(171, 171, 171);
+background-color:#26A69A;
 outline: none;
 border: none;
 }
-
+                
 QPushButton:pressed{
-color: rgb(255, 255, 255);
-background-color: rgb(129, 129, 129);
+background-color: #00897B;
 outline: none;
 border: none;
 }
-
-
-</string>
+                
+                </string>
     </property>
     <property name="text">
      <string>Past Operations</string>
@@ -225,7 +216,7 @@ border: none;
      <rect>
       <x>30</x>
       <y>80</y>
-      <width>1011</width>
+      <width>1201</width>
       <height>341</height>
      </rect>
     </property>
@@ -233,10 +224,10 @@ border: none;
    <widget class="QWidget" name="droneConsole" native="true">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>750</x>
       <y>430</y>
-      <width>401</width>
-      <height>291</height>
+      <width>481</width>
+      <height>371</height>
      </rect>
     </property>
    </widget>
@@ -245,16 +236,16 @@ border: none;
      <rect>
       <x>30</x>
       <y>430</y>
-      <width>401</width>
-      <height>291</height>
+      <width>481</width>
+      <height>371</height>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>480</y>
+      <x>550</x>
+      <y>520</y>
       <width>162</width>
       <height>181</height>
      </rect>
@@ -282,14 +273,14 @@ border: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-color: rgb(0, 0, 0);
-	background-color: rgb(202, 202, 202);
-border: 1.2px solid #ABABAB;
+color: rgb(212, 128, 0);
+background-color: rgb(240, 240, 240);
+border: 2px solid #FF9D07;
 outline: none;}
 
 QPushButton:hover{
-color: rgb(255, 255, 255);
-background-color: rgb(171, 171, 171);
+color: rgb(0,0,0);
+background-color: rgb(255, 176, 6);
 outline: none;
 border: none;
 }
@@ -331,27 +322,22 @@ border: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-color: rgb(0, 0, 0);
-	background-color: rgb(202, 202, 202);
-border: 1.2px solid #ABABAB;
-outline: none;}
+background-color: rgb(255, 176, 6);
+border: 1.2px solid #ff9d07;
+outline: none;
+}
 
 QPushButton:hover{
-color: rgb(255, 255, 255);
-background-color: rgb(171, 171, 171);
+background-color: rgb(255, 157, 7);
 outline: none;
 border: none;
 }
 
 QPushButton:pressed{
-color: rgb(255, 255, 255);
-background-color: rgb(129, 129, 129);
+background-color: rgb(254, 140, 8);
 outline: none;
 border: none;
-}
-
-
-</string>
+}</string>
        </property>
        <property name="text">
         <string>End Operation</string>

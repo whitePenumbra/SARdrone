@@ -13,16 +13,16 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1071, 739)
-        MainWindow.setMinimumSize(QtCore.QSize(1071, 739))
-        MainWindow.setMaximumSize(QtCore.QSize(1071, 739))
+        MainWindow.resize(1260, 821)
+        MainWindow.setMinimumSize(QtCore.QSize(1260, 821))
+        MainWindow.setMaximumSize(QtCore.QSize(1260, 821))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../Gui/Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../../Resources/logo_svg.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(680, 20, 361, 33))
+        self.layoutWidget.setGeometry(QtCore.QRect(870, 20, 361, 33))
         self.layoutWidget.setObjectName("layoutWidget")
         self.logout_layout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.logout_layout.setContentsMargins(0, 0, 0, 0)
@@ -122,16 +122,16 @@ class Ui_MainWindow(object):
 "                ")
         self.btn_pastOps.setObjectName("btn_pastOps")
         self.droneStream = QtWidgets.QWidget(self.centralwidget)
-        self.droneStream.setGeometry(QtCore.QRect(30, 80, 1011, 341))
+        self.droneStream.setGeometry(QtCore.QRect(30, 80, 1201, 341))
         self.droneStream.setObjectName("droneStream")
         self.droneConsole = QtWidgets.QWidget(self.centralwidget)
-        self.droneConsole.setGeometry(QtCore.QRect(640, 430, 401, 291))
+        self.droneConsole.setGeometry(QtCore.QRect(750, 430, 481, 371))
         self.droneConsole.setObjectName("droneConsole")
         self.droneMap = QtWidgets.QWidget(self.centralwidget)
-        self.droneMap.setGeometry(QtCore.QRect(30, 430, 401, 291))
+        self.droneMap.setGeometry(QtCore.QRect(30, 430, 481, 371))
         self.droneMap.setObjectName("droneMap")
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget1.setGeometry(QtCore.QRect(450, 480, 162, 181))
+        self.layoutWidget1.setGeometry(QtCore.QRect(550, 520, 162, 181))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.operations_layout = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.operations_layout.setContentsMargins(0, 0, 0, 0)
@@ -157,7 +157,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"background-color: rgb(254, 140, 8);\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(129, 129, 129);\n"
 "outline: none;\n"
 "border: none;\n"
 "}\n"
