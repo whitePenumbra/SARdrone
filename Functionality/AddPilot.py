@@ -242,6 +242,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             self.addError = addErrorClass(parent=self)
             self.addError.setWindowFlags(self.addError.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
             self.addError.show()
+            print(e)
         self.audit("Admin added pilot " + fname + " " + lname)
 
     def sendEmail(self):

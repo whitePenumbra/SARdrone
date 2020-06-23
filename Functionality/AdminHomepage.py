@@ -21,8 +21,11 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
         self.btn_audit.clicked.connect(self.openAudit)
+        self.btn_deleteall.clicked.connect(self.multipleDelete)
 
         self.initializeData()
+
+        self.strRow = ''
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return:
@@ -80,11 +83,11 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     
     def softDelete(self, row):
         print("Soft Delete:I was called")
-        tempID = self.table_pilots.item(row,0).text()[3:]
+        tempID = self.table_pilots.item(row,1).text()[3:]
         self.pilotID = int(tempID)
 
-        lastName = self.table_pilots.item(row,1).text()
-        firstName = self.table_pilots.item(row,2).text()
+        lastName = self.table_pilots.item(row,2).text()
+        firstName = self.table_pilots.item(row,3).text()
 
         try:
             conn = connectToDB()
@@ -105,6 +108,31 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
         self.audits("Admin deleted pilot " + firstName + " " + lastName)
         self.initializeData()
+    
+    def multipleSelect(self):
+        print('change state')
+        button = self.sender()
+        self.multipleRows = self.table_pilots.indexAt(button.pos()).row()
+        self.strRow += str(self.multipleRows)
+        self.tupleRow = tuple(self.strRow)
+        print(self.tupleRow)
+
+    def multipleDelete(self, rows):
+        print("I'm supposed to do something")
+        
+        i=0
+        strToDelete = ''
+        while(i<=self.table_pilots.rowCount()):
+            count = self.tupleRow.count(str(i))
+            print(count)
+            if (count%2 != 0):
+                strToDelete += str(i)
+            i+=1
+        tupleToDelete = tuple(strToDelete)
+        print(tupleToDelete)
+
+        for i in tupleToDelete:
+            self.softDelete(int(i))
 
     def view(self):
         print('view')
@@ -118,15 +146,18 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     def getInfo(self):
         button = self.sender()
         row = self.table_pilots.indexAt(button.pos()).row()
+        print("this is teh row")
+        print(row)
 
-        lastName = self.table_pilots.item(row,1).text()
-        firstName = self.table_pilots.item(row,2).text()  
+        lastName = self.table_pilots.item(row,2).text()
+        firstName = self.table_pilots.item(row,3).text()  
 
         conn = connectToDB()
         cur = conn.cursor()      
 
         cur.execute('SELECT * FROM users WHERE first_name = "%s" AND last_name = "%s"' % (firstName,lastName))
         result = cur.fetchall()
+
         # print(result)
 
         infoTuple = ((),)
@@ -148,21 +179,21 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.table_pilots.setRowCount(len(result))
         # print(result)
         row = 0
-        # buttonDict = {}
         for i in result:
 
             # delete multiple
             layout_delete = QtWidgets.QHBoxLayout()
-            cb_delete = QtWidgets.QCheckBox()
-            cb_delete.setCheckState(QtCore.Qt.Unchecked)
-            layout_delete.addWidget(cb_delete, 10)
+            self.cb_delete = QtWidgets.QCheckBox()
+            self.cb_delete.stateChanged.connect(self.multipleSelect)
+            self.cb_delete.setCheckState(QtCore.Qt.Unchecked)
+            layout_delete.addWidget(self.cb_delete, 10)
             layout_delete.setAlignment(QtCore.Qt.AlignCenter)
             layout_delete.setContentsMargins(18, 0, 0, 0)
 
-            cellWidget = QtWidgets.QWidget()
-            cellWidget.setLayout(layout_delete)
+            # self.cellWidget = QtWidgets.QWidget()
+            # self.cellWidget.setLayout(layout_delete)
 
-            self.table_pilots.setCellWidget(row,0,cellWidget)
+            self.table_pilots.setCellWidget(row,0,self.cb_delete)
             if (i[0] <= 9 and i[0] > 0):
                 self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
             elif (i[0] > 9):
@@ -178,16 +209,12 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             self.btn_view.clicked.connect(self.view)
             self.btn_delete = QtWidgets.QPushButton()
             self.btn_delete.clicked.connect(self.deletes)
-            # buttonDict["btn_view{0}".format(i)] = QtWidgets.QPushButton()
-            # buttonDict["btn_delete{0}".format(i)] = QtWidgets.QPushButton()
-            #btn_view.setText('View')
             self.btn_view.setFixedHeight(34)
             self.btn_delete.setFixedHeight(34)
             self.btn_delete.setIcon(QtGui.QIcon("../Gui/Resources/trash_delete_2.png"))
             self.btn_delete.setIconSize(QtCore.QSize(22,22))
             self.btn_view.setIcon(QtGui.QIcon("../Gui/Resources/file_view.png"))
             self.btn_view.setIconSize(QtCore.QSize(22,22))
-            #btn_delete.setText('Delete')
             font = QtGui.QFont()
             font.setFamily("Helvetica")
             font.setPointSize(11)
@@ -239,10 +266,8 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             layout.addWidget(self.btn_view,20)
             layout.addWidget(self.btn_delete,20)
 
-            # self.cellWidget = QtWidgets.QWidget()
-            # self.cellWidget.setLayout(layout)
-
-            self.table_pilots.setCellWidget(row,4,self.btn_view) #buttons placement
+            #button placement
+            self.table_pilots.setCellWidget(row,4,self.btn_view)
             self.table_pilots.setCellWidget(row,5,self.btn_delete)
             self.table_pilots.horizontalHeader().setStyleSheet( "QHeaderView::section{"
                 "border-top:0px solid #D8D8D8;"
