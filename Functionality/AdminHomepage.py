@@ -83,8 +83,11 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
     
     def softDelete(self, row):
         print("Soft Delete:I was called")
-        tempID = self.table_pilots.item(row,1).text()[3:]
-        self.pilotID = int(tempID)
+        print(str(row))
+        # tempID = self.table_pilots.item(row,1).text()[3:]
+        print(int(self.table_pilots.item(row,1).text()[3:]))
+        self.pilotID = int(self.table_pilots.item(row,1).text()[3:])
+        # self.pilotID = int(tempID)
 
         lastName = self.table_pilots.item(row,2).text()
         firstName = self.table_pilots.item(row,3).text()
@@ -131,8 +134,22 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         tupleToDelete = tuple(strToDelete)
         print(tupleToDelete)
 
-        for i in tupleToDelete:
-            self.softDelete(int(i))
+        if "0" in tupleToDelete:
+            for i in tupleToDelete:
+                iToInt = int(i)
+                if(iToInt > 0):
+                    iToInt -=1
+                print(iToInt)
+                self.softDelete(iToInt)
+        else:
+            counter = 0
+            for i in tupleToDelete:
+                iToInt = int(i)
+                if(counter > 0):
+                    iToInt -= 1
+                print(counter)
+                counter+=1
+                self.softDelete(iToInt)
 
     def view(self):
         print('view')
