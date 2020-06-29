@@ -47,6 +47,7 @@ class updateClass(QtWidgets.QMainWindow, UpdatePilotAlt.Ui_MainWindow):
         self.txt_address.setMaxLength(255)
         self.txt_zip.setMaxLength(4)
         self.txt_mobile.setMaxLength(11)
+        self.txt_certificate.setMaxLength(7)
         self.txt_emNumber.setMaxLength(11)
 
         rxInt = QtCore.QRegExp("^[0-9]+$")
