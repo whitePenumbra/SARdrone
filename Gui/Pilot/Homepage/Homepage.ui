@@ -390,7 +390,17 @@ border: none;
      <rect>
       <x>750</x>
       <y>430</y>
-      <width>481</width>
+      <width>231</width>
+      <height>371</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="droneConsole_2">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>430</y>
+      <width>231</width>
       <height>371</height>
      </rect>
     </property>

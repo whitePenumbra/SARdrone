@@ -222,8 +222,11 @@ class Ui_MainWindow(object):
         self.btn_PDF.setObjectName("btn_PDF")
         self.operations_layout.addWidget(self.btn_PDF)
         self.droneConsole = QtWidgets.QTextBrowser(self.centralwidget)
-        self.droneConsole.setGeometry(QtCore.QRect(750, 430, 481, 371))
+        self.droneConsole.setGeometry(QtCore.QRect(750, 430, 231, 371))
         self.droneConsole.setObjectName("droneConsole")
+        self.droneConsole_2 = QtWidgets.QTextBrowser(self.centralwidget)
+        self.droneConsole_2.setGeometry(QtCore.QRect(1000, 430, 231, 371))
+        self.droneConsole_2.setObjectName("droneConsole_2")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
