@@ -221,16 +221,6 @@ border: none;
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="droneConsole" native="true">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>430</y>
-      <width>481</width>
-      <height>371</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="droneMap" native="true">
     <property name="geometry">
      <rect>
@@ -247,7 +237,7 @@ border: none;
       <x>550</x>
       <y>520</y>
       <width>162</width>
-      <height>181</height>
+      <height>184</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="operations_layout">
@@ -394,6 +384,16 @@ border: none;
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QTextBrowser" name="droneConsole">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>430</y>
+      <width>481</width>
+      <height>371</height>
+     </rect>
+    </property>
    </widget>
   </widget>
  </widget>
