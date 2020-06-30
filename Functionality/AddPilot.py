@@ -54,6 +54,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_zip.setMaxLength(4)
         self.txt_mobile.setMaxLength(11)
         self.txt_emNumber.setMaxLength(11)
+        self.txt_certificate.setMaxLength(7)
         self.txt_address.setMaxLength(255)
 
         rxInt = QtCore.QRegExp("^[0-9]+$")
@@ -61,13 +62,14 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.txt_mobile.setValidator(onlyInt)
         self.txt_emNumber.setValidator(onlyInt)
         self.txt_zip.setValidator(onlyInt)
+        self.txt_certificate.setValidator(onlyInt)
 
-        rx = QtCore.QRegExp("^[a-zA-Z ]+$")
-        letterOnly = QtGui.QRegExpValidator(rx)
-        self.txt_fname.setValidator(letterOnly)
-        self.txt_lname.setValidator(letterOnly)
+        rxLetter = QtCore.QRegExp("^[a-zA-Z ]+$")
+        letterOnly = QtGui.QRegExpValidator(rxLetter)
         self.txt_emContact.setValidator(letterOnly)
         self.txt_operator.setValidator(letterOnly)
+        self.txt_fname.setValidator(letterOnly)
+        self.txt_lname.setValidator(letterOnly)
 
         day=0
         self.cmb_day.addItem('')
@@ -242,6 +244,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             self.addError = addErrorClass(parent=self)
             self.addError.setWindowFlags(self.addError.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
             self.addError.show()
+            print(e)
         self.audit("Admin added pilot " + fname + " " + lname)
 
     def sendEmail(self):
@@ -471,12 +474,12 @@ Password: %s
 
     def checkContent(self):
         if (len(self.txt_mobile.text()) < 11 or len(self.txt_emNumber.text()) < 11
-        or self.txt_fname.text() == '' or self.txt_lname.text() == ''
-        or self.txt_address.text() == '' or self.txt_city.text() == '' 
-        or self.txt_province.text() == '' or self.txt_zip.text() == '' 
+        or (self.txt_fname.text() == '' or self.txt_fname.text().isspace()) or (self.txt_lname.text() == '' or self.txt_lname.text().isspace())
+        or (self.txt_address.text() == '' or self.txt_address.text().isspace()) or (self.txt_city.text() == '' or self.txt_city.text().isspace())
+        or (self.txt_province.text() == '' or self.txt_province.text().isspace()) or self.txt_zip.text() == '' 
         or self.txt_email.text() == '' or self.txt_mobile.text() == '' 
-        or self.txt_emContact.text() == '' or self.txt_emNumber.text() == ''
-        or self.txt_certificate.text() == '' or self.txt_operator.text() == ''
+        or (self.txt_emContact.text() == '' or self.txt_emContact.text().isspace()) or self.txt_emNumber.text() == ''
+        or self.txt_certificate.text() == '' or (self.txt_operator.text() == '' or self.txt_operator.text().isspace())
         or self.cmb_day.currentText() == '' or self.cmb_month.currentText() == ''
         or self.cmb_year.currentText() == '' or self.cmb_issue_day.currentText() == ''
         or self.cmb_issue_month.currentText() == '' or self.cmb_issue_year.currentText() == ''

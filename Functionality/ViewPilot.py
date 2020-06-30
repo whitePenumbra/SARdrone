@@ -17,6 +17,7 @@ class viewClass(QtWidgets.QMainWindow, ViewPilotAlt.Ui_MainWindow):
         self.btn_update.clicked.connect(self.updateInfo)
 
         self.result = self.getData()
+        # print(self.result)
         addressTuple = self.getAddress(self.result)
         self.getImage()
 
