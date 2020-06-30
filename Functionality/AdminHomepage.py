@@ -6,7 +6,7 @@ from Gui.Administrator.ViewPilot import ViewPilotAlt
 from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
-from DeletePilot import deleteClass, deleteSuccessClass, deleteErrorClass
+from DeletePilot import deleteClass, deleteSuccessClass, deleteErrorClass, multipleDeleteClass, multipleSuccessClass
 from ConnectToDB import connectToDB
 from Operations import operationClass
 
@@ -21,7 +21,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
         self.btn_audit.clicked.connect(self.openAudit)
-        self.btn_deleteall.clicked.connect(self.multipleDelete)
+        self.btn_deleteall.clicked.connect(self.confirmMultiple)
 
         self.initializeData()
         self.btn_deleteall.setEnabled(False)
@@ -101,9 +101,9 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s" AND user_id = "%s"' % (firstName, lastName, self.pilotID))
             conn.commit()
 
-            self.deleteSuccess = deleteSuccessClass(parent=self)
-            self.deleteSuccess.show()
-            self.deleteSuccess.activateWindow()
+            # self.deleteSuccess = deleteSuccessClass(parent=self)
+            # self.deleteSuccess.show()
+            # self.deleteSuccess.activateWindow()
         except Exception as e:
             self.deleteError = deleteErrorClass(parent=self)
             self.deleteError.show()
@@ -125,7 +125,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         else:
             self.btn_deleteall.setEnabled(True)
 
-    def multipleDelete(self, rows):
+    def multipleDelete(self):
         print("I'm supposed to do something")
         i=0
         strToDelete = ''
@@ -139,7 +139,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
                 print('waht')
                 self.strRow = list(filter(lambda j: j != i , self.strRow))
             
-            if (not self.strRow == False)
+            if (not self.strRow == False):
                 self.strRow = list(set(self.strRow))
             i+=1
         self.strRow.sort(reverse=False)
@@ -164,7 +164,14 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         
         self.strRow = []
 
+        self.multipleSuccess = multipleSuccessClass(parent=self)
+        self.multipleSuccess.show()
+
         print('list refreshed')
+    
+    def confirmMultiple(self):
+        self.deleteMultiple = multipleDeleteClass(parent=self)
+        self.deleteMultiple.show()
 
     def view(self):
         print('view')
