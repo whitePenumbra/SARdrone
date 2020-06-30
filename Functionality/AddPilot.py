@@ -112,7 +112,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             year += 1
         
         birthYear=1970
-        while birthYear < 2021:
+        while birthYear < 2000:
             self.cmb_year.addItem(str(birthYear))
             birthYear += 1
 
