@@ -24,8 +24,9 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_deleteall.clicked.connect(self.multipleDelete)
 
         self.initializeData()
+        self.btn_deleteall.setEnabled(False)
 
-        self.strRow = ''
+        self.strRow = []
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return:
@@ -116,26 +117,36 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         print('change state')
         button = self.sender()
         self.multipleRows = self.table_pilots.indexAt(button.pos()).row()
-        self.strRow += str(self.multipleRows)
-        self.tupleRow = tuple(self.strRow)
-        print(self.tupleRow)
+        self.strRow.append(self.multipleRows)
+        print(self.strRow)
+
+        if (not self.strRow):
+            self.btn_deleteall.setEnabled(False)
+        else:
+            self.btn_deleteall.setEnabled(True)
 
     def multipleDelete(self, rows):
         print("I'm supposed to do something")
-        
         i=0
         strToDelete = ''
+        tupleToDelete = ()
         while(i<=self.table_pilots.rowCount()):
-            count = self.tupleRow.count(str(i))
+            count = self.strRow.count(i)
             print(count)
-            if (count%2 != 0):
-                strToDelete += str(i)
+            if (count%2 == 0 and count != 0):
+                print("THIS ISSSSS ")
+                print(i)
+                print('waht')
+                self.strRow = list(filter(lambda j: j != i , self.strRow))
+            
+            if (not self.strRow == False)
+                self.strRow = list(set(self.strRow))
             i+=1
-        tupleToDelete = tuple(strToDelete)
-        print(tupleToDelete)
+        self.strRow.sort(reverse=False)
+        print(self.strRow)
 
-        if "0" in tupleToDelete:
-            for i in tupleToDelete:
+        if "0" in self.strRow:
+            for i in self.strRow:
                 iToInt = int(i)
                 if(iToInt > 0):
                     iToInt -=1
@@ -143,13 +154,17 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
                 self.softDelete(iToInt)
         else:
             counter = 0
-            for i in tupleToDelete:
+            for i in self.strRow:
                 iToInt = int(i)
                 if(counter > 0):
-                    iToInt -= 1
+                    iToInt -= counter
                 print(counter)
                 counter+=1
                 self.softDelete(iToInt)
+        
+        self.strRow = []
+
+        print('list refreshed')
 
     def view(self):
         print('view')
