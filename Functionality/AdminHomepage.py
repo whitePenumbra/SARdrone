@@ -30,10 +30,10 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         # self.table_pilots.item(0,0).setCheckState(QtCore.Qt.Checked)
         # print(self.table_pilots.item(0,0).checkState())
 
-        if self.table_pilots.item(2,2).checkState():
-            print("checked")
-        else:
-            print('unchecked')
+        # if self.table_pilots.item(2,2).checkState():
+        #     print("checked")
+        # else:
+        #     print('unchecked')
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return:
