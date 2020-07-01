@@ -43,6 +43,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.cmb_issue_day.currentTextChanged.connect(self.checkContent)
         self.cmb_issue_month.currentTextChanged.connect(self.checkContent)
         self.cmb_issue_year.currentTextChanged.connect(self.checkContent)
+        self.cmb_issue_year.currentIndexChanged.connect(self.dynamicExpiry)
 
         self.cmb_expiry_day.currentTextChanged.connect(self.checkContent)
         self.cmb_expiry_month.currentTextChanged.connect(self.checkContent)
@@ -114,7 +115,7 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             self.cmb_expiry_year.addItem(str(currentYear - year))
             year -= 1
             yearCounter += 1
-        
+
         ageLimit = 0
         birthYear = 21
         while ageLimit < 60:
@@ -131,6 +132,17 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.lbl_profilePic.setPixmap(image)
 
         self.dbimage = self.convertToBinaryData(imageLoc)
+
+    def dynamicExpiry(self):
+        self.cmb_expiry_year.clear()
+        self.cmb_expiry_year.addItem('')
+        expiryYear = 0
+        if self.cmb_issue_year.currentText() != '':
+            expiryPlus = 1
+            while expiryPlus <=4:
+                expiryYear = int(self.cmb_issue_year.currentText()) + expiryPlus
+                self.cmb_expiry_year.addItem(str(expiryYear))
+                expiryPlus += 1
     
     def cancel(self):
         self.btn_cancel.setEnabled(False)
