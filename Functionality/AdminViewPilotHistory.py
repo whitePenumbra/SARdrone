@@ -23,13 +23,17 @@ class adminViewHistory(QtWidgets.QMainWindow, PilotOpsAlt.Ui_MainWindow):
         print(str(self.pilot[0]))
         cur.execute('SELECT ops_id FROM user_operations WHERE user_id = %s', (str(self.pilot[0]),))
         result = cur.fetchall()
-        print(result)
-        opsID = str(result[0][0])
 
-        cur.execute('SELECT ops_id, date_of_ops, ops_location FROM operations WHERE ops_id = %s', (opsID,))
-        result = cur.fetchall()
+        if not result:
+            print("there is none")
+        else:
+            print(result)
+            opsID = str(result[0][0])
 
-        self.getData(result)
+            cur.execute('SELECT ops_id, date_of_ops, ops_location FROM operations WHERE ops_id = %s', (opsID,))
+            result = cur.fetchall()
+
+            self.getData(result)
 
     def getData(self,result):
         self.table_pilotOps.setRowCount(len(result))
