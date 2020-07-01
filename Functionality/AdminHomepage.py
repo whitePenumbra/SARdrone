@@ -6,7 +6,7 @@ from Gui.Administrator.ViewPilot import ViewPilotAlt
 from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
-from DeletePilot import deleteClass, deleteSuccessClass, deleteErrorClass, multipleDeleteClass, multipleSuccessClass
+from DeletePilot import *
 from ConnectToDB import connectToDB
 from Operations import operationClass
 
@@ -21,7 +21,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
         self.btn_audit.clicked.connect(self.openAudit)
-        self.btn_deleteall.clicked.connect(self.confirmMultiple)
+        self.btn_deleteall.clicked.connect(self.multipleDelete)
 
         self.initializeData()
         # self.btn_deleteall.setEnabled(False)
@@ -130,7 +130,54 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             else:
                 self.strRow = list(filter(lambda j: j != row , self.strRow))
             row += 1
-        
+
+        if(not self.strRow):
+            self.emptySelection = SelectMultipleDeleteAlertClass(parent=self)
+            self.emptySelection.show()
+        else:
+            self.deleteMultiple = multipleDeleteClass(parent=self)
+            self.deleteMultiple.show()
+
+            print('list refreshed')
+            # i=0
+            # strToDelete = ''
+            # tupleToDelete = ()
+            # while(i<=self.table_pilots.rowCount()):
+            #     count = self.strRow.count(i)
+            #     print(count)
+            #     if (count%2 == 0 and count != 0):
+            #         print("THIS ISSSSS ")
+            #         print(i)
+            #         print('waht')
+            #         self.strRow = list(filter(lambda j: j != i , self.strRow))
+                
+            #     # if (not self.strRow == False):
+            #     #     self.strRow = list(set(self.strRow))
+            #     i+=1
+            # self.strRow.sort(reverse=False)
+            # print(self.strRow)
+
+            # if "0" in self.strRow:
+            #     for i in self.strRow:
+            #         iToInt = int(i)
+            #         if(iToInt > 0):
+            #             iToInt -=1
+            #         print(iToInt)
+            #         self.softDelete(iToInt)
+            # else:
+            #     counter = 0
+            #     for i in self.strRow:
+            #         iToInt = int(i)
+            #         if(counter > 0):
+            #             iToInt -= counter
+            #         print(counter)
+            #         counter+=1
+            #         self.softDelete(iToInt)
+            
+            # self.strRow = []
+            # self.btn_deleteall.setEnabled(False)
+    
+    def confirmMultiple(self):
         print(self.strRow)
         if "0" in self.strRow:
             for i in self.strRow:
@@ -148,54 +195,12 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
                 print(counter)
                 counter+=1
                 self.softDelete(iToInt)
-        self.strRow = []
-        print(self.strRow)
-
+        
         self.multipleSuccess = multipleSuccessClass(parent=self)
         self.multipleSuccess.show()
 
-        print('list refreshed')
-        # i=0
-        # strToDelete = ''
-        # tupleToDelete = ()
-        # while(i<=self.table_pilots.rowCount()):
-        #     count = self.strRow.count(i)
-        #     print(count)
-        #     if (count%2 == 0 and count != 0):
-        #         print("THIS ISSSSS ")
-        #         print(i)
-        #         print('waht')
-        #         self.strRow = list(filter(lambda j: j != i , self.strRow))
-            
-        #     # if (not self.strRow == False):
-        #     #     self.strRow = list(set(self.strRow))
-        #     i+=1
-        # self.strRow.sort(reverse=False)
-        # print(self.strRow)
-
-        # if "0" in self.strRow:
-        #     for i in self.strRow:
-        #         iToInt = int(i)
-        #         if(iToInt > 0):
-        #             iToInt -=1
-        #         print(iToInt)
-        #         self.softDelete(iToInt)
-        # else:
-        #     counter = 0
-        #     for i in self.strRow:
-        #         iToInt = int(i)
-        #         if(counter > 0):
-        #             iToInt -= counter
-        #         print(counter)
-        #         counter+=1
-        #         self.softDelete(iToInt)
-        
-        # self.strRow = []
-        # self.btn_deleteall.setEnabled(False)
-    
-    def confirmMultiple(self):
-        self.deleteMultiple = multipleDeleteClass(parent=self)
-        self.deleteMultiple.show()
+        self.strRow = []
+        print(self.strRow)
 
     def view(self):
         print('view')

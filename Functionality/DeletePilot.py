@@ -1,7 +1,8 @@
 import sys, datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 sys.path.append('..')
-from Gui.Administrator.DeletePilot import DeletePilot, DeletePilotSuccess, DeletePilotError, DeletePilotMultiple, DeletePilotMultipleSuccess
+from Gui.Administrator.DeletePilot import DeletePilot, DeletePilotError, DeletePilotMultiple, DeletePilotMultipleSuccess, DeletePilotSuccess
+from Gui.Administrator.Homepage import SelectMultipleDeleteAlert
 from ConnectToDB import connectToDB
 
 class deleteClass(QtWidgets.QMainWindow, DeletePilot.Ui_MainWindow):
@@ -58,7 +59,7 @@ class multipleDeleteClass(QtWidgets.QMainWindow, DeletePilotMultiple.Ui_MainWind
         self.close()
 
     def goDelete(self):
-        self.parent.multipleDelete()
+        self.parent.confirmMultiple()
         self.close()
     
 class multipleSuccessClass(QtWidgets.QMainWindow, DeletePilotMultipleSuccess.Ui_MainWindow):
@@ -69,5 +70,16 @@ class multipleSuccessClass(QtWidgets.QMainWindow, DeletePilotMultipleSuccess.Ui_
     
         self.btn_OK.clicked.connect(self.goBack)
     
+    def goBack(self):
+        self.close()
+
+class SelectMultipleDeleteAlertClass(QtWidgets.QMainWindow, SelectMultipleDeleteAlert.Ui_MainWindow):
+    def __init__(self,parent):
+        super(QtWidgets.QMainWindow,self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+
+        self.btn_OK.clicked.connect(self.goBack)
+
     def goBack(self):
         self.close()
