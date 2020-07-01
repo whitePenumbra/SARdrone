@@ -102,19 +102,25 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
         self.cmb_issue_month.addItems(monthList)
         self.cmb_expiry_month.addItems(monthList)
 
-        year=2016
         self.cmb_year.addItem('')
         self.cmb_issue_year.addItem('')
         self.cmb_expiry_year.addItem('')
-        while year < 2024:
-            self.cmb_issue_year.addItem(str(year))
-            self.cmb_expiry_year.addItem(str(year))
-            year += 1
+
+        currentYear = datetime.date.today().year
+        year = 4
+        yearCounter = 0
+        while yearCounter <= 8:
+            self.cmb_issue_year.addItem(str(currentYear - year))
+            self.cmb_expiry_year.addItem(str(currentYear - year))
+            year -= 1
+            yearCounter += 1
         
-        birthYear=1970
-        while birthYear < 2000:
-            self.cmb_year.addItem(str(birthYear))
+        ageLimit = 0
+        birthYear = 21
+        while ageLimit < 60:
+            self.cmb_year.addItem(str(currentYear - birthYear))
             birthYear += 1
+            ageLimit += 1
 
         imageLoc = "../Gui/Resources/profile_placeholder.jpg"
         image = QtGui.QPixmap(imageLoc)
@@ -173,8 +179,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             'December': '12'
             }
 
-            fname = self.txt_fname.text()
-            lname = self.txt_lname.text()
+            fname = self.txt_fname.text().strip()
+            lname = self.txt_lname.text().strip()
 
             if (self.rbtn_female.isChecked()):
                 gender = 0
@@ -188,18 +194,18 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
             year = self.cmb_year.currentText()
             birthday = datetime.datetime.strptime(monthList[month] + day + year, '%m%d%Y').date()
 
-            address = self.txt_address.text()
-            city = self.txt_city.text()
-            province = self.txt_province.text()
+            address = self.txt_address.text().strip()
+            city = self.txt_city.text().strip()
+            province = self.txt_province.text().strip()
             zipCode = self.txt_zip.text()
 
             email = self.txt_email.text()
             mobile = self.txt_mobile.text()
-            emContact = self.txt_emContact.text()
+            emContact = self.txt_emContact.text().strip()
             emNumber = self.txt_emNumber.text()
 
             certNo = self.txt_certificate.text()
-            operator = self.txt_operator.text()
+            operator = self.txt_operator.text().strip()
             issueDate = datetime.datetime.strptime(monthList[self.cmb_issue_month.currentText()] + self.cmb_issue_day.currentText() +
                         self.cmb_issue_year.currentText(), '%m%d%Y').date()
             expire = datetime.datetime.strptime(monthList[self.cmb_expiry_month.currentText()] + self.cmb_expiry_day.currentText() +
@@ -474,12 +480,12 @@ Password: %s
 
     def checkContent(self):
         if (len(self.txt_mobile.text()) < 11 or len(self.txt_emNumber.text()) < 11
-        or (self.txt_fname.text() == '' or self.txt_fname.text().isspace()) or (self.txt_lname.text() == '' or self.txt_lname.text().isspace())
-        or (self.txt_address.text() == '' or self.txt_address.text().isspace()) or (self.txt_city.text() == '' or self.txt_city.text().isspace())
-        or (self.txt_province.text() == '' or self.txt_province.text().isspace()) or self.txt_zip.text() == '' 
+        or (self.txt_fname.text().strip() == '' or self.txt_fname.text().isspace()) or (self.txt_lname.text().strip() == '' or self.txt_lname.text().isspace())
+        or (self.txt_address.text().strip() == '' or self.txt_address.text().isspace()) or (self.txt_city.text().strip() == '' or self.txt_city.text().isspace())
+        or (self.txt_province.text().strip() == '' or self.txt_province.text().isspace()) or self.txt_zip.text() == '' 
         or self.txt_email.text() == '' or self.txt_mobile.text() == '' 
-        or (self.txt_emContact.text() == '' or self.txt_emContact.text().isspace()) or self.txt_emNumber.text() == ''
-        or self.txt_certificate.text() == '' or (self.txt_operator.text() == '' or self.txt_operator.text().isspace())
+        or (self.txt_emContact.text().strip() == '' or self.txt_emContact.text().isspace()) or self.txt_emNumber.text() == ''
+        or self.txt_certificate.text() == '' or (self.txt_operator.text().strip() == '' or self.txt_operator.text().isspace())
         or self.cmb_day.currentText() == '' or self.cmb_month.currentText() == ''
         or self.cmb_year.currentText() == '' or self.cmb_issue_day.currentText() == ''
         or self.cmb_issue_month.currentText() == '' or self.cmb_issue_year.currentText() == ''

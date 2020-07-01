@@ -139,8 +139,8 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
                 print('waht')
                 self.strRow = list(filter(lambda j: j != i , self.strRow))
             
-            if (not self.strRow == False):
-                self.strRow = list(set(self.strRow))
+            # if (not self.strRow == False):
+            #     self.strRow = list(set(self.strRow))
             i+=1
         self.strRow.sort(reverse=False)
         print(self.strRow)
@@ -163,6 +163,7 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
                 self.softDelete(iToInt)
         
         self.strRow = []
+        self.btn_deleteall.setEnabled(False)
 
         self.multipleSuccess = multipleSuccessClass(parent=self)
         self.multipleSuccess.show()
