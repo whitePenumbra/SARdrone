@@ -238,8 +238,8 @@ class addClass(QtWidgets.QMainWindow, addpilotAlt.Ui_MainWindow):
                 for i in row:
                     address_id = i
 
-            self.username = fname[0:1] + lname[0:]
-            self.password = lname[0:1] + fname[0:]
+            self.username = fname.replace(" ", "")[0:1] + lname.replace(" ", "")[0:]
+            self.password = lname.replace(" ", "")[0:1] + fname.replace(" ", "")[0:]
             # password = lname
 
             encpass = AESCipher('aids').encrypt(self.password)
