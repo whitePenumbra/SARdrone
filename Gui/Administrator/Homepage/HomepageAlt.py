@@ -217,15 +217,15 @@ class Ui_MainWindow(object):
         layout_delbtn.addWidget(btn_delete, 10)
 
         # delete multiple
-        layout_delete = QtWidgets.QHBoxLayout()
-        cb_delete = QtWidgets.QCheckBox()
-        cb_delete.setCheckState(QtCore.Qt.Unchecked)
-        layout_delete.addWidget(cb_delete, 10)
-        layout_delete.setAlignment(QtCore.Qt.AlignCenter)
-        layout_delete.setContentsMargins(18, 0, 0, 0)
+        # layout_delete = QtWidgets.QHBoxLayout()
+        # cb_delete = QtWidgets.QCheckBox()
+        # cb_delete.setCheckState(QtCore.Qt.Unchecked)
+        # layout_delete.addWidget(cb_delete, 10)
+        # layout_delete.setAlignment(QtCore.Qt.AlignCenter)
+        # layout_delete.setContentsMargins(18, 0, 0, 0)
 
-        cellWidget = QtWidgets.QWidget()
-        cellWidget.setLayout(layout_delete)
+        # cellWidget = QtWidgets.QWidget()
+        # cellWidget.setLayout(layout_delete)
 
         cellWidget_View = QtWidgets.QWidget()
         cellWidget_View.setLayout(layout_view)
@@ -236,7 +236,7 @@ class Ui_MainWindow(object):
         # buttons placement
         self.table_pilots.setCellWidget(0, 4, cellWidget_View)
         self.table_pilots.setCellWidget(0, 5, cellWidget_Delete)
-        self.table_pilots.setCellWidget(0, 0, cellWidget)
+        # self.table_pilots.setCellWidget(0, 0, cellWidget)
 
         # remove select trigger
         self.table_pilots.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
