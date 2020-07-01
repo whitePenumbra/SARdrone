@@ -6,7 +6,7 @@ from Gui.Administrator.ViewPilot import ViewPilotAlt
 from AddPilot import addClass
 from ViewPilot import viewClass
 from Audit import auditClass
-from DeletePilot import deleteClass, deleteSuccessClass, deleteErrorClass
+from DeletePilot import deleteClass, deleteSuccessClass, deleteErrorClass, multipleDeleteClass, multipleSuccessClass
 from ConnectToDB import connectToDB
 from Operations import operationClass
 
@@ -21,12 +21,19 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.btn_search.clicked.connect(self.search)
         self.btn_logout.clicked.connect(self.logout)
         self.btn_audit.clicked.connect(self.openAudit)
-        self.btn_deleteall.clicked.connect(self.multipleDelete)
+        self.btn_deleteall.clicked.connect(self.confirmMultiple)
 
         self.initializeData()
-        self.btn_deleteall.setEnabled(False)
+        # self.btn_deleteall.setEnabled(False)
 
         self.strRow = []
+        # self.table_pilots.item(0,0).setCheckState(QtCore.Qt.Checked)
+        # print(self.table_pilots.item(0,0).checkState())
+
+        if self.table_pilots.item(2,2).checkState():
+            print("checked")
+        else:
+            print('unchecked')
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return:
@@ -101,9 +108,9 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
             cur.execute('UPDATE users SET isActive = 0 WHERE first_name = "%s" AND last_name = "%s" AND user_id = "%s"' % (firstName, lastName, self.pilotID))
             conn.commit()
 
-            self.deleteSuccess = deleteSuccessClass(parent=self)
-            self.deleteSuccess.show()
-            self.deleteSuccess.activateWindow()
+            # self.deleteSuccess = deleteSuccessClass(parent=self)
+            # self.deleteSuccess.show()
+            # self.deleteSuccess.activateWindow()
         except Exception as e:
             self.deleteError = deleteErrorClass(parent=self)
             self.deleteError.show()
@@ -112,39 +119,19 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
 
         self.audits("Admin deleted pilot " + firstName + " " + lastName)
         self.initializeData()
-    
-    def multipleSelect(self):
-        print('change state')
-        button = self.sender()
-        self.multipleRows = self.table_pilots.indexAt(button.pos()).row()
-        self.strRow.append(self.multipleRows)
-        print(self.strRow)
 
-        if (not self.strRow):
-            self.btn_deleteall.setEnabled(False)
-        else:
-            self.btn_deleteall.setEnabled(True)
-
-    def multipleDelete(self, rows):
+    def multipleDelete(self):
         print("I'm supposed to do something")
-        i=0
-        strToDelete = ''
-        tupleToDelete = ()
-        while(i<=self.table_pilots.rowCount()):
-            count = self.strRow.count(i)
-            print(count)
-            if (count%2 == 0 and count != 0):
-                print("THIS ISSSSS ")
-                print(i)
-                print('waht')
-                self.strRow = list(filter(lambda j: j != i , self.strRow))
-            
-            if (not self.strRow == False)
-                self.strRow = list(set(self.strRow))
-            i+=1
-        self.strRow.sort(reverse=False)
-        print(self.strRow)
 
+        row = 0
+        while row < self.rowCount:
+            if self.table_pilots.item(row,0).checkState():
+                self.strRow.append(str(row))
+            else:
+                self.strRow = list(filter(lambda j: j != row , self.strRow))
+            row += 1
+        
+        print(self.strRow)
         if "0" in self.strRow:
             for i in self.strRow:
                 iToInt = int(i)
@@ -161,10 +148,54 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
                 print(counter)
                 counter+=1
                 self.softDelete(iToInt)
-        
         self.strRow = []
+        print(self.strRow)
+
+        self.multipleSuccess = multipleSuccessClass(parent=self)
+        self.multipleSuccess.show()
 
         print('list refreshed')
+        # i=0
+        # strToDelete = ''
+        # tupleToDelete = ()
+        # while(i<=self.table_pilots.rowCount()):
+        #     count = self.strRow.count(i)
+        #     print(count)
+        #     if (count%2 == 0 and count != 0):
+        #         print("THIS ISSSSS ")
+        #         print(i)
+        #         print('waht')
+        #         self.strRow = list(filter(lambda j: j != i , self.strRow))
+            
+        #     # if (not self.strRow == False):
+        #     #     self.strRow = list(set(self.strRow))
+        #     i+=1
+        # self.strRow.sort(reverse=False)
+        # print(self.strRow)
+
+        # if "0" in self.strRow:
+        #     for i in self.strRow:
+        #         iToInt = int(i)
+        #         if(iToInt > 0):
+        #             iToInt -=1
+        #         print(iToInt)
+        #         self.softDelete(iToInt)
+        # else:
+        #     counter = 0
+        #     for i in self.strRow:
+        #         iToInt = int(i)
+        #         if(counter > 0):
+        #             iToInt -= counter
+        #         print(counter)
+        #         counter+=1
+        #         self.softDelete(iToInt)
+        
+        # self.strRow = []
+        # self.btn_deleteall.setEnabled(False)
+    
+    def confirmMultiple(self):
+        self.deleteMultiple = multipleDeleteClass(parent=self)
+        self.deleteMultiple.show()
 
     def view(self):
         print('view')
@@ -208,24 +239,25 @@ class adminhomepageClass(QtWidgets.QMainWindow, HomepageAlt.Ui_MainWindow):
         self.getData(result)
 
     def getData(self,result):
-        self.table_pilots.setRowCount(len(result))
+        self.rowCount = len(result)
+        self.table_pilots.setRowCount(self.rowCount)
         # print(result)
         row = 0
         for i in result:
 
             # delete multiple
             layout_delete = QtWidgets.QHBoxLayout()
-            self.cb_delete = QtWidgets.QCheckBox()
-            self.cb_delete.stateChanged.connect(self.multipleSelect)
+            self.cb_delete = QtWidgets.QTableWidgetItem()
             self.cb_delete.setCheckState(QtCore.Qt.Unchecked)
-            layout_delete.addWidget(self.cb_delete, 10)
-            layout_delete.setAlignment(QtCore.Qt.AlignCenter)
-            layout_delete.setContentsMargins(18, 0, 0, 0)
+            # self.table_pilots.cellChanged.connect(self.multipleSelect)
+            # layout_delete.addWidget(self.cb_delete, 10)
+            # layout_delete.setAlignment(QtCore.Qt.AlignCenter)
+            # layout_delete.setContentsMargins(18, 0, 0, 0)
 
             # self.cellWidget = QtWidgets.QWidget()
             # self.cellWidget.setLayout(layout_delete)
 
-            self.table_pilots.setCellWidget(row,0,self.cb_delete)
+            self.table_pilots.setItem(row,0,self.cb_delete)
             if (i[0] <= 9 and i[0] > 0):
                 self.table_pilots.setItem(row,1, QtWidgets.QTableWidgetItem('OP-00' + str(i[0])))
             elif (i[0] > 9):
